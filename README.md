@@ -1,4 +1,4 @@
-# Microsoft AI in a Day Labs
+# Microsoft **AI in a Day** Labs
 
 The following labs are available in this repo:
 
