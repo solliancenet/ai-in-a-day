@@ -22,6 +22,8 @@ In this lab, you will use Azure Machine Learning to build, train and interpret t
 
 ## Exercise: Creating a regression model using automated machine learning
 
+Duration: 25 minutes
+
 In this exercise, you will create a model that predicts need for maintenance from time-series data using the visual interface to automated machine learning in an Azure Machine Learning workspace.
 ### Task 1: Create an automated machine learning experiment
 
@@ -83,13 +85,14 @@ Leave the other options set to their default values, and confirm the dataset cre
 
     - **Training job time (hours)** (in the `Exit criterion` section): enter `1` as this is the lowest value currently accepted.
 
-    - **Metric score threshold**: enter `0.1355`. When this threshold value will be reached for an iteration metric the training job will terminate.
+    - **Metric score threshold**: enter `0.134`. When this threshold value will be reached for an iteration metric the training job will terminate.
 
     ![The Additional configurations form is populated with the values defined above. The Save button is highlighted at the bottom of the form.](images/automl-configure-task-02.png 'Configure automated machine learning run additional configurations')
 
     > **Note**: We are setting a metric score threshold to limit the training time. In practice, for initial experiments, you will typically only set the training job time to allow AutoML to discover the best algorithm to use for your specific data.
+10. Select **View featurization settings**, and make sure to uncheck the following features: `year-of-visit`, `date-of-visit`, and `car-age-in-years` in order to avoid leaking target data.
 
-10. Select **Finish** to start the new automated machine learning run.
+11. Select **Finish** to start the new automated machine learning run.
 
     > **Note**: The experiment should run for up to 10 minutes. If the run time exceeds 15 minutes, cancel the run and start a new one (steps 3, 9, 10). Make sure you provide a higher value for `Metric score threshold` in step 10.
 
@@ -97,7 +100,7 @@ Leave the other options set to their default values, and confirm the dataset cre
 
 1. Once the experiment completes, select `Details` to examine the details of the run containing information about the best model and the run summary.
 
-   ![The Run Detail screen of Run 1 indicates it has completed. The Details tab is selected where the the best model, ProphetModel, is indicated along with the run summary.](images/automl-review-run-01.png 'Run details - best model and summary')
+   ![The Run Detail screen of Run 1 indicates it has completed. The Details tab is selected where the best model is displayed along with the run summary.](images/automl-review-run-01.png 'Run details - best model and summary')
 
 2. Select `Models` to see a table view of different iterations and the `Normalized root mean squared error` score for each iteration. Note that the normalized root mean square error measures the error between the predicted value and actual value. In this case, the model with the lowest normalized root mean square error is the best model. Note that Azure Machine Learning Python SDK updates over time and gives you the best performing model at the time you run the experiment. Thus, it is possible that the best model you observe can be different than the one shown below.
 
@@ -115,17 +118,53 @@ Leave the other options set to their default values, and confirm the dataset cre
 
     ![The model run page is shown with the Metrics tab selected. A chart is displayed showing the Predicted vs True curve.](images/automl-review-run-05.png 'Predicted vs True curve')
 
-## Exercise 2: Evaluate model interpretability
+### Task 3: Review the model explanations
 
-Duration: 20 minutes
+1. Switch to the `Explanations (preview)` tab, and analyze the top features impacting model predictions
 
-In this exercise, you will interpret the behavior of one of the models trained in previous exercises.
+   ![The model run page is shown with the Explanations tab selected. A chart is displayed showing the top K features.](images/explanations_01.png 'Global importance')
 
-### Task 1: Create the deep learning model and start a streaming job using a notebook
+2. Select the `Summary importance` option and ensure the **Chart type** is set to **Swarm**.
+   ![The model run page is shown with the Explanations tab selected. A chart is displayed showing the feature importance summary.](images/explanations_02.png 'Summary importance')
 
-1. Browse to your Azure Databricks Workspace and navigate to `AI with Databricks and AML \ 5.0 Model Interpretability`. This is the notebook you will step through executing in this exercise.
+3. Select an individual chart point and analyze the importance each feature had when making that particular prediction.
 
-2. Follow the instructions within the notebook to complete the exercise.
+   ![A chart is displayed showing the local feature importances.](images/explanations_03.png 'Local feature importance')
+
+4. Change the **Chart type** to **Violin** and analyze the distribution and range of values for each feature.
+
+   ![A violin chart is displayed showing the top K features.](images/explanations_04.png 'Summary importance')
+
+5. Change the **Explanation type** from **raw** to **engineered** in order to analyze engineered features, too.
+
+   ![A menu that allows changing the explanation type from raw to engineered features.](images/explanations_05.png 'Explanation type')
+## Exercise 2: Review model explanations
+
+
+
+## TODO Exercise 3: Evaluate model fairness
+
+Duration: 25 minutes
+
+In this exercise, you will interpret the behavior of the best model trained in the previous exercise.
+
+### Task 1: Create a compute instance
+
+1. Select **Compute** in the left navigation bar and choose **Create compute instance**. 
+2. Make sure you are creating a `Standard_DS3_v2` CPU machine, choose a name, and click **Create**.
+
+### Task 2: Clone this GitHub repo on the machine
+
+1. Select **Notebooks** in the navigation bar, and choose **Terminal (preview)**
+2. Run the command `git clone https://github.com/solliancenet/ai-in-a-day.git` to clone this repository
+
+
+### Task 3: Create the deep learning model and start a streaming job using a notebook
+
+1. Refresh the **Files** pane and navigate to the `ai-in-a-day/01-aml-model-training/notebooks` folder.
+2. Open the `2. Model Interpretability.ipynb` notebook. This is the notebook you will step through executing in this exercise.
+3. Follow the instructions within the notebook to complete the exercise.
+4. Don't forget to **Stop** the compute instance when you're done
 
 ## After the hands-on lab
 
