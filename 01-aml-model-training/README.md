@@ -120,14 +120,14 @@ Leave the other options set to their default values, and confirm the dataset cre
 
 ### Task 3: Review the model explanations
 
-1. Switch to the `Explanations (preview)` tab, and analyze the top features impacting model predictions
+1. Switch to the `Explanations (preview)` tab, and analyze the top features impacting model predictions using the `Global importance` chart. Note how the chart aggregates feature importance values of individual datapoints to show the model's overall top K (configurable) important features, and helps understanding the underlying model's overall behavior.
 
    ![The model run page is shown with the Explanations tab selected. A chart is displayed showing the top K features.](images/explanations_01.png 'Global importance')
 
-2. Select the `Summary importance` option and ensure the **Chart type** is set to **Swarm**.
+2. Select the `Summary importance` chart and make sure that the **Chart type** is set to **Swarm**. Note how this chart uses individual feature importance values across all data points to show the distribution of each feature's impact on the prediction value. This will help you investigate how feature values affect the prediction values.
    ![The model run page is shown with the Explanations tab selected. A chart is displayed showing the feature importance summary.](images/explanations_02.png 'Summary importance')
 
-3. Select an individual chart point and analyze the importance each feature had when making that particular prediction.
+3. Select an individual chart point and analyze the importance each feature had when making that particular prediction. Note the top K (configurable) important features for the selected prediction.
 
    ![A chart is displayed showing the local feature importances.](images/explanations_03.png 'Local feature importance')
 
