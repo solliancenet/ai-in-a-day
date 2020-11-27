@@ -10,9 +10,9 @@ Trey Research Inc. delivers innovative solutions for manufacturers. They special
 
 Trey Research is looking to provide the next generation experience for connected car manufacturers by enabling them to utilize AI to decide when to pro-actively reach out to the customer through alerts delivered directly to the car’s in-dash information and entertainment head unit. For their proof of concept (PoC), they would like to focus on one specific maintenance related scenario.
 
-In this scenario, Trey Research would like to predict the likelihood that a car will require maintenance based on the historic data logging previous maintenance visits. The data contains details about the car owner, when it was first bought, its make and engine type, among other fields.
+In this scenario, Trey Research would like to predict the likelihood that a car will require maintenance in its first 10,000 miles based on the historic data logging previous maintenance visits. The data contains details about the car owner, when it was first bought, its make and engine type, among other fields.
 
-If they detect maintenance has a high probability of being required within the next 30 days, they would like to send an alert directly to the customer inviting them to schedule a service appointment.
+If they detect a high probability of maintenance being required, they would like to send an alert directly to the customer inviting them to schedule a service appointment.
 
 In building this PoC, Trey Research wants to understand how they might use machine learning in this scenario, and standardize the platform that would support the data processing, model management and inferencing aspects of each.
 
@@ -24,7 +24,7 @@ In this lab, you will use Azure Machine Learning to build, train and interpret t
 
 Duration: 25 minutes
 
-In this exercise, you will create a model that predicts need for maintenance from time-series data using the visual interface to automated machine learning in an Azure Machine Learning workspace.
+In this exercise, you will create a model that predicts need for maintenance from dealership visits data using the visual interface to automated machine learning in an Azure Machine Learning workspace.
 ### Task 1: Create an automated machine learning experiment
 
 1. Navigate to your Azure Machine Learning workspace in the Azure Portal. Select **Launch studio**.
@@ -46,22 +46,17 @@ In this exercise, you will create a model that predicts need for maintenance fro
       - **Browse** to the `data` folder in this repository, and select `car-maintenance-data.csv`
     - **Settings and preview**
       - **Column headers**: **Use headers from the first file**
+    - Leave the other options set to their default values, and confirm the dataset creation.
 
-Leave the other options set to their default values, and confirm the dataset creation.
-   
 4. Select the newly created `CarMaintenance` dataset from the list of registered datasets and then select **Next**.
 
      ![In the Create a new Automated ML run dialog, select the CarMaintenance dataset from the dataset list. The Next button is highlighted.](images/automl-create-dataset-01.png 'Select registered dataset')
 
-5. Review the dataset details in the `Configure run` section, by selecting the **View dataset** link next to the dataset name.
-
-    ![The Configure run screen shows the option to review the selected dataset structure. Select the view dataset link next to the dataset name.](images/automl-create-dataset-02.png 'Confirm and create the dataset')
-
-6.  Provide the experiment name: `Car-Maintenance` and select **car-age-in-months** as target column. Select **Create a new compute**.
+5. Provide the experiment name: `Car-Maintenance` and select **has-issue-in-first-10k** as target column. Select **Create a new compute**.
 
     ![In the Configure run form is populated with the above values. The Create a new compute button is highlighted.](images/automl-create-experiment.png 'Create New Experiment details')
 
-7.  For the new compute, provide the following values and then select **Create**:
+6. For the new compute, provide the following values and then select **Create**:
 
     - **Compute name**: `auto-ml-compute`
   
@@ -75,24 +70,25 @@ Leave the other options set to their default values, and confirm the dataset cre
 
     > **Note**: The creation of the new compute may take several minutes. Once the process is completed, select **Next** in the `Configure run` section.
 
-8.  Select the `Regression` task type and then select **View additional configuration settings**:
+8.  Select the `Classification` task type and then select **View additional configuration settings**:
 
     ![The Select task type form is populated with the values outlined above. The View additional configuration settings link is highlighted.](images/automl-configure-task-01.png 'Configure time series forecasting task')
 
-9.  For the automated machine learning run additional configurations, provide the following values and then select **Save**:
+8. For the automated machine learning run additional configurations, provide the following values and then select **Save**:
 
-    - **Primary metric**: `Normalized root mean squared error`
+    - **Primary metric**: `AUC weighted`
 
     - **Training job time (hours)** (in the `Exit criterion` section): enter `1` as this is the lowest value currently accepted.
 
-    - **Metric score threshold**: enter `0.134`. When this threshold value will be reached for an iteration metric the training job will terminate.
+    - **Metric score threshold**: enter `0.8`. When this threshold value will be reached for an iteration metric the training job will terminate.
 
     ![The Additional configurations form is populated with the values defined above. The Save button is highlighted at the bottom of the form.](images/automl-configure-task-02.png 'Configure automated machine learning run additional configurations')
 
     > **Note**: We are setting a metric score threshold to limit the training time. In practice, for initial experiments, you will typically only set the training job time to allow AutoML to discover the best algorithm to use for your specific data.
-10. Select **View featurization settings**, and make sure to uncheck the following features: `year-of-visit`, `date-of-visit`, and `car-age-in-years` in order to avoid leaking target data.
 
-11. Select **Finish** to start the new automated machine learning run.
+8. Select **View featurization settings**, and make sure to uncheck the following features: `year-of-visit`, `date-of-visit`, `car-age-in-years`, and `car-age-in-months` in order to avoid leaking target data.
+
+9. Select **Finish** to start the new automated machine learning run.
 
     > **Note**: The experiment should run for up to 10 minutes. If the run time exceeds 15 minutes, cancel the run and start a new one (steps 3, 9, 10). Make sure you provide a higher value for `Metric score threshold` in step 10.
 
@@ -122,7 +118,7 @@ Leave the other options set to their default values, and confirm the dataset cre
 
 1. Switch to the `Explanations (preview)` tab, and analyze the top features impacting model predictions using the `Global importance` chart. Note how the chart aggregates feature importance values of individual datapoints to show the model's overall top K (configurable) important features, and helps understanding the underlying model's overall behavior.
 
-   ![The model run page is shown with the Explanations tab selected. A chart is displayed showing the top K features.](images/explanations_01.png 'Global importance')
+   ![The model run page is shown **with** the Explanations tab selected. A chart is displayed showing the top K features.](images/explanations_01.png 'Global importance')
 
 2. Select the `Summary importance` chart and make sure that the **Chart type** is set to **Swarm**. Note how this chart uses individual feature importance values across all data points to show the distribution of each feature's impact on the prediction value. This will help you investigate how feature values affect the prediction values.
    ![The model run page is shown with the Explanations tab selected. A chart is displayed showing the feature importance summary.](images/explanations_02.png 'Summary importance')
