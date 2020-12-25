@@ -58,10 +58,55 @@
           ]
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "lYNcXL",
+        "name": "GetRecentResearch"
+      },
+      "intent": "GetRecentResearch",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "yXPxMD"
+          },
+          "activity": "${SendActivity_yXPxMD()}"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "Oe7sMo"
+          },
+          "method": "GET",
+          "url": "https://aiinaday.search.windows.net/indexes/cognitive-index/docs?api-version=2020-06-30&$orderby=publish_time desc&$top=1",
+          "headers": {
+            "api-key": "9840B57ECC4C2568414F7122957C2BEB"
+          },
+          "resultProperty": "dialog.searchResult",
+          "contentType": "application/json"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "S0eIRE"
+          },
+          "activity": "${SendActivity_S0eIRE()}"
+        }
+      ]
     }
   ],
   "generator": "AI-in-a-Day-Bot.lg",
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
   "id": "AI-in-a-Day-Bot",
-  "recognizer": "AI-in-a-Day-Bot.lu.qna"
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "GetRecentResearch",
+        "pattern": "What is the latest researh?"
+      }
+    ]
+  }
 }

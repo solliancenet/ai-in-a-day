@@ -1,8 +1,12 @@
 [import](common.lg)
 
 # SendActivity_Welcome()
-- ${WelcomeUser()}
-- I can find you the recent research about COVID using a dataset sampled from COVID-19 Open Research Dataset that can be found on https://azure.microsoft.com/en-us/services/open-datasets/catalog/covid-19-open-research/
+- Hi, I can find you the recent research about COVID using a dataset sampled from COVID-19 Open Research Dataset that can be found on https://azure.microsoft.com/en-us/services/open-datasets/catalog/covid-19-open-research/
 # SendActivity_003038()
 - Sorry. I did not understand that. Try asking for recent research about COVID.
 
+
+# SendActivity_yXPxMD()
+- Looking for recent publications...
+# SendActivity_S0eIRE()
+- Here is a document titled "${dialog.searchResult.content.value[0].title}". You can access it on ${dialog.searchResult.content.value[0].url}
