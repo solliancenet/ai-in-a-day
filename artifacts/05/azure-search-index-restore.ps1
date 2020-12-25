@@ -10,11 +10,11 @@ $headers = @{
 
 $indexSchemaFile = Get-Content -Raw -Path "cognitive-index.schema"
 
-Write-Information "Creating Target Search Index."
+Write-Host "Creating Target Search Index."
 
 $result = Invoke-RestMethod  -Uri $uri -Method POST -Body $indexSchemaFile -Headers $headers -ContentType "application/json"
 
-Write-Information "Starting to upload index documents from saved JSON files."
+Write-Host "Starting to upload index documents from saved JSON files."
 
 $uri = $serviceUri + "/indexes/cognitive-index/docs/index?api-version=2019-05-06"
 $files = Get-ChildItem "." -Filter *.json 
@@ -24,4 +24,4 @@ foreach ($f in $files){
     $result = Invoke-RestMethod  -Uri $uri -Method POST -Body $content -Headers $headers -ContentType "application/json"
 }
 
-Write-Information "Data upload completed."
+Write-Host "Data upload completed."
