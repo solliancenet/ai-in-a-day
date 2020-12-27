@@ -10,3 +10,13 @@
 - Looking for recent publications...
 # SendActivity_S0eIRE()
 - Here is a document titled "${dialog.searchResult.content.value[0].title}". You can access it on ${dialog.searchResult.content.value[0].url}
+# SendActivity_Da2iYr()
+- Here is the latest ${count(dialog.searchResult.content.value)} published research.
+# SendActivity_U6iifd()
+- "${dialog.searchResult.content.value[dialog.foreach.index].title}" accessable on ${dialog.searchResult.content.value[dialog.foreach.index].url}
+# SendActivity_hjExtS()
+- Not sure what you are looking for.  Ask me about the latest research.
+# SendActivity_UpOK5X()
+- "${dialog.searchResult.content.value[0].title}" accessable on ${dialog.searchResult.content.value[0].url}
+# SendActivity_zEOIoJ()
+- Looking for more ${user.LastTopicSearch} research.

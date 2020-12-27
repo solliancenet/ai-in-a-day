@@ -56,6 +56,20 @@
               ]
             }
           ]
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "PIZfqy"
+          },
+          "property": "user.LastTopicSearch"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "g9QmvJ"
+          },
+          "property": "user.LastTopicSearchCount"
         }
       ]
     },
@@ -95,6 +109,133 @@
           "activity": "${SendActivity_S0eIRE()}"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "LAxyfU",
+        "name": "ResearchLookup"
+      },
+      "intent": "ResearchLookup",
+      "actions": [
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "JgwviC"
+          },
+          "method": "GET",
+          "url": "https://aiinaday.search.windows.net/indexes/cognitive-index/docs?api-version=2020-06-30&search=${@topic}&$top=5",
+          "headers": {
+            "api-key": "9840B57ECC4C2568414F7122957C2BEB"
+          },
+          "resultProperty": "dialog.searchResult",
+          "contentType": "application/json"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Da2iYr"
+          },
+          "activity": "${SendActivity_Da2iYr()}"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "9Ygxpo"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "dialog.searchResult.content.value",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "U6iifd"
+              },
+              "activity": "${SendActivity_U6iifd()}"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "MP7Erh"
+          },
+          "property": "user.LastTopicSearch",
+          "value": "${@topic}"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "l6yl4l"
+          },
+          "property": "user.LastTopicSearchCount",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "kAgrei",
+        "name": "AskForMore"
+      },
+      "intent": "AskForMore",
+      "actions": [
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "9XLoej"
+          },
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "hjExtS"
+              },
+              "activity": "${SendActivity_hjExtS()}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "ZZjfsW"
+              },
+              "property": "user.LastTopicSearchCount",
+              "value": "= add(user.LastTopicSearchCount,1)"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "zEOIoJ"
+              },
+              "activity": "${SendActivity_zEOIoJ()}"
+            },
+            {
+              "$kind": "Microsoft.HttpRequest",
+              "$designer": {
+                "id": "5PZOhh"
+              },
+              "method": "GET",
+              "url": "https://aiinaday.search.windows.net/indexes/cognitive-index/docs?api-version=2020-06-30&search=${user.LastTopicSearch}&$top=1&$skip=${add(user.LastTopicSearchCount,5)}",
+              "headers": {
+                "api-key": "9840B57ECC4C2568414F7122957C2BEB"
+              },
+              "resultProperty": "dialog.searchResult",
+              "contentType": "application/json"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "UpOK5X"
+              },
+              "activity": "${SendActivity_UpOK5X()}"
+            }
+          ],
+          "condition": "= length(user.LastTopicSearch)<1"
+        }
+      ]
     }
   ],
   "generator": "AI-in-a-Day-Bot.lg",
@@ -105,7 +246,15 @@
     "intents": [
       {
         "intent": "GetRecentResearch",
-        "pattern": "What is the latest researh?"
+        "pattern": "What is the latest research?"
+      },
+      {
+        "intent": "ResearchLookup",
+        "pattern": "Find me publications about (?<topic>.*)"
+      },
+      {
+        "intent": "AskForMore",
+        "pattern": "More?"
       }
     ]
   }
