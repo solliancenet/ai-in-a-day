@@ -69,7 +69,8 @@
           "$designer": {
             "id": "g9QmvJ"
           },
-          "property": "user.LastTopicSearchCount"
+          "property": "user.LastTopicSearchCount",
+          "value": 0
         }
       ]
     },
@@ -236,6 +237,61 @@
           "condition": "= length(user.LastTopicSearch)<1"
         }
       ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "dP599T",
+        "name": "OrganizationBasedSearch"
+      },
+      "intent": "OrganizationBasedSearch",
+      "actions": [
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "d7Ltj0"
+          },
+          "method": "GET",
+          "url": "https://aiinaday.search.windows.net/indexes/cognitive-index/docs?api-version=2020-06-30&search=\"${@organization}\"&$select=title,url&searchFields=organizations&$top=5",
+          "headers": {
+            "api-key": "9840B57ECC4C2568414F7122957C2BEB"
+          },
+          "resultProperty": "dialog.searchResult",
+          "contentType": "application/json"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "MCuhpP"
+          },
+          "activity": "${SendActivity_MCuhpP()}"
+        },
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "ijyskB"
+          },
+          "index": "dialog.foreach.index",
+          "value": "dialog.foreach.value",
+          "itemsProperty": "dialog.searchResult.content.value",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "DPAmuu"
+              },
+              "activity": "${SendActivity_DPAmuu()}"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "ZghaW1"
+          },
+          "property": "user.LastTopicSearch"
+        }
+      ]
     }
   ],
   "generator": "AI-in-a-Day-Bot.lg",
@@ -255,6 +311,10 @@
       {
         "intent": "AskForMore",
         "pattern": "More?"
+      },
+      {
+        "intent": "OrganizationBasedSearch",
+        "pattern": "Find me publications from (?<organization>.*)"
       }
     ]
   }

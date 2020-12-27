@@ -20,3 +20,7 @@
 - "${dialog.searchResult.content.value[0].title}" accessable on ${dialog.searchResult.content.value[0].url}
 # SendActivity_zEOIoJ()
 - Looking for more ${user.LastTopicSearch} research.
+# SendActivity_DPAmuu()
+- "${dialog.searchResult.content.value[dialog.foreach.index].title}" accessable on ${dialog.searchResult.content.value[dialog.foreach.index].url}
+# SendActivity_MCuhpP()
+- Here is the latest ${count(dialog.searchResult.content.value)} published research by ${@organization}.
