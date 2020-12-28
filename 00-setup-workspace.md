@@ -2,7 +2,7 @@
 
 ## Task 1 - Create resources
 
-1. Create a new resource group
+1. Create a new resource group with the `AI-in-a-Day` prefix.
 
 2. In the resource group, create a new **Azure Cognitive Search** service with the B (Basic) pricing tier. Name the service with the `aiinaday` prefix to simplify referring to the service in the lab instructions.
 
