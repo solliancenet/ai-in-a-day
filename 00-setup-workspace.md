@@ -14,6 +14,9 @@
 
 ## Task 3 - Lab Virtual Machine Dependencies
 
-1 Install [Bot Framework Emulator](https://github.com/microsoft/BotFramework-Emulator/releases/latest) and make sure the shortcut for the Bot Framework Emulator in on desktop.
+1. Install [.NET Core SDK 3.1](https://dotnet.microsoft.com/download/dotnet-core/thank-you/sdk-3.1.404-windows-x64-installer
+)
+
+2.  Install [Bot Framework Emulator](https://github.com/microsoft/BotFramework-Emulator/releases/latest) and make sure the shortcut for the Bot Framework Emulator in on desktop.
 
 2. Install [Bot Framework Composer](https://docs.microsoft.com/en-us/composer/install-composer) and make sure the shortcut for the Bot Framework Emulator in on desktop.
