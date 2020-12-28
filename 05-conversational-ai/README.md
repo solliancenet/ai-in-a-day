@@ -98,7 +98,7 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
 
 ![ResearchLookup trigger is selected. Trigger phrase regular expression is shown to detect a single pattern.](media/research-lookup-regex-trigger.png)
 
-10. Feel free to look into the other triggers in the starter project and ask our bot different questions to test how different regular expressions set for the current triggers work.
+10. Feel free to look into the other triggers in the starter project and ask different questions to our bot to test how the different regular expressions set for the current triggers work.
 
 ## Task 3 - Extending Our Conversational Bot Using LUIS
 
