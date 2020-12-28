@@ -233,7 +233,7 @@ Let's write `any research from Soochow University?` to mix things up. None of th
 
 ![A chatbot dialog where the user asks for research from Soochow University. The response has a list of research. A response message has Soochow highlighted.](media/bot-response-luis-soochow.png)
 
-Everything worked fine. It looks like our Bot is in much better shape with the help of LUIS. Feel free to test the other intents with phrases like `Show me what's published on SARS` and keep training your model to improve it.
+Everything worked fine. It looks like our Bot is in much better shape with the help of LUIS's natural language processing skills. Feel free to test the other intents with phrases like `Show me what's published on SARS` and keep training your model to improve it.
 
 ## Task 4 - Deploying Our Bot to Azure Bot Service
 
