@@ -44,21 +44,9 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
 
 ![Azure Cognitive Search service page is open. Keys tab is shown. Primary admin key copy command is highlighted.](media/azure-cognitive-search-key.png)
 
-11. Now it's time to change the access keys used in our starter Bot to use our Azure Cognitive Search service. Go back to the Bot Framework Composer. Select **GetRecentResearch** trigger **(1)**. From the design, surface select the **Send an HTTP request** activity **(2)**. You will see a **Value** field **(3)** in the **Headers** section on the right panel. We have to change the value with the primary admin key we have copied from the Azure Portal. 
+11. Now it's time to change the access keys used in our starter Bot to use our Azure Cognitive Search service. Go back to the Bot Framework Composer. Select **Greeting** trigger **(1)**. From the design, surface select the first **Set a property** activity **(2)**. You will see a **Value** field **(3)** on the right panel. We have to change the value with the primary admin key we have copied from the Azure Portal. 
 
-![Bot Framework Composer is on screen. GetRecentResearch trigger is selected. Send an HTTP Request activity is selected. The value field in the Headers section on the right panel is highlighted.](media/starter-bot-key-change-getrecentresearch.png)
-
-12. We have three more places to change the access key as we did in Step 8. Select **ResearchLookup** trigger **(1)**. From the design, surface select the **Send an HTTP request** activity **(2)**. You will see a **Value** field **(3)** in the **Headers** section on the right panel. Two more places left.
-
-![Bot Framework Composer is on screen. ResearchLookup trigger is selected. Send an HTTP Request activity is selected. The value field in the Headers section on the right panel is highlighted.](media/starter-bot-key-change-researchlookup.png)
-
-13. We have three more places to change the access key as we did in Step 8. Select **AskForMore** trigger **(1)**. From the design, surface select the **Send an HTTP request** activity **(2)**. You will see a **Value** field **(3)** in the **Headers** section on the right panel. One more left.
-
-![Bot Framework Composer is on screen. AskForMore trigger is selected. Send an HTTP Request activity is selected. The value field in the Headers section on the right panel is highlighted.](media/starter-bot-key-change-askformore.png)
-
-14. We have three more places to change the access key as we did in Step 8. Select **OrganizationBasedSearch** trigger **(1)**. From the design, surface select the **Send an HTTP request** activity **(2)**. You will see a **Value** field **(3)** in the **Headers** section on the right panel. All key replacements are now done.
-
-![Bot Framework Composer is on screen. OrganizationBasedSearch trigger is selected. Send an HTTP Request activity is selected. The value field in the Headers section on the right panel is highlighted.](media/starter-bot-key-change-organizationbasedsearch.png)
+![Bot Framework Composer is on screen. Greeting trigger is selected. Set a property activity is selected. The value field on the right panel is highlighted.](media/starter-bot-key-change.png)
 
 ## Task 2 - Running AI-in-a-Day Conversational Bot for the First Time
 

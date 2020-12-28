@@ -30,6 +30,14 @@
       },
       "actions": [
         {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "bI9ux4"
+          },
+          "property": "user.cognitiveApiAccessKey",
+          "value": "='B6BC2F3AD9BE5502E87F0A90DD89454E'"
+        },
+        {
           "$kind": "Microsoft.Foreach",
           "$designer": {
             "id": "518944",
@@ -97,7 +105,7 @@
           "method": "GET",
           "url": "https://aiinaday.search.windows.net/indexes/cognitive-index/docs?api-version=2020-06-30&$orderby=publish_time desc&$top=1",
           "headers": {
-            "api-key": "9840B57ECC4C2568414F7122957C2BEB"
+            "api-key": "${user.cognitiveApiAccessKey}"
           },
           "resultProperty": "dialog.searchResult",
           "contentType": "application/json"
@@ -127,7 +135,7 @@
           "method": "GET",
           "url": "https://aiinaday.search.windows.net/indexes/cognitive-index/docs?api-version=2020-06-30&search=${@topic}&$top=5",
           "headers": {
-            "api-key": "9840B57ECC4C2568414F7122957C2BEB"
+            "api-key": "${user.cognitiveApiAccessKey}"
           },
           "resultProperty": "dialog.searchResult",
           "contentType": "application/json"
@@ -221,7 +229,7 @@
               "method": "GET",
               "url": "https://aiinaday.search.windows.net/indexes/cognitive-index/docs?api-version=2020-06-30&search=${user.LastTopicSearch}&$top=1&$skip=${add(user.LastTopicSearchCount,5)}",
               "headers": {
-                "api-key": "9840B57ECC4C2568414F7122957C2BEB"
+                "api-key": "${user.cognitiveApiAccessKey}"
               },
               "resultProperty": "dialog.searchResult",
               "contentType": "application/json"
@@ -254,7 +262,7 @@
           "method": "GET",
           "url": "https://aiinaday.search.windows.net/indexes/cognitive-index/docs?api-version=2020-06-30&search=\"${@organization}\"&$select=title,url&searchFields=organizations&$top=5",
           "headers": {
-            "api-key": "9840B57ECC4C2568414F7122957C2BEB"
+            "api-key": "${user.cognitiveApiAccessKey}"
           },
           "resultProperty": "dialog.searchResult",
           "contentType": "application/json"
