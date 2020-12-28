@@ -90,6 +90,151 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
 
 ## Task 3 - Extending Our Conversational Bot Using LUIS
 
+Our Bot is now using a **Regular expression recognizer** as its Language Understanding engine. We will extend our Bot with [Azure Language Understanding (LUIS)](https://www.luis.ai/) service. LUIS is a machine learning-based service to build natural language into apps, bots, and IoT devices. LUIS will not only help us build a model but continuously improve as well. 
+
+1. Select **AI-in-a-Day-Bot (1)** under the **Your Project** tree view in the Bot Framework Composer. On the right panel, select **Default Recognizer (2)** instead of **Regular Expression Recognizer** as the Language Understanding engine type. Once set, you will receive an error referring to the missing LUIS keys **(3)**. Select **Fix in bot settings (3)** to navigate to **Project Settings** page.
+
+![AI-in-a-Day-Bot project is selected. Language understanding recognizer type is set to default recognizer. LUIS Key errors are shown and highlighted.](media/bot-composer-luis-error.png)
+
+2. In a Microsoft Edge web browser *(Do not close the Bot Framework Composer)*, navigate to the LUIS portal (https://www.luis.ai/) and login with your credentials. Then select your subscription **(1)** and the authoring resource **(2)**. The LUIS authoring resource allows you to create, manage, train, test, and publish your applications. Select **Done (3)** to proceed.
+
+![Luis portal subscription and authoring resource selection window is shown. Matching resources are selected. The Done button is highlighted.](media/luis-subscription-selection.png)
+
+3. Select the **Settings** button from the top blue bar.
+
+![Settings button is highlighted in the conversation apps page.](media/luis-settings-button.png)
+
+4. Select your subscription **(1)** and the authoring resource **(2)**. Drill down through the arrow button **(3)** to access Authoring resource information. Take not of the **Location (4)** and **Primary Key (5)**.
+
+![Authoring Resource settings page is open. Resource location and primary key are highlighted.](media/luis-settings-key.png)
+
+5. Switch back to the Bot Framework Composer. Type in the **primary key** you noted from the previous step into the **LUIS Authoring key** field (1). Select the **location** you noted from the previous step in the **LUIS region** selection list (2). 
+
+![LUIS settings in the Bot Framework Composer are shown. LUIS Authoring Key and LUIS region are highlighted.](media/bot-composer-luis-settings.png)
+
+6. Switch to the **Design (1)** view. Select **ResearchLookup (2)** trigger. 
+
+![ResearchLookup Trigger is open. Trigger phrases are filled in with LUIS utterances. Condition is set to 0.6 scoring for predictions.](media/research-lookup-luis-trigger.png)
+
+7. Copy and paste the below language understanding code with a list of utterances with a single machine-learning entity type definition called `topic` into the **Trigger phrases** box **(3)**. All topic entities below are labeled with values that LUIS will use as part of the machine learning data set. This is a small set of data. We will have the chance to add more later in the lab, on the LUIS portal.
+
+```plaintext
+- Find me publications about {topic=SARS}
+- Find me research about {topic=SARS}
+- Find me research on {topic=SARS}
+- Find me publications on {topic=SARS}
+- Get me publications about {topic=SARS}
+- Get me research about {topic=SARS}
+- Get me research on {topic=SARS}
+- Get me publications on {topic=SARS}
+- Show me publications about {topic=SARS}
+- Show me research about {topic=SARS}
+- Show me research on {topic=SARS}
+- Show me publications on {topic=SARS}
+- Find me publications about {topic=ICU}
+- Find me research about {topic=ICU}
+- Find me research on {topic=ICU}
+- Find me publications on {topic=ICU}
+- Get me publications about {topic=ICU}
+- Get me research about {topic=ICU}
+- Get me research on {topic=ICU}
+- Get me publications on {topic=ICU}
+- Show me publications about {topic=ICU}
+- Show me research about {topic=ICU}
+- Show me research on {topic=ICU}
+- Show me publications on {topic=ICU}
+- Find me publications about {topic=Pathogenesis}
+- Find me research about {topic=Pathogenesis}
+- Find me research on {topic=Pathogenesis}
+- Find me publications on {topic=Pathogenesis}
+- Get me publications about {topic=Pathogenesis}
+- Get me research about {topic=Pathogenesis}
+- Get me research on {topic=Pathogenesis}
+- Get me publications on {topic=Pathogenesis}
+- Show me publications about {topic=Pathogenesis}
+- Show me research about {topic=Pathogenesis}
+- Show me research on {topic=Pathogenesis}
+- Show me publications on {topic=Pathogenesis}
+```
+
+8. Type in `#ResearchLookup.Score>=0.6` into the **Condition (4)** box. This will be our prediction scoring setting for the **ResearchLookup** intent.
+
+![ResearchLookup Trigger is open. Trigger phrases are filled in with LUIS utterances. Condition is set to 0.6 scoring for predictions.](media/research-lookup-luis-trigger.png)
+
+9. Select **OrganizationBasedSearch (1)** trigger. Copy and paste the below language understanding code into the **Trigger phrases** box **(2)**. Type in `#OrganizationBasedSearch.Score>=0.6` into the **Condition (3)** box. 
+
+![OrganizationBasedSearch Trigger is open. Trigger phrases are filled in with LUIS utterances. Condition is set to 0.6 scoring for predictions.](media/organizationbasedresearch-luis-trigger.png)
+
+```plaintext
+- Find me publications from {organization=WHO} 
+- Show research from {organization=WHO} 
+- What research did {organization=WHO} publish?
+- Find me publications from {organization=U.S. CDC}  
+- Show research from {organization=U.S. CDC} 
+- What research did {organization=U.S. CDC} publish?
+- Find me publications from {organization=Institute of Cancer Research} 
+- Show research from {organization=Institute of Cancer Research} 
+- What research did {organization=Institute of Cancer Research} publish?
+```
+
+10. Select **AskForMore (1)** trigger. Type in `-More` into the **Trigger phrases** box **(2)**. Feel free to improve the utterances for this Intent by adding more examples.
+
+![AskForMore Trigger is open. Trigger phrase is set to More.](media/askformore-luis-trigger.png)
+
+11. Now that we have set with all our LUIS intents, entities and labels we can start our bot to test locally in the Bot Framework Emulator.
+
+![Start bot button is highlighted.](media/start-bot-luis.png)
+
+12. What about testing the typographical error that failed with our bot's previous version that did not have LUIS's help? Keep in mind that, for the **GetRecentResearch** intent, we still have a single utterance as shown below.
+
+![GetRecentResearch trigger is open. The trigger phrase is highlighted.](media/getrecentresearch-luis-trigger.png)
+
+Here we go, type `What is the latest resarch?` and see what happens.
+
+![A chatbot dialog is shown where the user asks for more research with a question that includes a typographical error. Chatbot responds with a single research finding.](media/getrecentresearch-luis-result.png)
+
+It looks like LUIS was able to understand what we meant without being too picky with typographical errors. 
+
+13. Before we go too far with testing, let's take a look at the LUIS portal to see what happened there. Navigate to [https://www.luis.ai/applications](https://www.luis.ai/applications) in your browser to see a refreshed list of applications. 
+
+![LUIS applications list is shown on the LUIS portal. AI-in-a-Day application is highlighted. ](media/luis-portal-application-list.png)
+
+When we started our local bot through Bot Framework Composer, the composer connected to LUIS Authoring service in Azure to set things up for our bot. Our bot is running locally but connecting to the cloud to talk to the LUIS service. 
+
+14. Select the application to see more details.
+
+15. Once you are in the application page you can see a list of **intents** **(2)**. These are the **triggers** we configured in our bot. The number of **examples** **(3)** listed is the number of utterances we provided as **trigger phrases** in the Bot Framework Composer. 
+
+![A list of intents is presented. Intent names and example counts are highlighted.](media/luis-portal-intents.png)
+
+16. Select the **Entities page (1)** in the portal. Observe the list of entities **(2)** and their type listed as machine learned **(3)**.
+
+![A list of entities is presented. Entity type "machine learned" is highlighted.](media/luis-portal-entity-list.png)
+
+17. Select the **Review endpoint utterances (1)** page in the portal. This is where we can see a list of utterances users wrote and LUIS predicted, but they are outside the original utterance list we provided. In this case, LUIS did a great job predicting that the `What is the latest resarch?` message was targeting the **GetRecentResearch** intent. We can select the approve this prediction by selecting the **Add** button **(4)**. If LUIS had chosen a wrong intent we could change the aligned intent and give our approval to help LUIS learn and improve its predictions. 
+
+![Review endpoint utterances page is open. The message with the typo is highlighted. Aligned intent is shown as GetRecentResearch. Checkmark button is highlighted.](media/luis-portal-review-utterance.png)
+
+18. Now back to our Bot Emulator for more testing. We will test the **OrganizationBasedSearch** Trigger. As a reminder, here is the list of utterances we provided to LUIS.
+
+```plaintext
+- Find me publications from {organization=WHO} 
+- Show research from {organization=WHO} 
+- What research did {organization=WHO} publish?
+- Find me publications from {organization=U.S. CDC}  
+- Show research from {organization=U.S. CDC} 
+- What research did {organization=U.S. CDC} publish?
+- Find me publications from {organization=Institute of Cancer Research} 
+- Show research from {organization=Institute of Cancer Research} 
+- What research did {organization=Institute of Cancer Research} publish?
+```
+
+Let's write `any research from Soochow University?` to mix things up. None of the utterances above is a perfect match to what we are going to try.
+
+![A chatbot dialog where the user asks for research from Soochow University. The response has a list of research. A response message has Soochow highlighted.](media/bot-response-luis-soochow.png)
+
+Everything worked fine. It looks like our Bot is in much better shape with the help of LUIS.
+
 ## Task 4 - Deploying Our Bot to Azure Bot Service
 
 
