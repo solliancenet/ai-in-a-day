@@ -237,6 +237,97 @@ Everything worked fine. It looks like our Bot is in much better shape with the h
 
 ## Task 4 - Deploying Our Bot to Azure Bot Service
 
+It's time to publish our bot to an Azure Bot Service. An Azure Bot Service is not just a location to host a bot. It helps a bot connect to multiple communication channels such as Microsoft Teams, Skype, Slack, Cortana, and Facebook Messenger. In combination with out of box Cognitive Service integrations, Azure Bot Service can accelerator growing your both with new skills. Let's start with baby steps. 
+
+1. Go back to the **Bot Framework Composer** and switch to **Project Settings (1)**. Select **Add new publish profile (2)**.
+
+![Bot Framework Composer Project Settings is open. Add new publish profile link is highlighted.](media/add-new-publish-profile.png)
+
+2. Name your profile `ai-in-a-day` **(1)** and select **Publish bot to Azure Web App (2)** option as the publish target. Select **Next (3)** to move to the next step.
+
+![New profile name is set to ai-in-a-day. Publish Target is set to Azure Web App. The Next button is highlighted.](media/add-new-publish-profile-1.png)
+
+3. We have to go back to the Azure Portal for a moment to grab some key information we will need during the next step. We need the **Resource Group Name** where our Cognitive Services live, and we need the location of the Cognitive Services. Take note of both values to be used in the next step.
+
+![AI-in-a-day Resource Group is open in the Azure Portal. Resource Group Name and Cognitive Service Locations are highlighted.](media/add-new-publish-profile-3.png)
+
+3. During this step, it is crucial to select the subscription option after filling in all the other fields. With that in mind, type in your **Azure Resource Group** name into the **HostName** box **(1)**. Next, please select the location of your Cognitive Services to make sure our bot is deployed to the same location **(2)**. Finally, choose your subscription (3) and select **Next (4)**.
+
+![Deploying resource configuration screen is open. Hostname is set to ai-in-a-day. Location is set to West US. A subscription is selected. The next button is highlighted.](media/add-new-publish-profile-2.png)
+
+4. Make sure you deselect **(1)** all optional resources. We have some of these resources already in place. We will connect those to our deployment profile in the next steps. Select **Done (2)** to complete the process.
+
+![Deployment environment resource selection screen is open. Deselect all command is highlighted. The done button is marked.](media/add-new-publish-profile-deselect-optionals.png)
+
+5. The Bot Framework Composer registered our bot and provisioned the resources **(1)** needed to host our bot in Azure. Now, we have to connect our deployment to our current LUIS Cognitive service. Select **Edit (2)**.
+
+![Provisioning success dialog is presented. Edit button for ai-in-a-day publish profile is highlighted.](media/edit-publish-profile.png)
+
+6. Look at the **Publish Configuration** section **(1)**. We have to type in a couple of keys and endpoints to make sure our bot can talk to our LUIS Cognitive service that is already in our Azure subscription.
+
+![Publish profile edit screen is open. Publish Configuration is highlighted. Save button is pointed.](media/edit-publish-profile-config.png)
+
+Below is a snippet of the **Publish Configuration** where we have to configure all the fields listed. 
+
+```json
+    "luis": {
+      "authoringKey": "<authoring key>",
+      "authoringEndpoint": "",
+      "endpointKey": "<endpoint key>",
+      "endpoint": "",
+      "region": "eastus"
+    }
+```
+
+7. Let's start with the **authoringKey** and **authoringEndpoint**. Go to the Azure Portal and select the cognitive service that has `Authoring` in its name. This is the LUIS Cognitive service that is used for authoring language content.
+
+![Azure Portal is open. Authoring LUIS Cognitive service is highlighted.](media/luis-authoring-service-selected.png)
+
+8. Select **Keys and Endpoint (1)** section. Copy **Key 1** to the **authoringKey** field replacing `<authoring key>`. Copy **Endpoint** to the **authoringEndpoint** field. Finally, copy **Location** to the **region** field.
+
+![LUIS Authoring service keys and endpoints are shown. Key 1, Endpoint and Location are highlighted.](media/luis-authoring-service-keys.png)
+
+9. The next step is to get the Key and Endpoint for the Prediction Cognitive Service. Go back to the list of resources in the Azure Portal. This time, select the cognitive service called `aiinaday-luis`.
+
+![Azure Portal is open. Prediction LUIS Cognitive service is highlighted.](media/luis-prediction-selected.png)
+
+10. Select **Keys and Endpoint (1)** section. Copy **Key 1** to the **endpointKey** field replacing `<endpoint key>`. Copy **Endpoint** to the **endpoint** field. 
+
+![LUIS Authoring service keys and endpoints are shown. Key 1, Endpoint and Location are highlighted.](media/luis-prediction-keys.png)
+
+Below is an example of how the luis section of your **Publish Configuration** will look like. In your case, all values will be the values you copied from your Azure subscription.
+
+```json
+    "luis": {
+      "authoringKey": "53070e6f36eb4c7c965c06ebfaf1f6ac",
+      "authoringEndpoint": "https://aiinaday-luis-authoring.cognitiveservices.azure.com/",
+      "endpointKey": "5c5169e226f94d409eea6db6edad2c10",
+      "endpoint": "https://aiinaday-luis.cognitiveservices.azure.com/",
+      "region": "westus"
+    }
+```
+
+11. One final value that has to change in the **Publish Configuration** is the Luis resource name **(1)**. This is the name of the prediction Luis Cognitive Service that we selected in the previous step.
+
+![Publish profile edit screen is open. The luisResource field in the Publish Configuration is highlighted. Save button is pointed.](media/publish-configuration-luis-resource.png)
+
+Once that is done. Select **Save** **(2)**.
+
+12. Switch to the **Publish (1)** section in the Bot Framework Composer. Select our bot **(2)** and select **Publish selected bots (3)** to start the publish process.
+
+![Publish screen is open. Current bot is selected. Publish selected bots button is highlighted.](media/publish-bot-to-azure.png)
+
+13. Select **"Okay"** to approve the publishing.
+
+![Publish approval dialog is shown. Okay button is highlighted.](media/publish-okay.png)
+
+14. Once publishing is complete, go to the Azure Portal and select the **Bot Channels Registration** service. 
+
+![Azure Portal is open. Resources in the resource group are listed. ai-in-a-day bot channels registration is highlighted.](media/bot-channel-registration.png)
+
+15. Switch to the **Test in Web Chat (1)** tab. This is where you can test our bot live in Azure. Feel free to ask questions and observe the results **(2)** we previously tested locally.
+
+![Bot channels registration page is open. Test in web chat tab is selected. A sample chat dialog is highlighted.](media/test-web-chat.png)
 
 
 
