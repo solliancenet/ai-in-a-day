@@ -6,7 +6,7 @@
 
 2. In the resource group, create a new **Azure Cognitive Search** service with the B (Basic) pricing tier. Name the service with the `aiinaday` prefix to simplify referring to the service in the lab instructions.
 
-3. In the resource group, create a new **Language Understanding** service. Select F0 (Free) pricing tier for both **Authoring** and **Prediction** Resources. Name the service with the `aiinaday-luis` prefix to simplify referring to the service in the lab instructions.
+3. In the resource group, create a new **Language Understanding** service. Select F0 (Free) pricing tier for both **Authoring** and **Prediction** Resources. Name the service with the `aiinaday-luis` prefix to simplify referring to the service in the lab instructions. Make sure both authoring and prediction services are deployed to the same location.
 
 ## Task 2 - Upload the data used in the lab
 
