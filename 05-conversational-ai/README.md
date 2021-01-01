@@ -329,11 +329,64 @@ Once that is done. Select **Save** **(2)**.
 
 ![Bot channels registration page is open. Test in web chat tab is selected. A sample chat dialog is highlighted.](media/test-web-chat.png)
 
+## Task 5 - Deploying Our Bot to Azure Bot Service
 
+In this task, we will enable voice access to our Bot through the use of AI. We will use **Azure Cognitive Speech Services** to enable real-time speech to text and text to speech conversion. Thanks to **Bot Channels Registrations** in **Azure Bot Service**, we can use the Direct Line Speech channel to have our Bot drive audio only conversations with client applications.
 
+1. Switch to the **Channels (1)** tab in the **Bot Channels Registration** service. Select **Direct Line Speech (2)**.
 
+![Bot Channels Registration is open. Channels tab is selected. Direct Line Speech is highlighted.](media/bot-channel-registration-dls.png)
 
+2. Select the Cognitive Speech Service named `aiinaday-speech` **(1)** for your **Cognitive service account** and hit **Save (2)**. 
 
+![Configure Direct Line Speech page is open. aiinaday-speech service is higlighted for the cognitive service account.](media/bot-channel-registration-dls-speech.png)
 
+You will now see two channels for your bot.
 
+![Channel registration list is shown. Direct Line Speech and Web Chat are listed.](media/bot-channel-registration-channels.png)
 
+3. Switch to the **Settings (1)** tab. Check **Enable Streaming Endpoint (2)** and select **Save (3)**. 
+
+![Bot Channels Registration Settings is open. Enable streaming endpoint checkbox is selected. Save button is highlighted.](media/bot-channel-registration-streaming-endpoint.png)
+
+4. Go back to your Resource Group and select the `ai-in-a-day` app service.
+
+![Resources in the resource group are listed. ai-in-a-day app service is highlighted.](media/app-service-select.png)
+
+5. Switch to the **Configuration (1)** tab. Select **General settings (2)**. Check **On (3)** for Web sockets and select **Save (4)**. 
+
+![Configuration page for the app service is open. General settings tab is on screen. Web sockets is set to ON. Save button is highlighted.](media/app-service-web-socket.png)
+
+6. In a Microsoft Edge web browser, navigate to the Github Releases page of the Cognitive-Services-Voice-Assistant project here [https://github.com/Azure-Samples/Cognitive-Services-Voice-Assistant/releases](https://github.com/Azure-Samples/Cognitive-Services-Voice-Assistant/releases) and download the released ZIP file **(1)**. Select **Open (2)** when the download is completed.
+
+> **Note:** If you are not able to download and install applications to your computer you can watch a demo of the final result in a [video here](media/DLS-chatbot-demo.mp4).
+
+![The releases page for the Windows Voice Asssistant Client on Github is open. WindowsVoiceAssistantClient ZIP file is selected. Open button on the download dialog is highlighted.](media/windows-voice-assistant-client.png)
+
+7. Navigate into the folder in the ZIP file and find the **VoiceAssistantClient (1)** application file. Double click to start the program. When prompted select **Extract all (2)** to temporary extract the contents of the ZIP file.
+
+![ZIP file is open. VoiceAssistantClient is selected. Extract all command is highlighted.](media/windows-voice-assistant-client-extract.png)
+
+8. Select **Extract**. Once extraction is complete a folder window will pop up.
+
+![ZIP Extract window is open. Extract button is highlighted.](media/windows-voice-assistant-client-extract-2.png)
+
+9. Navigate into the `WindowsVoiceAssistantClient-<date>` folder and find the **VoiceAssistantClient** program. Double click the program to start it.
+
+![Extracted files are shown. VoiceAssistantClient program file is selected.](media/windows-voice-assistant-client-start.png)
+
+10. Once the program opens, it will show you its **Settings** window. If the **Settings** window does not show up, select **Settings gear button (A)** to open the window. We need two values for the settings page: **Subscriptions key** and **Subscription key region (1)**. These are the Azure Cognitive Speech Service's key and region values in our Azure subscription.
+
+![Windows Voice Assistant's Settings page is open. Subscription key and region text boxes are highlighted.](media/windows-voice-assistant-client-config.png)
+
+11. Back in the Azure Portal, select the `aiinaday-speech` service.
+
+![Azure Portal is open. From the resource list aiinaday-speech Cognitive Speech Service is highlighted.](media/speech-service-select.png)
+
+12. Switch to the **Keys and Endpoint (1)** tab. Copy **Key 1 (2)** into the **Subscription Key** textbox in the Settings window of the Windows Voice Assistant Client. Copy **Location (3)** into the **Subscription Key Region** textbox in the Settings window of the Windows Voice Assistant Client. Type in a **Connection profile** name **(3)** and select **Save and Apply Profile (4)**. 
+
+![Speech service keys are shown in the Azure Portal. Windows Voice Assistant's Settings page is open. Windows Voice Assistant's Subscription key and subscription key values are filled in from the Azure Portal. Connection profile is set. Save and Apply Profile button is highlighted.](media/speech-service-keys.png)
+
+13. Select **Reconnect (1)** to connect to the bot. You will hear the greeting message first. At any point feel free to select the **Microphone button (2)** and talk to your bot.
+
+![Windows Voice Assistant Client is open. Reconnect and Microphone buttons are highlighted. A chat dialog is presented.](media/windows-voice-assistant-client-result.png)
