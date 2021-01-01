@@ -8,6 +8,8 @@
 
 3. In the resource group, create a new **Language Understanding** service. Select F0 (Free) pricing tier for both **Authoring** and **Prediction** Resources. Name the service with the `aiinaday-luis` prefix to simplify referring to the service in the lab instructions. Make sure both authoring and prediction services are deployed to the same location.
 
+4. In the resource group, create a new **Speech** service. Select F0 (Free) pricing tier for the resource. Name the service with the `aiinaday-speech` prefix to simplify referring to the service in the lab instructions. 
+
 ## Task 2 - Upload the data used in the lab
 
 1. In order to create the Azure Cognitive Search Index and populate the Index with the documents run the Powershell script in [artifacts/05/azure-search-index-restore.ps1](artifacts/05/azure-search-index-restore.ps1)
