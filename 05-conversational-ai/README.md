@@ -8,45 +8,41 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
 
 ## Task 1 - Setting Azure Cognitive Search for a Chatbot
 
-1. Download the starter [Bot project ZIP file](AI-in-a-Day-Bot.zip) to your **Documents** folder. Extract the contents of the ZIP file.
-
-![Zip file saved in Documents. Operating system context menu is open. Extracl all is highlighted.](media/extract-zip-file.png)
-
-2. Launch the **Bot Framework Composer (1)** from its shortcut on Desktop. Select **Open (2)** to load our starter project.
+1. Launch the **Bot Framework Composer (1)** from its shortcut on Desktop. Select **Open (2)** to load our starter project.
 
 ![Bot Framework is open. Open menu command is highlighted.](media/bot-composer-project-open.png)
 
-3. Navigate to your **Documents** folder **(1)**. Select the **AI-in-a-Day-Bot** by double clicking **(2)** on it.
+2. Navigate to your **Desktop** folder **(1)**. Select the **AI-in-a-Day-Bot** by double clicking **(2)** on it.
 
 ![Location is set to users documents folder. AI-in-a-Day-Bot project is highlighted.](media/bot-composer-project-open-2.png)
 
-4. In a Microsoft Edge web browser *(Do not close the Bot Framework Composer)*, navigate to the Azure portal (https://portal.azure.com) and login with your credentials. Then select **Resource groups**.
+3. In a Microsoft Edge web browser *(Do not close the Bot Framework Composer)*, navigate to the Azure portal (https://portal.azure.com) and login with your credentials. Then select **Resource groups**.
 
 ![Open Azure resource group](media/azure-open-resource-groups.png)
 
-5. Select the **AI-in-a-Day** resource group.
+4. Select the **AI-in-a-Day** resource group.
 
-6. Select the Azure Cognitive Search service.
+5. Select the Azure Cognitive Search service.
 
 ![Azure Cognitive Search service is highlighted from the list of services in the AI-in-a-Day Resource Group](media/select-azure-cognitive-search.png)
 
-7. Select **Indexes (1)** and observe the number of documents indexed in the **cognitive-index (2)**.
+6. Select **Indexes (1)** and observe the number of documents indexed in the **cognitive-index (2)**.
 
 ![Indexes tab is open and cognitive-index is highlighted.](media/azure-cognitive-search-index.png)
 
-8. Select **Search Explorer** to navigate to a web-based search experience where you can discover the data in the index.
+7. Select **Search Explorer** to navigate to a web-based search experience where you can discover the data in the index.
 
 ![Cognitive Search service is open. Search Explorer command is highlighted.](media/azure-cognitive-search-explorer.png)
 
-9. Select **Search (1)** to access a sample set of documents from the index. Scroll down and observe the data stored in the index. The values for the fields `people`, `organizations`, `locations`, and `keyphrases`, are created through the use of Azure Cognitive Services as part of the data enrichment process during data indexing.
+8. Select **Search (1)** to access a sample set of documents from the index. Scroll down and observe the data stored in the index. The values for the fields `people`, `organizations`, `locations`, and `keyphrases`, are created through the use of Azure Cognitive Services as part of the data enrichment process during data indexing.
 
 ![Showing a sample set of RAW documents from Azure Cognitive Search. People, organizations, locations and keyphrases fields are highlighted.](media/azure-cognitive-search-explorer-result.png)
 
-10. Close the **Search Explorer**. Navigate to the **Keys (1)** panel. Copy the primary admin key by selecting the copy command **(2)**.
+9. Close the **Search Explorer**. Navigate to the **Keys (1)** panel. Copy the primary admin key by selecting the copy command **(2)**.
 
 ![Azure Cognitive Search service page is open. Keys tab is shown. Primary admin key copy command is highlighted.](media/azure-cognitive-search-key.png)
 
-11. Now it's time to change the access keys used in our starter Bot to use our Azure Cognitive Search service. Go back to the Bot Framework Composer. Select **Greeting** trigger **(1)**. From the design, surface select the first **Set a property** activity **(2)**. You will see a **Value** field **(3)** on the right panel. We have to change the value with the primary admin key we have copied from the Azure Portal. 
+10. Now it's time to change the access keys used in our starter Bot to use our Azure Cognitive Search service. Go back to the Bot Framework Composer. Select **Greeting** trigger **(1)**. From the design, surface select the first **Set a property** activity **(2)**. You will see a **Value** field **(3)** on the right panel. We have to change the value with the primary admin key we have copied from the Azure Portal. 
 
 ![Bot Framework Composer is on screen. Greeting trigger is selected. Set a property activity is selected. The value field on the right panel is highlighted.](media/starter-bot-key-change.png)
 
