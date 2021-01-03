@@ -1,0 +1,48 @@
+{
+  "name": "abstracts",
+  "defaultScoringProfile": "",
+  "fields": [
+    {
+      "name": "paper_id",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": false,
+      "retrievable": true,
+      "sortable": false,
+      "facetable": false,
+      "key": true,
+      "indexAnalyzer": null,
+      "searchAnalyzer": null,
+      "analyzer": null,
+      "synonymMaps": []
+    },
+    {
+      "name": "abstract",
+      "type": "Collection(Edm.ComplexType)",
+      "fields": [
+        {
+          "name": "text",
+          "type": "Edm.String",
+          "searchable": true,
+          "filterable": true,
+          "retrievable": true,
+          "sortable": false,
+          "facetable": true,
+          "key": false,
+          "indexAnalyzer": null,
+          "searchAnalyzer": null,
+          "analyzer": "en.microsoft",
+          "synonymMaps": []
+        }
+      ]
+    }
+  ],
+  "scoringProfiles": [],
+  "corsOptions": null,
+  "suggesters": [],
+  "analyzers": [],
+  "tokenizers": [],
+  "tokenFilters": [],
+  "charFilters": [],
+  "encryptionKey": null
+}

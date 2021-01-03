@@ -1,0 +1,30 @@
+{
+  "name": "covid19temp",
+  "description": "",
+  "dataSourceName": "covid19temp",
+  "skillsetName": null,
+  "targetIndexName": "covid19temp",
+  "disabled": null,
+  "schedule": null,
+  "parameters": {
+    "batchSize": null,
+    "maxFailedItems": 0,
+    "maxFailedItemsPerBatch": 0,
+    "base64EncodeKeys": null,
+    "configuration": {
+      "dataToExtract": "contentAndMetadata",
+      "parsingMode": "json"
+    }
+  },
+  "fieldMappings": [
+    {
+      "sourceFieldName": "metadata_storage_path",
+      "targetFieldName": "metadata_storage_path",
+      "mappingFunction": {
+        "name": "base64Encode",
+        "parameters": null
+      }
+    }
+  ],
+  "outputFieldMappings": []
+}

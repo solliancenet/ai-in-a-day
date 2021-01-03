@@ -1,0 +1,16 @@
+{
+  "name": "covid19temp",
+  "description": null,
+  "type": "azureblob",
+  "subtype": null,
+  "credentials": {
+    "connectionString": "<<TODO:  paste in connection string, starting with DefaultEndpointsProtocol= >>"
+  },
+  "container": {
+    "name": "covid19temp",
+    "query": "comm_use_subset/pdf_json"
+  },
+  "dataChangeDetectionPolicy": null,
+  "dataDeletionDetectionPolicy": null,
+  "encryptionKey": null
+}

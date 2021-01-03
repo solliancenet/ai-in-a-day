@@ -1,0 +1,30 @@
+{
+  "name": "abstracts",
+  "description": "",
+  "dataSourceName": "covid19abstracts",
+  "skillsetName": null,
+  "targetIndexName": "abstracts",
+  "disabled": null,
+  "schedule": null,
+  "parameters": {
+    "batchSize": null,
+    "maxFailedItems": 0,
+    "maxFailedItemsPerBatch": 0,
+    "base64EncodeKeys": null,
+    "configuration": {
+      "dataToExtract": "contentAndMetadata",
+      "parsingMode": "json"
+    }
+  },
+  "fieldMappings": [
+    {
+      "sourceFieldName": "paper_id",
+      "targetFieldName": "paper_id",
+      "mappingFunction": {
+        "name": "base64Encode",
+        "parameters": null
+      }
+    }
+  ],
+  "outputFieldMappings": []
+}
