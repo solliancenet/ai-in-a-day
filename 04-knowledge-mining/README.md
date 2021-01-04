@@ -40,7 +40,7 @@ The virtual machine which accompanies this lab will have all of these tools inst
 
 ![The Search service's API key is copied to the clipboard.](media/copy-azure-search-api-key.png)
 
-8. Download the files in the `schemas\` folder.  There are six files, three prefixed with `abstracts` and three with `covid19temp`.  Save these to a directory such as `C:\Temp\AzureSearch\`.
+8. Download the files in the `schemas\` folder for this lab.  There are six files, three prefixed with `abstracts` and three with `covid19temp`.  Save these to a directory such as `C:\Temp\AzureSearch\`.
 
 9. Open the `abstracts_datasource.schema` file with a text editor and replace the segment starting `<< TODO:` with your Storage account connection string.  Do the same for `covid19temp_datasource.schema`.
 
@@ -189,3 +189,133 @@ Create-AzureSearchIndex "C:/Temp/AzureSearch/covid19temp_datasource.schema" "C:/
 13. Select the **covid19temp** index to return to the Search explorer.  When we had 865 documents, 53 of them pertained to Brazil.  We can confirm that this update was successful by entering `Brazil&$count=true` and selecting **Search**.  This will now return 57 results instead of the prior 53.
 
 ![57 documents pertain to Brazil.](media/search-explorer-brazil-2.png)
+
+## Task 4 - Using the Form Recognizer
+
+1. Navigate to [the Azure portal](https://portal.azure.com) and log in with your credentials.  Then, select **Resource groups**.
+
+![Open Azure resource group](media/azure-open-resource-groups.png)
+
+2. Select the **AI-in-a-Day** resource group.
+
+3. Select the Storage account.
+
+![The Storage account is highlighted from the list of services in the AI-in-a-Day Resource Group](media/select-azure-storage-account.png)
+
+4. Navigate to the **CORS** settings page.  Ensure that you are on the **Blob service** tab and then enter the following values into the table.
+
+   | Parameter                   | Value                                |
+   | --------------------------- | -------------------------------------|
+   | Allowed origins             | Enter `*`                            |
+   | Allowed methods             | Select all of the available methods. |
+   | Allowed headers             | Enter `*`                            |
+   | Exposed headers             | Enter `content-length`               |
+   | Max age                     | Enter `200`                          |
+
+![The CORS options are set for the storage account](media/storage-account-cors.png)
+
+5. Select **Save** to save the CORS settings.
+
+6. Open Azure Storage Explorer and navigate to **lab04**, and then to **Blob Containers**.  Right-click on **covid19temp** and select the **Get Shared Access Signature...** option.
+
+![The Get Shared Access Signature option is selected](media/azure-storage-explorer-get-sas.png)
+
+7. Change the **Expiry time** to the year 2099, select all of the possible permissions, and then select **Create** to create a Shared Access Signature.
+
+![The Get Shared Access Signature option is selected](media/azure-storage-explorer-create-sas.png)
+
+8. Copy the Shared Access Signature URI to a text file and then select **Close**.
+
+![The Shared Access Signature has been copied to the clipboard](media/azure-storage-explorer-copy-sas.png)
+
+9. Return to Azure Portal page with your storage account.  Navigate back to the **AI-in-a-Day** resource group and select the Cognitive Services service.
+
+![The Cognitive Services service is selected](media/azure-open-cognitive-services.png)
+
+10. Select the **Keys and Endpoint** option under Resource Management.  Then, copy the value for **KEY 1** and the **Endpoint**.  Paste these into a text file.
+
+![The Cognitive Services key and endpoint are selected](media/azure-cognitive-services-key.png)
+
+11. Download the file in the `pdf\` folder for this lab.  There is one file named `2020.09.25.20201616v1.pdf`.  Save this to a directory such as `C:\Temp\AzureSearch\`.
+
+12. Navigate to the [Form OCR Testing Tool](https://fott-preview.azurewebsites.net/), an Azure-hosted website for form recognition.  Select the **Connections** option and then choose **+** to create a new connection.  Fill in the parameters as in the table below and then select **Save Connection**.
+
+   | Parameter                   | Value                                |
+   | --------------------------- | -------------------------------------|
+   | Display name                | Enter `papers`                       |
+   | Description                 | Leave blank                          |
+   | Provider                    | Select `Azure blob container`        |
+   | SAS URI                     | Paste your Azure SAS URI             |
+
+![The papers connection has been created](media/fott-connections.png)
+
+13. Return to the home screen and then select **New Project**.
+
+![The papers connection has been created](media/fott-main-screen.png)
+
+14. Enter the following values for your project.  Then, select **Save Project**.
+
+   | Parameter                   | Value                                |
+   | --------------------------- | -------------------------------------|
+   | Display name                | Enter `covid19abstract`              |
+   | Security token              | Select `Generate New Security Token` |
+   | Source connection           | Select `papers`                      |
+   | Folder path                 | Enter `papers`                       |
+   | Form recognizer service URI | Enter your Cognitive Services service URI |
+   | API key                     | Enter your Cognitive Services API key |
+   | API version                 | Leave at the default value           |
+   | Description                 | Leave blank                          |
+
+![The covid19abstract project has been created](media/fott-new-project.png)
+
+15. After creating a new project, you will be sent to the project for tagging.  In the **Tags** section, select **+** to create a new tag, which we will call `Abstract`.
+
+![The Abstract tag has been created](media/fott-tags.png)
+
+16. Wait for the layout to be run for the first document and locate the document's abstract.  Note that for some documents, the abstract is on the second page.  Then, move on to the next document.  We will tag each of the five papers, so navigate to each in turn, allowing the layout to be run.  In order for tagging to be successful, we must first run the layout of a document, navigate to another document, and return to this first document before we begin tagging.  Layout generation happens once per document, after which point we can return to it and tag our abstract.
+
+![Running layout for a document](media/fott-running-layout.png)
+
+17. Return to the second PDF and select each word in the **Abstract** section.  After highlighting this, select the **Abstract** tag to tag this section.  Note that you will need to select each word individually rather than selecting a box.  After selecting the **Abstract** tag, you should see a tag logo next to the PDF.  If you see the tag logo, this means that tagging was successful for this document.
+
+![The first PDF has been viewed, and the second PDF has been tagged](media/fott-tagging-1.png)
+
+18. Return to the first PDF and highlight the word **ABSTRACT** as well as the abstract.  If the abstract is lengthy, as in this example, it is okay to include just the first paragraph.  Then, select the **Abstract** tag to tag this document.  Ensure that the viewed icon (an eye) changes to a tag icon.  If it does not change to a tag but instead changes to a blank spot without any icons, tagging was unsuccessful.  In the event that tagging is unsuccessful, select another document, wait for it to have its layout run, and then return to the prior document and try tagging again.
+
+![The first PDF has been tagged](media/fott-tagging-2.png)
+
+19. Continue tagging until all five of the top papers are tagged.
+
+![The first five PDFs have been tagged](media/fott-tagging-3.png)
+
+20. Once we have tagged five documents, select the **Train** menu option, enter `Abstracts` as the model name, and select the **Train** option.
+
+![The option to train a model has been selected](media/fott-train-model.png)
+
+21. After the model has finished training, we will see results.  Although the estimated accuracy is not great, we will use this model.
+
+![The Abstracts model has been trained](media/fott-train-model-results.png)
+
+22. Return to the **Tags Editor** and select a new document, one you have not already tagged.  After the layout has been run, navigate to the **Actions** menu and select **Auto-label the current document**.
+
+![Auto-label the current document](media/fott-auto-label.png)
+
+23. We will see the results of auto-labeling and an estimated likelihood of success.  Furthermore, the document has an auto-labeled icon next to it.  If this is good enough, we can continue.
+
+![The result of auto-labeling the current document](media/fott-auto-label-result.png)
+
+24. In this case, auto-labeling was okay but missed a few words.  We can select all of the words in the abstract and then select the **Abstract** label.  This will show a new icon, representing an auto-labeled document with manual corrections.
+
+![The result of correcting auto-labeling of a document](media/fott-auto-label-corrected.png)
+
+1.  We can update our model by returning to the **Train** page and re-training the `Abstracts` model.  The resulting estimated accuracy is slightly lower, but there is now another document available to improve model quality.  In this case, estimated accuracy is misleading.
+
+![Retraining a model](media/fott-train-model-2.png)
+
+26. After training the new model, select the **Analyze** menu option.  Select **Browse** and navigate to `C:\Temp\AzureSearch\` and select `2020.09.25.20201616v1.pdf`.  Select **Run Analysis** to see the results.  Note that the abstract is on page 2 of the PDF.
+
+![An analyzed document](media/fott-run-analysis.png)
+
+27. Select **Download** to download a Python script.  We will use this script in the next task.
+
+![The option to download an analysis script is selected](media/fott-download.png)
