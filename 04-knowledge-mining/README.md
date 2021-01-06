@@ -308,7 +308,7 @@ Create-AzureSearchIndex "C:/Temp/AzureSearch/covid19temp_datasource.schema" "C:/
 
 ![The result of correcting auto-labeling of a document](media/fott-auto-label-corrected.png)
 
-1.  We can update our model by returning to the **Train** page and re-training the `Abstracts` model.  The resulting estimated accuracy is slightly lower, but there is now another document available to improve model quality.  In this case, estimated accuracy is misleading.
+25. We can update our model by returning to the **Train** page and re-training the `Abstracts` model.  The resulting estimated accuracy is slightly lower, but there is now another document available to improve model quality.  In this case, estimated accuracy is misleading.
 
 ![Retraining a model](media/fott-train-model-2.png)
 
@@ -316,6 +316,93 @@ Create-AzureSearchIndex "C:/Temp/AzureSearch/covid19temp_datasource.schema" "C:/
 
 ![An analyzed document](media/fott-run-analysis.png)
 
-27. Select **Download** to download a Python script.  We will use this script in the next task.
+27. Select **Download** to download a Python script.  We will use this script in the next task.  Find the location where the script was downloaded and move it to `C:\Temp\AzureSearch\`.
 
 ![The option to download an analysis script is selected](media/fott-download.png)
+
+## Task 5 - Indexing a New Abstract
+
+1. Open a command prompt (`cmd.exe`).  To do this, open the Windows menu, type in `cmd`, and select the **Command Prompt** application.
+
+![The Command Prompt application is selected](media/open-cmd.png)
+
+2. Run the command `pip install requests`.  To run this, you must have Python installed on the machine.  If `python.exe` is not accessible as part of the path--meaning you get an error when trying to run `pip`, navigate to where Python is installed.  The `pip.exe` program is inside the `\Scripts\` folder.
+
+![Pip has installed the requests package for Python](media/pip-install-requests.png)
+
+3. Navigate to `C:\Temp\AzureSearch\` in the command prompt and then run the analyzer script you downloaded at the end of Task 4.  The command to execute is `python analyze-843d.py 2020.09.25.20201616v1.pdf -o 2020.09.25.20201616v1.json`.  You will need to replace `analyze-843d` with the name of the script you downloaded.
+
+![Analyze a PDF document](media/analyze-python.png)
+
+4. Inside the `C:\Temp\AzureSearch\` directory, there is a JSON file with the results of this analysis.  The file is fairly large and contains a detailed breakdown of the text analysis.  We will take the abstract text from this JSON file and write it to an Azure Search index.  To do this, open **PowerShell** and navigate to `C:\Temp\AzureSearch\`.  Then, create the following function.
+
+```powershell
+function Add-Abstract {
+    param (
+        [string]$AnalysisFile,
+        [string]$AccountName,
+        [string]$ApiKey
+    )
+    
+    $paper_id = $AnalysisFile.Replace(".","_")
+    $doc = Get-Content $AnalysisFile | ConvertFrom-Json
+    $txt = $doc.analyzeResult.documentResults.fields.Abstract.valueString
+    
+    $jsonobj=@{
+        value=@(
+            @{
+                paper_id=$paper_id
+                abstract=@(@{
+                    text=$txt
+                    }
+                )
+            }
+        )
+    }
+    $json = $jsonobj | ConvertTo-Json -Depth 4
+    $json | Out-File -FilePath WriteToIndex.json
+    
+    Write-Host $json
+    
+    $Header = @{
+        "api-key" = $ApiKey
+    }
+    $Uri = "https://$AccountName.search.windows.net/indexes/abstracts/docs/index?api-version=2020-06-30"
+        
+    Invoke-RestMethod -Method Post -Uri $Uri -Header $header -ContentType "application/json" -InFile "WriteToIndex.json"
+    
+    Remove-Item "WriteToIndex.json"
+}
+```
+
+![The function to add an abstract](media/add-abstract.png)
+
+5. Run the following to create a new abstract.  Be sure to replace the Azure Search account name and Azure Search API key references with the correct values.
+
+```powershell
+Add-Abstract 2020.09.25.20201616v1.json <<Account Name>> <<API Key>>
+```
+
+![A new abstract has been added](media/add-abstract-results.png)
+
+6. Navigate to [the Azure portal](https://portal.azure.com) and log in with your credentials.  Then, select **Resource groups**.
+
+![Open Azure resource group](media/azure-open-resource-groups.png)
+
+7. Select the **AI-in-a-Day** resource group.
+
+8. Select the Search service.
+
+![The Search service is highlighted from the list of services in the AI-in-a-Day Resource Group](media/select-azure-search-service.png)
+
+9. Select the **Indexes** tab and then choose the **abstracts** index.
+
+![The abstracts index is selected.](media/azure-search-abstracts.png)
+
+10. in the **Search explorer** tab, enter `soccer` and select **Search**.  This will return one result:  the abstract we just added.
+
+![The new abstract is the only abstract containing the word "soccer."](media/azure-search-abstracts-soccer.png)
+
+11. Note that the number of documents may not update to 866 immediately but given enough time, it will update to reflect the addition we made.  If you would like to see the correct number of documents and you still see 865, select **Refresh** to refresh the page.  You may need to wait a minute or two before the numeric update occurs, but in the meantime the new document is searchable.
+
+![The Refresh option is selected.](media/azure-search-abstracts-refresh.png)
