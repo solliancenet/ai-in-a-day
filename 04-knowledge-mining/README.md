@@ -1,14 +1,6 @@
 # Lab 4 - Knowledge Mining with Azure Cognitive Search and Text Analytics
 
-TODO:  Intro
-
-## Lab Requirements
-
-In order to work through this lab, you will need the following tools installed:
-
-* Python 3.  Python version 2 is not supported for this lab.
-* PowerShell 5 or later.  To determine your version, open up a PowerShell prompt and enter `Get-Host`.  If the `Version` does not start with a 5 (or higher number), the PowerShell commands in this lab may not work.
-* [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).
+In this lab, we will look at using Azure Cognitive Services, particularly [Azure Cognitive Search](https://azure.microsoft.com/services/search/) and the [Form Recognizer](https://azure.microsoft.com/services/cognitive-services/form-recognizer/) service.
 
 The virtual machine which accompanies this lab will have all of these tools installed.
 
