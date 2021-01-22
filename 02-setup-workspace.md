@@ -1,9 +1,9 @@
 # ML Ops with GitHub Actions and AML
 
 <p align="center">
-  <img src="docs/images/aml.png" height="80"/>
+  <img src="media/aml_logo.png" height="80"/>
   <img src="https://i.ya-webdesign.com/images/a-plus-png-2.png" alt="plus" height="40"/>
-  <img src="docs/images/actions.png" alt="Azure Machine Learning + Actions" height="80"/>
+  <img src="media/github_action_logo.png" alt="Azure Machine Learning + Actions" height="80"/>
 </p>
 
 This template shows how to perform DevOps for Machine learning applications using [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) powered [GitHub Actions](). Using this template you will be able to setup your train and deployment infra, train the model and deploy them in an automated manner. 
