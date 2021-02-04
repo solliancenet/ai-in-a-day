@@ -9,7 +9,7 @@
 This template shows how to perform DevOps for Machine learning applications using [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) powered [GitHub Actions](). Using this template you will be able to setup your train and deployment infra, train the model and deploy them in an automated manner. 
 
 
-# Getting started
+# GitHub Setup
 
 ### 1. Prerequisites
 
@@ -129,9 +129,9 @@ A commit to setup.yml will enable [train_model.yml](/.github/workflows/train_mod
 
 
 
-# Documentation
+## Documentation
 
-## Code structure
+### Code structure
 
 | File/folder                   | Description                                |
 | ----------------------------- | ------------------------------------------ |
@@ -153,7 +153,7 @@ A commit to setup.yml will enable [train_model.yml](/.github/workflows/train_mod
 | `SECURITY.md`                 | Microsoft Security README.                 |
 
 
-## Documentation of Azure Machine Learning GitHub Actions
+### Documentation of Azure Machine Learning GitHub Actions
 
 The template uses the open source Azure certified Actions listed below. Click on the links and read the README files for more details.
 - [aml-workspace](https://github.com/Azure/aml-workspace) - Connects to or creates a new workspace
@@ -163,7 +163,7 @@ The template uses the open source Azure certified Actions listed below. Click on
 - [aml-deploy](https://github.com/Azure/aml-deploy) - Deploys a model and creates an endpoint for the model
 
 
-## Arm template to deploy azure resources
+### ARM template to deploy azure resources
 The workflow file 'setup.yml' deploys arm template to azure using standard azure CLI deploy command.
 Arm Template [deploy.core-infra.json](/infra/deploy.core-infra.json) is used to deploy azure resources to azure . It uses the parameters provided in file [deploy.core-infra.params.json](/infra/params.deploy.core-infra.json)  to create new resources or update the resources if they are already present.
 
@@ -185,7 +185,7 @@ Arm Template [deploy.core-infra.json](/infra/deploy.core-infra.json) is used to 
 | `pat_token`                        | pat token to be used by the function app to communicate to github via repository dispatch. |
 
 
-## Event Grid Subscription
+### Event Grid Subscription
 User can modify the deploy_event_grid.json arm template to add/remove the storage events that he/she 
 wants to subscribe to [here](https://github.com/Azure-Samples/mlops-enterprise-template/blob/eb32e4df6e9124777e9d5216a7b3841992f03924/infra/deploy.core-infra.json#L526). These are the available events from storage account :
 ```sh
@@ -199,9 +199,9 @@ Microsoft.Storage.DirectoryDeleted
 
 ```
 
-## Known issues
+### Known issues
 
-### Error: MissingSubscriptionRegistration
+#### Error: MissingSubscriptionRegistration
 
 Error message: 
 ```sh
@@ -210,6 +210,13 @@ Message: ***'error': ***'code': 'MissingSubscriptionRegistration', 'message': "T
 Solution:
 
 This error message appears, in case the `Azure/aml-workspace` action tries to create a new Azure Machine Learning workspace in your resource group and you have never deployed a Key Vault in the subscription before. We recommend to create an Azure Machine Learning workspace manually in the Azure Portal. Follow the [steps on this website](https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-1st-experiment-sdk-setup#create-a-workspace) to create a new workspace with the desired name. After ou have successfully completed the steps, you have to make sure, that your Service Principal has access to the resource group and that the details in your <a href="/.cloud/.azure/workspace.json">`/.cloud/.azure/workspace.json"` file</a> are correct and point to the right workspace and resource group.
+
+
+# Setup Azure DevOps
+
+Setup an Azure DevOps project in an Azure DevOps tenant.
+
+
 
 # What is MLOps?
 
