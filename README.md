@@ -2,6 +2,14 @@
 
 ## Source datasets used by the labs
 
+### COVID-19 Case Surveillance Public Use Data
+
+https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf
+
+The COVID-19 case surveillance system database includes individual-level data reported to U.S. states and autonomous reporting entities, including New York City and the District of Columbia (D.C.), as well as U.S. territories and states. On April 5, 2020, COVID-19 was added to the Nationally Notifiable Condition List and classified as “immediately notifiable, urgent (within 24 hours)” by a Council of State and Territorial Epidemiologists (CSTE) Interim Position Statement (Interim-20-ID-01). CSTE updated the position statement on August 5, 2020 to clarify the interpretation of antigen detection tests and serologic test results within the case classification. The statement also recommended that all states and territories enact laws to make COVID-19 reportable in their jurisdiction, and that jurisdictions conducting surveillance should submit case notifications to CDC. COVID-19 case surveillance data are collected by jurisdictions and shared voluntarily with CDC.
+
+The dataset contains 13.4 million rows of deidentified patient data.
+
 ### COVID-19 Open Research Dataset
 
 https://azure.microsoft.com/en-us/services/open-datasets/catalog/covid-19-open-research/
@@ -11,25 +19,6 @@ In response to the COVID-19 pandemic, the [Allen Institute for AI](https://allen
 This dataset is intended to mobilize researchers to apply recent advances in natural language processing to generate new insights in support of the fight against this infectious disease.
 
 The corpus may be updated as new research is published in peer-reviewed publications and archival services like [bioRxiv](https://www.biorxiv.org/), [medRxiv](https://www.medrxiv.org/), and others.
-
-### COVID-19 Data Lake
-
-https://azure.microsoft.com/en-us/services/open-datasets/catalog/covid-19-data-lake/
-
-The COVID-19 Data Lake contains COVID-19 related datasets from various sources, covering testing and patient outcome tracking data, social distancing policy, hospital capacity, mobility, etc.
-
-- [Bing COVID-19 Data](https://azure.microsoft.com/en-us/services/open-datasets/catalog/bing-covid-19-data/) - Bing COVID-19 data includes confirmed, fatal, and recovered cases from all regions, updated daily.
-- [COVID Tracking Project](https://azure.microsoft.com/en-us/services/open-datasets/catalog/covid-tracking/) - The COVID Tracking Project dataset provides the latest numbers on tests, confirmed cases, hospitalizations, and patient outcomes from every US state and territory.
-- [European Centre for Disease Prevention and Control (ECDC) Covid-19 Cases](https://azure.microsoft.com/en-us/services/open-datasets/catalog/ecdc-covid-19-cases/) - The latest available public data on geographic distribution of COVID-19 cases worldwide from the European Center for Disease Prevention and Control (ECDC). Each row/entry contains the number of new cases reported per day and per country or region.
-- [Oxford COVID-19 Government Response Tracker](https://azure.microsoft.com/en-us/services/open-datasets/catalog/oxford-covid-19-government-response-tracker/) - The Oxford Covid-19 Government Response Tracker (OxCGRT) dataset contains systematic information on which governments have taken which measures, and when.
-
-### COVID-19 Case Surveillance Public Use Data
-
-https://data.cdc.gov/Case-Surveillance/COVID-19-Case-Surveillance-Public-Use-Data/vbim-akqf
-
-The COVID-19 case surveillance system database includes individual-level data reported to U.S. states and autonomous reporting entities, including New York City and the District of Columbia (D.C.), as well as U.S. territories and states. On April 5, 2020, COVID-19 was added to the Nationally Notifiable Condition List and classified as “immediately notifiable, urgent (within 24 hours)” by a Council of State and Territorial Epidemiologists (CSTE) Interim Position Statement (Interim-20-ID-01). CSTE updated the position statement on August 5, 2020 to clarify the interpretation of antigen detection tests and serologic test results within the case classification. The statement also recommended that all states and territories enact laws to make COVID-19 reportable in their jurisdiction, and that jurisdictions conducting surveillance should submit case notifications to CDC. COVID-19 case surveillance data are collected by jurisdictions and shared voluntarily with CDC.
-
-The dataset contains 8.4 million rows of deidentified patient data.
 
 ## Background story
 
