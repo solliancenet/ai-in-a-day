@@ -1,4 +1,4 @@
-# Microsoft AI in a Day - Labs data overview
+# Azure AI in a Day - Labs data overview
 
 The data used in the labs originates from two datasets:
 

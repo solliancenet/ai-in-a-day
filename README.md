@@ -1,4 +1,4 @@
-# Microsoft **AI in a Day** Labs
+# Azure **AI in a Day** Labs
 
 ## Source datasets used by the labs
 
