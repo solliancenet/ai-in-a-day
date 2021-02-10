@@ -19,7 +19,7 @@ The corpus may be updated as new research is published in peer-reviewed publicat
 The **Microsoft AI in a Day Data Overview** Power BI dashboard provides an overview of the data in the two datasets. It contains the following reports:
 
 - Cases overview: general exploration of the reported cases from **COVID-19 Case Surveillance Public Use Data**
-- Death Rate Analysis: detailed analysis of death rates from **COVID-19 Case Surveillance Public Use Data**
+- Intensive Care Unit (ICU) Rate Analysis: detailed analysis of ICU rates from **COVID-19 Case Surveillance Public Use Data**
 - Research Papers Analysis: exploration of research paper abstracts from **COVID-19 Open Research Dataset**
 
 To view the reports, open the `Microsoft-AI-in-a-Day-Data-Overview.pbix` file in Power BI Desktop and select the desired report from the tabs located at the bottom of the screen.
@@ -31,7 +31,7 @@ The default view of the report displays the following information:
 - Total number of cases
 - Earliest and latest case report dates
 - Evolution of daily cases reported
-- Percentage of confirmed deaths
+- Percentage of confirmed patients in intensive care units
 - Cases by age groups
 - Cases by gender
 - Cases by race and ethnicity (combined)
@@ -45,21 +45,21 @@ Explore the dynamics of the data by slicing through the following elements:
 - The gender
 - The race and ethnicity (combined) category
 
-Analyze the changes in total number of cases, earliest/latest case report date, evolution of daily cases reported, and percentage of confirmed deaths.
+Analyze the changes in total number of cases, earliest/latest case report date, evolution of daily cases reported, and percentage of confirmed in intensive care units.
 
 ![Slicers in Cases Overview](./media/data-overview-01-02.png)
 
-## Death Rate Analysis
+## ICU Rate Analysis
 
 The default view of the report displays the following information:
 
 - Total number of cases
 - Earliest and latest case report dates
-- Evolution of daily percentage of confirmed deaths
-- The decomposition of the confirmed deaths by hospitalization, intensive care unit, and pre-existing medical conditions
+- Evolution of daily percentage of confirmed ICU cases
+- The decomposition of the confirmed ICU cases by hospitalization, intensive care unit, and pre-existing medical conditions
 - The age groups with the most confirmed cases
 
-![Default view of Death Rate Analysis](./media/data-overview-02-01.png)
+![Default view of ICU Rate Analysis](./media/data-overview-02-01.png)
 
 Explore the dynamics of the data by slicing through the following elements:
 
@@ -67,17 +67,17 @@ Explore the dynamics of the data by slicing through the following elements:
 - The type of case
 - The age group
 
-Analyze the changes in total number of cases, earliest/latest case report date, evolution daily percentage of confirmed deaths, decomposition of confirmed deaths, and age groups with most cases.
+Analyze the changes in total number of cases, earliest/latest case report date, evolution daily percentage of confirmed ICU cases, decomposition of confirmed ICU cases, and age groups with most cases.
 
-![Slicers in Death Rate Analysis](./media/data-overview-02-02.png)
+![Slicers in ICU Rate Analysis](./media/data-overview-02-02.png)
 
 Closing one or more stages of the decomposition tree (by selecting the X on the right of the stage name) allows you to reogranize de decomposition differently to get a different angle of analysis. Select the + sign, and then select the desired stage.
 
-![Reogranizing the decomposition tree in Death Rate Analysis](./media/data-overview-02-03.png)
+![Reogranizing the decomposition tree in ICU Rate Analysis](./media/data-overview-02-03.png)
 
-You can also remove the first stage of the decomposition tree (`Death`) and choose to analyze a different decomposition (e.g. the breakdown on pre-existing medical conditions).
+You can also remove the first stage of the decomposition tree (`Hospitalization`) and choose to analyze a different decomposition (e.g. the breakdown on pre-existing medical conditions).
 
-![Decomposition on pre-existing medical conditions in Death Rate Analysis](./media/data-overview-02-04.png)
+![Decomposition on pre-existing medical conditions in ICU Rate Analysis](./media/data-overview-02-04.png)
 
 ## Research Papers Analysis
 
