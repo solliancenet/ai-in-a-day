@@ -43,3 +43,9 @@
 - textblob==0.15.3
 
 ![Install Libraries on the ADB cluster](media/adb-cluster-2.png)
+
+## Task 5 - Upload the Databricks notebook archive
+
+Upload the notebooks archive (`AI-Lab3.dbc`) from the following location to the user's folder in Azure Databricks workspace:
+
+[AI-Lab3.dbc](https://github.com/solliancenet/ai-in-a-day/blob/main/03-ml-in-databricks/notebooks/AI-Lab3.dbc)
