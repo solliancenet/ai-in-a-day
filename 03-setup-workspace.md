@@ -48,4 +48,4 @@
 
 Upload the notebooks archive (`AI-Lab3.dbc`) from the following location to the user's folder in Azure Databricks workspace:
 
-[AI-Lab3.dbc](https://github.com/solliancenet/ai-in-a-day/blob/main/03-ml-in-databricks/notebooks/AI-Lab3.dbc)
+[AI-Lab3.dbc](https://github.com/solliancenet/ai-in-a-day/blob/main/03-ml-in-databricks/notebooks/AI-Lab3.dbc?raw=true)
