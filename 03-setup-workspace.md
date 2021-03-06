@@ -49,3 +49,19 @@
 Upload the notebooks archive (`AI-Lab3.dbc`) from the following location to the user's folder in Azure Databricks workspace:
 
 [AI-Lab3.dbc](https://github.com/solliancenet/ai-in-a-day/blob/main/03-ml-in-databricks/notebooks/AI-Lab3.dbc?raw=true)
+
+## Task 6 - Copy lab data files to storage account
+
+**Source location**
+- Subscription: **Synapse Analytics Demos and Labs**
+- Resource group: **Synapse-Analytics-Data**
+- Storage account: **solliancepublicdata**
+- Container: **ai-in-a-day**
+- Folder: **Shared**
+
+**Destination location**
+- Storage account: **aiinadaystorageXXXXXX**
+- Container: **lab-03**
+- Folder: **Shared**
+
+All the files in the destination folder need **public read access**.
