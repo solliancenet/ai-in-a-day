@@ -12,7 +12,7 @@ This task shows how to perform DevOps for Machine learning applications using [A
 
 2. Navigate to the [MLOpsPython](https://github.com/microsoft/MLOpsPython) template repository and select `Use this template` to provision your GitHub project.
 
-    ![Clone GitHub template repository](./../media/clone-github-template.png)
+    ![Clone GitHub template repository](./media/clone-github-template.png)
 
 ### 3. Setting up the required secrets
 
