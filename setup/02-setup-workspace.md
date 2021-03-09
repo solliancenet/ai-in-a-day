@@ -1,32 +1,18 @@
 # ML Ops with GitHub Actions and AML
 
 <p align="center">
-  <img src="media/aml_logo.png" height="80"/>
+  <img src="./media/aml_logo.png" height="80"/>
   <img src="https://i.ya-webdesign.com/images/a-plus-png-2.png" alt="plus" height="40"/>
-  <img src="media/github_action_logo.png" alt="Azure Machine Learning + Actions" height="80"/>
+  <img src="./media/github_action_logo.png" alt="Azure Machine Learning + Actions" height="80"/>
 </p>
 
-This template shows how to perform DevOps for Machine learning applications using [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) powered [GitHub Actions](). Using this template you will be able to setup your train and deployment infra, train the model and deploy them in an automated manner. 
+This task shows how to perform DevOps for Machine learning applications using [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) powered [GitHub Actions](). Using this approach, you will be able to setup your train and deployment infrastructure, train the model and deploy them in an automated manner.
 
+1. Sign-in to GitHub with your GitHub account.
 
-# GitHub Setup
+2. Navigate to the [MLOpsPython](https://github.com/microsoft/MLOpsPython) template repository and select `Use this template` to provision your GitHub project.
 
-### 1. Prerequisites
-
-The following prerequisites are required to make this repository work:
-- Azure subscription
-- Contributor access to the Azure subscription
-- Access to [GitHub Actions](https://github.com/features/actions)
-
-If you don’t have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://aka.ms/AMLFree) today.
-
-### 2. Create repository
-
-To get started with ML Ops, simply create a new repo based off this template, by clicking on the green "Use this template" button:
-
-<p align="center">
-  <img src="https://help.github.com/assets/images/help/repository/use-this-template-button.png" alt="GitHub Template repository" width="700"/>
-</p>
+    ![Clone GitHub template repository](./../media/clone-github-template.png)
 
 ### 3. Setting up the required secrets
 
