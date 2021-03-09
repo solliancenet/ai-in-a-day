@@ -133,7 +133,7 @@ The high-level steps covered in the lab are:
 - Deploy the updated version of the conversational bot
 - Interact with improved version of the AI-in-a-Day conversational bot
 
-### Lab 6 - [Metrics Advisor with Azure Cognitive Services](06-decision-and-form-recognizer/README.md)
+### Lab 6 - [Metrics Advisor with Azure Cognitive Services](06-metrics-advisor/README.md)
 
 The lab covers the Metrics Advisor service from Azure Cognitive Services.
 
@@ -142,6 +142,6 @@ The high-level steps covered in the lab are:
 - Explore dashboard of COVID-19 data
 - Explore the lab scenario
 - Identify the concept of anomaly detection in a stream of documents
-- Explore the modeling of documents in the content of the anomaly detection problem
-- Train the anomaly detection problem in an Azure Machine Learning notebook
-- Identify anomalies in a stream of new documents
+- Preparing the time series data to feed into the Metrics Advisor
+- Onboard your time series data in the Metrics Advisor
+- Tune the anomaly detection configuration
