@@ -16,7 +16,7 @@ This dataset is intended to mobilize researchers to apply recent advances in nat
 
 The corpus may be updated as new research is published in peer-reviewed publications and archival services like [bioRxiv](https://www.biorxiv.org/), [medRxiv](https://www.medrxiv.org/), and others.
 
-The **Microsoft AI in a Day Data Overview** Power BI dashboard provides an overview of the data in the two datasets. It contains the following reports:
+The **Azure AI in a Day Data Overview** Power BI dashboard provides an overview of the data in the two datasets. It contains the following reports:
 
 - Cases overview: general exploration of the reported cases from **COVID-19 Case Surveillance Public Use Data**
 - Intensive Care Unit (ICU) Rate Analysis: detailed analysis of ICU rates from **COVID-19 Case Surveillance Public Use Data**

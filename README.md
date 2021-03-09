@@ -79,7 +79,7 @@ The high-level steps covered in the lab are:
 
 ### Lab 2 - [Azure Machine Learning Operationalization](02-aml-operationalization/README.md)
 
-The lab covers MLOps using GitHub and GitHub Actions, training and deployment of models, real time scoring using a REST API endpoint.
+The lab covers MLOps using Azure DevOps and GitHub, training and deployment of models, real time scoring using a REST API endpoint.
 
 The high-level steps covered in the lab are:
 
@@ -109,12 +109,7 @@ The high-level steps covered in the lab are:
 
 ### Lab 4 - [Knowledge Mining with Azure Cognitive Search and Text Analytics](04-knowledge-mining/README.md)
 
-This lab covers Azure Cognitive Search (index, knowledge store, custom skills) and Text Analytics.
-
-Useful links:
-
-- https://github.com/Azure-Samples/azure-search-knowledge-mining
-- https://covid19search.azurewebsites.net/
+This lab covers Azure Cognitive Search (index, knowledge store, custom skills) and Form Recognizer.
 
 The high-level steps covered in the lab are:
 
@@ -138,9 +133,9 @@ The high-level steps covered in the lab are:
 - Deploy the updated version of the conversational bot
 - Interact with improved version of the AI-in-a-Day conversational bot
 
-### Lab 6 - [Anomaly Detection and Metrics Advisor with Azure Cognitive Services](06-decision-and-form-recognizer/README.md)
+### Lab 6 - [Metrics Advisor with Azure Cognitive Services](06-decision-and-form-recognizer/README.md)
 
-The lab covers the Anomaly Detector and Metrics Advisor services from Azure Cognitive Services.
+The lab covers the Metrics Advisor service from Azure Cognitive Services.
 
 The high-level steps covered in the lab are:
 

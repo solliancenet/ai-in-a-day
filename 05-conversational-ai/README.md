@@ -1,12 +1,43 @@
 # Lab 5 - Conversational AI with Azure Bot Service and Cognitive Services
 
+This lab covers the Azure Bot Service (Bot Framework Composer and Language Understand) and Cognitive Services.
+
+## Task 1 - Explore dashboard of COVID-19 data
+
+Understanding the source datasets is very important in AI and ML. To help you expedite the process, we have created a Power BI dashboard you can use to explore them at the begining of each lab.
+
+![Azure AI in a Day datasets](../media/data-overview-01-01.png)
+
+To get more details about the source datasets, check out the [Data Overview](../data-overview.md) section.
+
+To explore the dashboard of COVID-19 data, open the `Azure-AI-in-a-Day-Data-Overview.pbix` file located on the desktop of the virtual machine provided with your environment.
+
+## Task 2 - Explore lab scenario
+
+The power of Machine Learning also comes into play when dealing with human-to-machine interfaces. While classical interfaces like native or web applications are ubiquitous, the new approaches based on conversational AI are becoming increasingly popular. Having the capability to interact with intelligent services using natural language is quickly becoming the norm rather than the exception. Using Conversational AI, analysts can find the research of interest by using simple natural language phrases.
+
+Using Azure Bot Service and Cognitive Services, we provide a conversational bot that helps analysts navigate the corpus of research documents and identify the most relevant ones.
+
+The following diagram highlights the portion of the general architecture covered by this lab.
+
+![Architecture for Lab 5](./../media/Architecture-5.png)
+
+The high-level steps covered in the lab are:
+
+- Explore dashboard of COVID-19 data
+- Explore lab scenario
+- Interact with the AI-in-a-Day conversational bot
+- Extend the behavior of the conversational bot using the Bot Framework Composer (and LUIS)
+- Deploy the updated version of the conversational bot
+- Interact with improved version of the AI-in-a-Day conversational bot
+
 With Machine Learning (ML) and Natural Langauge Processing (NLP), Human Machine Interface (HMI) technologies are enjoying an increased adoption year over year. By 2021, [the growth of chatbots in this space is expected to be 25.07%](https://www.technavio.com/report/chatbot-market-industry-analysis). This lab will focus on conversational AI and NLP to help analysts dig into vast amounts of research documents. 
 
 ![](media/architecture-diagram.png)
 
 First, we will start with a prepopulate Azure Cognitive Search knowledge base enhanced with Azure Cognitive Skills to test our foundational Bot based on old-fashion keyword lookup, regular expressions. Next, we will extend our conversational Bot's behavior using the Bot Framework Composer and Azure Language Understanding (LUIS). Finally, we will deploy our Bot to Azure Bot Service and enable voice access to our Bot using Cognitive Speech Services and Direct Line Speech channel.
 
-## Task 1 - Setting Azure Cognitive Search for a Chatbot
+## Task 3 - Setting Azure Cognitive Search for a Chatbot
 
 1. Launch the **Bot Framework Composer (1)** from its shortcut on Desktop. Select **Open (2)** to load our starter project.
 
@@ -46,7 +77,7 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
 
 ![Bot Framework Composer is on screen. Greeting trigger is selected. Set a property activity is selected. The value field on the right panel is highlighted.](media/starter-bot-key-change.png)
 
-## Task 2 - Running AI-in-a-Day Conversational Bot for the First Time
+## Task 4 - Running AI-in-a-Day Conversational Bot for the First Time
 
 1. It is time to start out bot in the local Bot Framework Emulator. Select **Start bot** from the top of the window in the Bot Framework Composer.
 
@@ -86,7 +117,7 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
 
 10. Feel free to look into the other triggers in the starter project and ask different questions to our bot to test how the different regular expressions set for the current triggers work.
 
-## Task 3 - Extending Our Conversational Bot Using LUIS
+## Task 5 - Extending Our Conversational Bot Using LUIS
 
 Our Bot is now using a **Regular expression recognizer** as its Language Understanding engine. We will extend our Bot with [Azure Language Understanding (LUIS)](https://www.luis.ai/) service. LUIS is a machine learning-based service to build natural language into apps, bots, and IoT devices. LUIS will not only help us build a model but continuously improve as well. 
 
@@ -233,7 +264,7 @@ Let's write `any research from Soochow University?` to mix things up. None of th
 
 Everything worked fine. It looks like our Bot is in much better shape with the help of LUIS's natural language processing skills. Feel free to test the other intents with phrases like `Show me what's published on SARS` and keep training your model to improve it.
 
-## Task 4 - Deploying Our Bot to Azure Bot Service
+## Task 6 - Deploying Our Bot to Azure Bot Service
 
 It's time to publish our bot to an Azure Bot Service. An Azure Bot Service is not just a location to host a bot. It helps a bot connect to multiple communication channels such as Microsoft Teams, Skype, Slack, Cortana, and Facebook Messenger. In combination with out of box Cognitive Service integrations, Azure Bot Service can accelerator growing your both with new skills. Let's start with baby steps. 
 
@@ -327,7 +358,7 @@ Once that is done. Select **Save** **(2)**.
 
 ![Bot channels registration page is open. Test in web chat tab is selected. A sample chat dialog is highlighted.](media/test-web-chat.png)
 
-## Task 5 - Deploying Our Bot to Azure Bot Service
+## Task 7 - Deploying Our Bot to Azure Bot Service
 
 In this task, we will enable voice access to our Bot through the use of AI. We will use **Azure Cognitive Speech Services** to enable real-time speech to text and text to speech conversion. Thanks to **Bot Channels Registrations** in **Azure Bot Service**, we can use the Direct Line Speech channel to have our Bot drive audio only conversations with client applications.
 

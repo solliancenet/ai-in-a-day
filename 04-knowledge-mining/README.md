@@ -1,10 +1,37 @@
 # Lab 4 - Knowledge Mining with Azure Cognitive Search and Text Analytics
 
-In this lab, we will look at using Azure Cognitive Services, particularly [Azure Cognitive Search](https://azure.microsoft.com/services/search/) and the [Form Recognizer](https://azure.microsoft.com/services/cognitive-services/form-recognizer/) service.
+This lab covers Azure Cognitive Services, particularly [Azure Cognitive Search](https://azure.microsoft.com/services/search/) and the [Form Recognizer](https://azure.microsoft.com/services/cognitive-services/form-recognizer/) service.
 
-The virtual machine which accompanies this lab will have all of these tools installed.
+## Task 1 - Explore dashboard of COVID-19 data
 
-## Task 1 - Creating Azure Search Indexes
+Understanding the source datasets is very important in AI and ML. To help you expedite the process, we have created a Power BI dashboard you can use to explore them at the begining of each lab.
+
+![Azure AI in a Day datasets](../media/data-overview-01-01.png)
+
+To get more details about the source datasets, check out the [Data Overview](../data-overview.md) section.
+
+To explore the dashboard of COVID-19 data, open the `Azure-AI-in-a-Day-Data-Overview.pbix` file located on the desktop of the virtual machine provided with your environment.
+
+## Task 2 - Explore lab scenario
+
+Another critical problem to deal with when it comes to the volumes of research documents covering COVID-19 is the problem of advanced indexing and searching their content. The specific internal structure of research papers (including citations, contributors, and various entities like diagnosis, forms of examination, family relations, genes, medication, symptom or signs, and treatments) form a reach semantic graph that goes way beyond simple document categorization. An analyst would benefit significantly from exploring the corpus of documents in a way that takes all these complex relationships into account.
+
+Using the Cognitive Search capabilities, we will create a complex index of documents that allows an analyst to perform an advanced search and explore the inter-document graph relationships.
+
+The following diagram highlights the portion of the general architecture covered by this lab.
+
+![Architecture for Lab 4](./../media/Architecture-4.png)
+
+The high-level steps covered in the lab are:
+
+- Explore dashboard of COVID-19 data
+- Explore lab scenario
+- Explore document search process
+- Explore graph search process
+- Add a set of new documents and trigger the index update process
+- Explore the document and graph search and identify updated results
+
+## Task 3 - Creating Azure Search Indexes
 
 1. Navigate to [the Azure portal](https://portal.azure.com) and log in with your credentials.  Then, select **Resource groups**.
 
@@ -82,7 +109,7 @@ The virtual machine which accompanies this lab will have all of these tools inst
 
     ![The Create-AzureSearchIndex function has been run to create a new index.](media/create-azuresearchindex-use.png)
 
-## Task 2 - Querying Azure Search Indexes
+## Task 4 - Querying Azure Search Indexes
 
 1. Navigate to [the Azure portal](https://portal.azure.com) and log in with your credentials.  Then, select **Resource groups**.
 
@@ -130,7 +157,7 @@ The virtual machine which accompanies this lab will have all of these tools inst
 
     ![Use the demo app.](media/search-demo-app.png)
 
-## Task 3 - Updating Azure Search Indexes
+## Task 5 - Updating Azure Search Indexes
 
 1. Open Azure Storage Explorer.  Select the **Connect** option and then choose **Use a connection string** and select **Next**.
 
@@ -182,7 +209,7 @@ The virtual machine which accompanies this lab will have all of these tools inst
 
     ![57 documents pertain to Brazil.](media/search-explorer-brazil-2.png)
 
-## Task 4 - Using the Form Recognizer
+## Task 6 - Using the Form Recognizer
 
 1. Navigate to [the Azure portal](https://portal.azure.com) and log in with your credentials.  Then, select **Resource groups**.
 
@@ -312,7 +339,7 @@ The virtual machine which accompanies this lab will have all of these tools inst
 
     ![The option to download an analysis script is selected](media/fott-download.png)
 
-## Task 5 - Indexing a New Abstract
+## Task 7 - Indexing a New Abstract
 
 1. Open a command prompt (`cmd.exe`).  To do this, open the Windows menu, type in `cmd`, and select the **Command Prompt** application.
 
