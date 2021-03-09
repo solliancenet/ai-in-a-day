@@ -32,3 +32,55 @@ The high-level steps covered in the lab are:
 - Correlate research paper and case surveillance datasets
 - Use SparkML to build risk classifier on case surveillance dataset
 - Assess fairness of risk classifier
+
+## Task 3 - Start your Azure Databricks environment
+
+1. Open the [Azure Portal](https://portal.azure.com) and sign-in with your lab credentials.
+
+2. In the list of your recent resources, locate the Azure Databricks workspace and select it. If you are prompted to sign-in again, use the same lab credentials you used at the previous step.
+
+![Open Azure Databricks Workspace](./media/start-databricks-workspace.png)
+
+3. In the Azure Databricks workspace, select the `Clusters` section on the left side menu, select the first cluster from the list, and then select `Start` to start the Azure Databricks cluster.
+
+![Start Azure Databricks Cluster](./media/start-databricks-cluster.png)
+
+4. While the cluster is starting, select the `Workspace` section on the left side menu, select the `Users` folder, then select the folder corresponding to the user name from your lab credentials, and then select the `AI-Lab3` folder.
+
+![Open Azure Databricks workspace folders](./media/databricks-workspace-1.png)
+
+5. In the `AI-Lab3` folder, you should see the three notebooks that you will use in this lab.
+
+![View list of notebooks in Azure Databricks workspace](./media/databricks-workspace-2.png)
+
+6. Wait until the cluster starts, then proceed to the next tasks in the lab.
+
+## Task 4 - Explore the research papers dataset
+
+1. With the Azure Databricks workspace opened and the cluster fully started, select the `1.0 explore-research-paper-dataset` notebook.
+
+2. Ensure the notebook is connected to the running cluster.
+
+![Ensure notebook is connected to running cluster](./media/notebook1.png)
+
+3. Execute each cell in the notebook (using either Ctrl + Enter to remain on the same cell, or Shift + Enter to advance to the next cell) and observe the results.
+
+## Task 5 - Explore the research papers dataset
+
+1. With the Azure Databricks workspace opened and the cluster fully started, select the `2.0 explore-surveillance-dataset` notebook.
+
+2. Ensure the notebook is connected to the running cluster.
+
+![Ensure notebook is connected to running cluster](./media/notebook2.png)
+
+3. Execute each cell in the notebook (using either Ctrl + Enter to remain on the same cell, or Shift + Enter to advance to the next cell) and observe the results.
+
+## Task 6 - Explore the research papers dataset
+
+1. With the Azure Databricks workspace opened and the cluster fully started, select the `3.0 surveillance-risk-classifier` notebook.
+
+2. Ensure the notebook is connected to the running cluster.
+
+![Ensure notebook is connected to running cluster](./media/notebook3.png)
+
+3. Execute each cell in the notebook (using either Ctrl + Enter to remain on the same cell, or Shift + Enter to advance to the next cell) and observe the results.
