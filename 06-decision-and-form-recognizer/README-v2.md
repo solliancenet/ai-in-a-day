@@ -80,7 +80,7 @@ The high-level steps covered in the lab are:
 4. Once the data schema is loaded and shown like below, configure the appropriate fields as Dimension, Measure or Timestamp.
     ![Schema configuration](./media/schemconfig.png)
 
-5. For **Automatic roll-up ** settings, check the `I do not need to include the roll-up analysis for my data` option. 
+5. For **Automatic roll-up** settings, check the `I do not need to include the roll-up analysis for my data` option. 
    
 6. Provide the **data feed name**: `covid-ages`. 
    
@@ -91,3 +91,13 @@ The high-level steps covered in the lab are:
 8. Wait for the ingestion progress dialog and select the **Details** link in order to observe the ingestion log by timestamp.
 
   ![Check the ingestion progress](./media/ingestionprogress.png)
+
+9. Select the **Visit data-feed: covid-ages** button to navigate to the data feed overview page.
+    
+10. In the data feed page, select the `count` metric under the **Metrics** section.
+
+    ![Go to the count metric details page](./media/browsemetricdata.png)
+
+11. In the left configuration section, under the **Metric-level configuration** change the default metric-level configuration to mark anomalies when the count value changes to 50% over the previous day count.
+
+![Metric-level configuration](./media/metric-level-configuration.png)
