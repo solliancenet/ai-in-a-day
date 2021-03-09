@@ -65,7 +65,7 @@ The high-level steps covered in the lab are:
 
 3. Execute each cell in the notebook (using either Ctrl + Enter to remain on the same cell, or Shift + Enter to advance to the next cell) and observe the results.
 
-## Task 5 - Explore the research papers dataset
+## Task 5 - Explore the surveillance dataset
 
 1. With the Azure Databricks workspace opened and the cluster fully started, select the `2.0 explore-surveillance-dataset` notebook.
 
@@ -75,7 +75,7 @@ The high-level steps covered in the lab are:
 
 3. Execute each cell in the notebook (using either Ctrl + Enter to remain on the same cell, or Shift + Enter to advance to the next cell) and observe the results.
 
-## Task 6 - Explore the research papers dataset
+## Task 6 - Build a risk classifier based on surveillance data
 
 1. With the Azure Databricks workspace opened and the cluster fully started, select the `3.0 surveillance-risk-classifier` notebook.
 
