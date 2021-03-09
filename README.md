@@ -20,9 +20,19 @@ This dataset is intended to mobilize researchers to apply recent advances in nat
 
 The corpus may be updated as new research is published in peer-reviewed publications and archival services like [bioRxiv](https://www.biorxiv.org/), [medRxiv](https://www.medrxiv.org/), and others.
 
+Understanding the source datasets is very important in AI and ML. To help you expedite the process, we have created a Power BI dashboard you can use to explore them at the begining of each lab.
+
+![Azure AI in a Day datasets](./media/data-overview-01-01.png)
+
+To get more details about the source datasets, check out the [Data Overview](./data-overview.md) section.
+
 ## Background story
 
 Using the data from the datasets described above, we aim to demonstrate how to use AI and ML to enrich various aspects of COVID-19-related data and allow analysts to get the most out of it.
+
+The following diagram provides a high-level overview of the various AI and ML approaches which are applied throughout the labs.
+
+![Overall Azure AI in a Day architecture](./media/Architecture-0.png)
 
 Given the magnitude of the COVID-19 problem, it comes naturally to have a lot of research on the topic. In fact, in 2020 alone, tens of thousands of papers have been published on COVID-19 alone. The sheer amount of communication on the subject makes it difficult for a researcher to grasp and structure all the relevant topics and details. Furthermore, pre-defined catalogs and papers classification might not always reflect their content in the most effective way possible.
 
