@@ -54,9 +54,9 @@ The power of Machine Learning also comes into play when dealing with human-to-ma
 
 Using Azure Bot Service and Cognitive Services, we provide a conversational bot that helps analysts navigate the corpus of research documents and identify the most relevant ones (Lab 5).
 
-Advanced indexing and search work well as long as the corpus of documents contains as little noise as possible. By noise, we identify both issues within documents and whole documents that are not related (or are not close enough, for that matter) to the problem of COVID-19 and its associated domains. In the early stages of document collection, the focus is on the sheer volume (collect as many documents as possible) rather than on quality. However, the system should dismiss documents that are not related to the topics of interest as early as possible.
+Besides collecting data about COVID-19 cases, it is also essential to ensure the accuracy of the reporting. Accuracy check is where continuous monitoring of incoming data feeds doubled by automatic detection of anomalies plays a critical role. Data is valid for analysis as long as it is reliable and contains the minimum possible number of errors. With distributed data sources and numerous reporting entities, automatic anomaly detection is the best choice to minimize that number.
 
-Using Anomaly Detection and Metrics Advisor, we will demonstrate how to improve the quality of the research document collection process by identifying as early as possible documents that are not related to the problem of COVID-19 and its associated domains (Lab 6).
+Using Cognitive Services Metrics Advisor, we will demonstrate how to improve the case surveillance data quality by identifying as early as possible anomalies in the number of daily reported cases (Lab 6).
 
 ## Labs
 
