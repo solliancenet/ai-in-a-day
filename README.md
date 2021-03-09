@@ -141,7 +141,6 @@ The high-level steps covered in the lab are:
 
 - Explore dashboard of COVID-19 data
 - Explore the lab scenario
-- Identify the concept of anomaly detection in a stream of documents
-- Preparing the time series data to feed into the Metrics Advisor
+- Prepare the cases surveillance time series data to feed into the Metrics Advisor
 - Onboard your time series data in the Metrics Advisor
 - Tune the anomaly detection configuration
