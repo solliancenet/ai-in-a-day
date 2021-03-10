@@ -138,6 +138,11 @@ The high-level steps covered in the lab are:
 
     ![Go to the count metric details page](./media/browsemetricdata.png)
 
-15. In the left configuration section, under the **Metric-level configuration** change the default metric-level configuration to mark anomalies when the count value changes to 50% over the previous day count.
+15. To modify the inspected time window, change the start and end time of the interval from the calendar above the graphic representations.
+
+    ![Change monitoring time window](./media/changetimewindow.png)
+
+16. In the left configuration section, under the **Metric-level configuration** change the default metric-level configuration to mark anomalies when the count value changes to 50% over the previous day count.
 
     ![Metric-level configuration](./media/metric-level-configuration.png)
+
