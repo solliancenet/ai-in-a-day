@@ -101,9 +101,47 @@ Create a new service connection to your Azure ML Workspace to enable executing t
     
 Note: Creating a service connection with Azure Machine Learning workspace scope requires 'Owner' or 'User Access Administrator' permissions on the Workspace. You'll need sufficient permissions to register an application with your Azure AD tenant, or you can get the ID and secret of a service principal from your Azure AD Administrator. That principal must have Contributor permissions on the Azure ML Workspace.
 
-## Task 5 - Review MLOps process
+## Task 5 - Import the github repository
+
+1. Back to the project **Overview** page in Azure DevOps, navigate to the **Repos** section from the left navigation menu. Select **Import** for the **Import a repository** option.
+
+![Go to Git repository import](./media/011-importgithubrepo.png)
+
+2. In the **Clone URL** paste the following URL:
+  `https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter` and select **Import**.
+
+![Import Git lab starter repository](./media/012-importgithubrepo.png)
 
 
+## Task 6 - Set up Build, Release Trigger, and Release Multi-Stage Pipelines
+
+Now that you've provisioned all the required Azure resources and service connections, you can set up the pipelines for training (CI) and deploying (CD) your machine learning model to production. Additionally, you can set up a pipeline for batch scoring.
+In the following steps you will create and run a new build pipeline based on the `diabetes_regression-ci.yml` pipeline definition in your imported repository.
+   
+1. In your Azure DevOps project, navigate to the **Pipelines** section from the left navigation menu. Select **Create Pipeline**.
+
+![Create Azure DevOps pipeline](./media/013-createpipeline.png)
+
+2. Select the code location: **Azure Repos Git**
+   
+![Connect to repository](./media/014-createpipeline.png)
+
+3. Select the Git repository imported in the previous task: `odlXXXXXX-project`.
+   
+![Select repository name](./media/015-createpipeline.png)
+
+4. In the **Configure pipeline** step, select the **Existing Azure Pipelines YAML file**.
+   
+![Select repository name](./media/016-createpipeline.png)
+
+5. Leave the default branch selected and paste the path to the YAML file: `/.pipelines/diabetes_regression-ci.yml'. Select **Continue**.
+
+![Select YAML file path](./media/017-createpipeline.png)
+
+
+6. In the **Review** step, take a moment to observe the code inside the YAML file and then select **Run**.
+   
+![Run the created pipeline](./media/018-runpipeline.png)
 
 1. Sign-in to [GitHub](https://github.com/ai-in-a-day) with the GitHub user account provided as part of the lab credentials.
 
@@ -115,9 +153,9 @@ Note: Creating a service connection with Azure Machine Learning workspace scope 
 
     ![View MLOps Github actions](./media/github-actions-mlops.png)
 
-4. Select the `CI` action and then select `Run workflow` to trigger the action.
+4.  Select the `CI` action and then select `Run workflow` to trigger the action.
 
-5. Select the action while it's running to check on its status. Wait until the action completes successfully.
+5.  Select the action while it's running to check on its status. Wait until the action completes successfully.
 
     ![GitHub action in progress](./media/github-action-in-progress.png)
 
