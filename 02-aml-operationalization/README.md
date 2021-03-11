@@ -33,7 +33,58 @@ The high-level steps covered in the lab are:
 - Perform another real time scoring on the REST API endpoint
 - Explore aspects related to traceability and control of the process
 
-## Task 3 - Review MLOps process
+## Task 3 - Configure the Azure DevOps project and required Variable group
+
+1. Open the [Azure DevOps portal](https://dev.azure.com/) and select the **Sign in to DevOps** link.
+   
+    ![Sign-in to Azure DevOps](./media/01-devops.png)
+
+2. To sign-in, use the Azure credentials provided by the lab environment.
+   
+3. First time you sign-in to your Azure DevOps account, you are asked to create a new project in the pre-created organization you have available, named 'odluserXXXXXX'. Provide the project name in the following form `odluserXXXXXX-project` and select **+ Create project**
+   
+   ![Create e new project in Azure DevOps](./media/02-devops-create-project.png)
+
+4. MLOpsPython requires some variables to be set before you can run any pipelines. At this step, you'll create a variable group in Azure DevOps to store values that are reused across multiple pipeline stages. Navigate to **Pipelines**, **Library** and in the **Variable groups** section select **+ Variable group** as indicated bellow.
+
+   ![Create a Variable Group for your Pipeline](./media/03-devops-create-vargroup.png)
+
+5. To prepare the values you'll need to set all your variables, you need to get the resource group location where all your Azure resources were provisioned. In another browser tab, navigate to the [Azure portal](https://portal.azure.com), sign in with the provided Azure credentials if you are asked to, and navigate to the lab Resource group. On the resourge group overview page, you'll find the location information you need.
+   
+      ![Get Resource Group location information](./media/04-getRGLocation.png)
+
+6. Going back to the Azure Devops portal where you created the Variable group for you DevOps project, enter the **Variable group name**: `devopsforai-aml-vg`.
+   
+7. Add the required list of variables, using the **+ Add** link at the bottom of the **Variables** section as illustrated in the image bellow:
+
+    ![Configure required variable values in the variable group](./media/04-devops-edit-vargroup.png)
+
+    Use values listed in the table:
+
+
+    | Variable Name            | Suggested Value           | Short description                                                                                                           |
+    | ------------------------ | ------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+    | BASE_NAME                | [your project name] e.g. `odluserXXXXXX-project`     | Unique naming prefix for created resources - max 10 chars, letters and numbers only                                         |
+    | LOCATION                 | `westus`                 | Resource group location (the value you looked for on the previous step)                             |
+    | RESOURCE_GROUP           | `AI-in-a-Day-XXXXXX`                | Azure Resource Group name                                                                                                   |
+    | WORKSPACE_NAME           | `ai-in-a-day-XXXXXX`             | Azure ML Workspace name                                                                                                     |
+    | AZURE_RM_SVC_CONNECTION  | `azure-resource-connection` | [Azure Resource Manager Service Connection](#create-an-azure-devops-service-connection-for-the-azure-resource-manager) name |
+    | WORKSPACE_SVC_CONNECTION | `aml-workspace-connection`  | [Azure ML Workspace Service Connection](#create-an-azure-devops-azure-ml-workspace-service-connection) name                 |
+    | ACI_DEPLOYMENT_NAME      | `mlops-aci`                 | [Azure Container Instances](https://azure.microsoft.com/en-us/services/container-instances/) name                           |                 |
+
+8. Make sure you select the **Allow access to all pipelines** checkbox in the variable group configuration.
+
+    ![Allow access to all pipelined](./media/05-devops-allowacces-vargroup.png)
+
+9. Select **Save** from the top menu to create the variable group.
+
+    ![Save the variable group configuration](./media/06-devops-save-vargroup.png)
+
+## Task 4 - Create an Azure DevOps Service Connection for the Azure ML Workspace
+
+## Task 5 - Review MLOps process
+
+
 
 1. Sign-in to [GitHub](https://github.com/ai-in-a-day) with the GitHub user account provided as part of the lab credentials.
 
