@@ -264,9 +264,52 @@ The release deployment and batch scoring pipelines have the following behaviors:
 ![Run the pipeline](./media/031-runpipeline.png)
 
 
-The pipeline has the following stage:
 
-- Deploy to ACI
-    - Deploy the model to the QA environment in Azure Container Instances.
-    - Smoke test
-        - The test sends a sample query to the scoring web service and verifies that it returns the expected response. Have a look at the smoke [test code](https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter/blob/master/ml_service/util/smoke_test_scoring_service.py) for an example.
+13. Sign-in to [GitHub](https://github.com/ai-in-a-day) with the GitHub user account provided as part of the lab credentials.
+
+14. Browse the code repository containing the MLOps artifacts.
+
+    ![Browse code repository containing MLOps artifacts](./media/github-repo-overview.png)
+
+15. Select `Actions` from the task bar to review the GitHub Actions available in the repo.
+
+    ![View MLOps Github actions](./media/github-actions-mlops.png)
+
+16. Select the `CI` action and then select `Run workflow` to trigger the action.
+
+17. Select the action while it's running to check on its status. Wait until the action completes successfully.
+
+    ![GitHub action in progress](./media/github-action-in-progress.png)
+
+## Task 4 - Trigger the deployment action
+
+1. From the list of GitHub actions, trigger the `Infra Deployment and Training action`.
+
+2. View the progress of the action. Wait until the action completes successfully.
+
+3. In the [Azure Portal](https://portal.azure.com), sign-in with the user account provided as part of the lab credentials.
+
+4. Open Azure Machine Learning studio, and select `Models` from the left side menu.
+
+5. Observe the newly registered model as part of the deployment action.
+
+## Task 5 - Perform real time scoring using the new model
+
+1. With Azure Machine Learning studio open, select `Notebooks` from the left side menu.
+
+2. Open the `Model Scoring.ipynb` notebook and execute it step by step. Observe the outcomes of the cells.
+
+## Task 6 - Trigger a different training process from Azure DevOps
+
+1. Sign in to [Azure DevOps](https://dev.azure.com/azureaiinaday) with the user account provided as part of the lab credentials.
+
+2. Observe the DevOps project and the pipelines available in the `Pipelines` section.
+
+3. With Azure Machine Learning studio open, select `Notebooks` from the left side menu.
+
+4. Open the `Data Update Trigger.ipynb` notebook and execute it step by step. Observe the outcomes of the cells.
+
+5. Notice how the update performed by the notebook has triggered the MLOps pipeline from Azure DevOps.
+
+6. Return to the `Model Scoring.ipynb` notebook and run it again step by step. Observe the outcomes of the cells and the updated results produced by the model.
+
