@@ -35,13 +35,13 @@ The high-level steps covered in the lab are:
 
 ## Task 3 - Configure the Azure DevOps project and required Variable group
 
-1. Open the [Azure DevOps portal](https://dev.azure.com/) and select the **Sign in to DevOps** link.
+1. Open the [Azure DevOps portal](https://dev.azure.com/) and select the **Sign in to Azure DevOps** link.
    
     ![Sign-in to Azure DevOps](./media/01-devops.png)
 
 2. To sign-in, use the Azure credentials provided by the lab environment.
    
-3. First time you sign-in to your Azure DevOps account, you are asked to create a new project in the pre-created organization you have available, named 'odluserXXXXXX'. Provide the project name in the following form `odluserXXXXXX-project` and select **+ Create project**
+3. First time you sign-in to your Azure DevOps account, you are asked to create a new project in the pre-created organization you have available, named `odluserXXXXXX`. Provide the project name in the following form `odluserXXXXXX-project` and select **+ Create project**
    
    ![Create e new project in Azure DevOps](./media/02-devops-create-project.png)
 
@@ -81,6 +81,25 @@ The high-level steps covered in the lab are:
     ![Save the variable group configuration](./media/06-devops-save-vargroup.png)
 
 ## Task 4 - Create an Azure DevOps Service Connection for the Azure ML Workspace
+
+Create a new service connection to your Azure ML Workspace to enable executing the Azure ML training pipeline. The connection name needs to match WORKSPACE_SVC_CONNECTION that you set in the variable group above (eg. `aml-workspace-connection`).
+
+1. Go to **Project settings**, **Service connections** and select **Create service connection** as illustrated bellow.
+
+    ![Create service connection](./media/07-devops-amlserviceconnection.png)
+
+2. Select the connection type from the available list: **Azure Resource Manager** and select **Next**.
+
+    ![Select Azure Resource Manager connection type](./media/08-devops-newserviceconnection.png)
+
+3. Provide the authentication method: **Service principal (automatic)** and move **Next**.
+    ![Select Azure Resource Manager connection type](./media/09-devops-authentication.png)
+
+4. Select scope level: **Machine Learning Workspace** and select the available **Subscription**, **Resource group** and **Machine Learning Workspace** provided in the lab environment. Enter `aml-workspace-connection` for the **Service connection name** and select **Save**.
+
+    ![AML Service Connection details](./media/09-devops-newserviceconnection.png)
+    
+Note: Creating a service connection with Azure Machine Learning workspace scope requires 'Owner' or 'User Access Administrator' permissions on the Workspace. You'll need sufficient permissions to register an application with your Azure AD tenant, or you can get the ID and secret of a service principal from your Azure AD Administrator. That principal must have Contributor permissions on the Azure ML Workspace.
 
 ## Task 5 - Review MLOps process
 
