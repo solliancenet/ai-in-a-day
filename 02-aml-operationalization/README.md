@@ -191,7 +191,7 @@ In the following steps you will create and run a new build pipeline based on the
 
 ![Run the pipeline](./media/021-runpipeline.png)
 
-1.  Once the pipeline is finished, check the execution result. Expand the **Train and evaluate model stage** from the **Expand stage** button. 
+10.  Once the pipeline is finished, check the execution result. Expand the **Train and evaluate model stage** from the **Expand stage** button. 
     
 ![Expand pipeline stages](./media/022-expandstage.png)
 
