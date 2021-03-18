@@ -84,7 +84,7 @@ The high-level steps covered in the lab are:
 
 ## Task 4 - Create an Azure DevOps Service Connection for the Azure ML Workspace
 
-Create a new service connection to your Azure ML Workspace to enable executing the Azure ML training pipeline. The connection name needs to match WORKSPACE_SVC_CONNECTION that you set in the variable group above (eg. `aml-workspace-connection`).
+Create a new service connection to your Azure ML Workspace to enable executing the Azure ML training pipeline. The connection name needs to match the WORKSPACE_SVC_CONNECTION that you set in the variable group above (e.g. `aml-workspace-connection`).
 
 1. Go to **Project settings**, **Service connections** and select **Create service connection** as illustrated bellow.
    
@@ -160,9 +160,9 @@ In the following steps you will create and run a new build pipeline based on the
    
     ![Run the pipeline](./media/021-runpipeline.png)
 
-10.  Once the pipeline is finished, check the execution result. Expand the **Train and evaluate model stage** from the **Expand stage** button. 
-   
-    ![Expand pipeline stages](./media/022-expandstage.png)
+10.  Once the pipeline is finished, check the execution result. Expand the **Train and evaluate model stage** from the **Expand stage** button.
+    
+        ![Expand pipeline stages](./media/022-expandstage.png)
 
 11. Also you should inspect the artifact of the training stage:
    
@@ -177,7 +177,6 @@ In the following steps you will create and run a new build pipeline based on the
 14. In the [Azure Machine Learning Studio](https://ml.azure.com), select **Pipelines** from the left navigation menu, go to **Pipeline endpoints** and check the published training pipeline in the `ai-in-a-day-XXXXXX` workspace.
    
     ![Inspect published ML pipeline](./media/025-checktrainingpipeline.png)
-
 
 
 15. Great, you now have the build pipeline for training set up which automatically triggers every time there's a change in the master branch! After the pipeline is finished, you'll see a new model in the ML Workspace. Navigate to the **Models** section in [ML Studio](https://ml.azure.com/), using the left navigation menu and check the newly registered model named `COVID19Articles_model.pkl`.
