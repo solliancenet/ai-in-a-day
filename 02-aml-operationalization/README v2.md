@@ -104,18 +104,18 @@ Create a new service connection to your Azure ML Workspace to enable executing t
     
 Note: Creating a service connection with Azure Machine Learning workspace scope requires 'Owner' or 'User Access Administrator' permissions on the Workspace. You'll need sufficient permissions to register an application with your Azure AD tenant, or you can get the ID and secret of a service principal from your Azure AD Administrator. That principal must have Contributor permissions on the Azure ML Workspace.
 
-## Task 5 - Import the GitHub repository
+## Task 5 - Import the github repository
 
-1. Back to the project **Overview** page in Azure DevOps, navigate to the **Repos** section from the left navigation menu. Select **Import** for the **Import a repository** option.
+1. Go to the [GitHub portal](https://github.com/) and sign in with the Git credentials provided for you.
+2. You will be asked to verify your account, so you should open your user's mailbox on https://outlook.office365.com/ to be able to receive the verification codes for Github authentication. Use the same Github user account credentials to open Outlook.
    
-    ![Go to Git repository import](./media/011-importgithubrepo.png)
+3. In Github, while authenticated with the lab user, navigate to the following link to create a new git repository from the provided template:
+   https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter/generate
 
-2. In the **Clone URL** paste the URL of the repository you will need to create the DevOps pipeline from:
-  `https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter`. 
-  
-    Select **Import** to start the import process.
-   
-    ![Import Git lab starter repository](./media/012-importgithubrepo.png)
+4. Set the repository name to `azure-ai-in-a-day-lab02` and select **Create repository from template**.
+![Generate git repository from template](./media/02%20-%20github-%20generaterepo.png)
+
+5. When the new repository is generated, copy your repository URL from the browser address bar since you will need it in the next steps.
 
 
 ## Task 6 - Set up Build, Release Trigger, and Release Multi-Stage Pipelines
@@ -127,13 +127,13 @@ In the following steps you will create and run a new build pipeline based on the
    
     ![Create Azure DevOps pipeline](./media/013-createpipeline.png)
 
-2. Select the code location: **Azure Repos Git**.
+2. Select the code location: **GitHub**.
    
-    ![Connect to repository](./media/014_-createpipeline.png)
+    ![Connect to repository](./media/014-createpipeline.png)
 
-3. Select the Git repository imported in the previous task: `odlXXXXXX-project`.
+3. Select the Git repository cloned during the previous task: `github-clouduser-XXXX/azure-ai-in-a-day-lab-02`.
    
-    ![Select repository name](./media/015-createpipeline.png)
+    ![Select repository name](./media/015-selectgitrepository.png)
 
 4. In the **Configure pipeline** step, select the **Existing Azure Pipelines YAML file**.
    
@@ -146,7 +146,7 @@ In the following steps you will create and run a new build pipeline based on the
 
 6. In the **Review** step, take a moment to observe the code inside the YAML file and then expand the **Run** menu and select **Save**.
    
-    ![Save the build pipeline](./media/018-runpipeline.png)
+    ![Save the build pipeline](./media/018-runsavecipipeline.png)
 
 7. With the created pipeline, select **Rename/move** from the right menu as illustrated bellow:
    
@@ -197,13 +197,13 @@ The release deployment and batch scoring pipelines have the following behaviors:
    
     ![Create Azure DevOps pipeline](./media/027-newreleasepipeline.png)
 
-3. Select the code location: **Azure Repos Git**.
+3. Select the code location: **GitHub**.
    
-    ![Connect to repository](./media/014_-createpipeline.png)
+    ![Connect to repository](./media/014-createpipeline.png)
 
-4. Select the Git repository imported in the previous task: `odlXXXXXX-project`.
+4. Select the Git repository you already used for the first pipeline: `github-clouduser-XXXX/azure-ai-in-a-day-lab-02`.
    
-    ![Select repository name](./media/015-createpipeline.png)
+    ![Select repository name](./media/015-selectgitrepository.png)
 
 5. In the **Configure pipeline** step, select the **Existing Azure Pipelines YAML file**.
    
