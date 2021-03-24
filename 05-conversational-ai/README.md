@@ -358,7 +358,7 @@ It's time to publish our bot to an Azure Bot Service. An Azure Bot Service is no
 
     ![Bot channels registration page is open. Test in web chat tab is selected. A sample chat dialog is highlighted.](media/test-web-chat.png)
 
-## Task 7 - Deploying Our Bot to Azure Bot Service
+## Task 7 - Enabling Voice Access for Our Bot
 
 In this task, we will enable voice access to our Bot through the use of AI. We will use **Azure Cognitive Speech Services** to enable real-time speech to text and text to speech conversion. Thanks to **Bot Channels Registrations** in **Azure Bot Service**, we can use the Direct Line Speech channel to have our Bot drive audio only conversations with client applications.
 
