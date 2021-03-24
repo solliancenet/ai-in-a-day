@@ -131,55 +131,61 @@ In the following steps you will create and run a new build pipeline based on the
    
     ![Connect to repository](./media/014-createpipeline.png)
 
-3. Select the Git repository cloned during the previous task: `github-clouduser-XXXX/azure-ai-in-a-day-lab-02`.
+3. Next you will be asked to authorize Azure Pipelines to access your GitHub account. If prompted with the GitHub sign in page, provide the GitHub credentials listed in the lab environment credentials page.
+    ![Sign in to GitHub](./media/01-github-signin.png)
+
+4. If you are already signed in to GitHub, you will be prompted with the Authorize Azure Pipelines (OAuth) page. Select **Authorize AzurePipelines**.
+    ![Authorize Azure Pipelines access to GitHub](./media/01-github-authorizeaccess.png)
+
+5. Select the available Git repository, the one you generated during the previous task in this lab: `github-clouduser-XXXX/azure-ai-in-a-day-lab-02`.
    
     ![Select repository name](./media/015-selectgitrepository.png)
 
-4. In the **Configure pipeline** step, select the **Existing Azure Pipelines YAML file**.
+6. In the **Configure pipeline** step, select the **Existing Azure Pipelines YAML file**.
    
     ![Select repository name](./media/016-createpipeline.png)
 
-5. Leave the default branch selected and paste the path to the YAML file: `/.pipelines/COVID19Articles-ci.yml`. Select **Continue**.
+7. Leave the default branch selected and paste the path to the YAML file: `/.pipelines/COVID19Articles-ci.yml`. Select **Continue**.
    
     ![Select YAML file path](./media/017-createpipeline_covid.png)
 
 
-6. In the **Review** step, take a moment to observe the code inside the YAML file and then expand the **Run** menu and select **Save**.
+8. In the **Review** step, take a moment to observe the code inside the YAML file and then expand the **Run** menu and select **Save**.
    
     ![Save the build pipeline](./media/018-runsavecipipeline.png)
 
-7. With the created pipeline, select **Rename/move** from the right menu as illustrated bellow:
+9. With the created pipeline, select **Rename/move** from the right menu as illustrated bellow:
    
     ![Rename the build pipeline](./media/019-renamepipeline.png)
 
-8. Change the pipeline name to: `Model-Train-Register-CI` and select **Save**.
+10. Change the pipeline name to: `Model-Train-Register-CI` and select **Save**.
    
     ![Rename the build pipeline](./media/020-renamepipeline.png)
 
-9. Run the pipeline by selecting the **Run pipeline** button. Leave the default values on the next dialog and hit **Run**. Wait for the pipeline run to complete (it can take up to 20-25 minutes for the pipeline to finish).
+11. Run the pipeline by selecting the **Run pipeline** button. Leave the default values on the next dialog and hit **Run**. Wait for the pipeline run to complete (it can take up to 20-25 minutes for the pipeline to finish).
    
     ![Run the pipeline](./media/021-runpipeline.png)
 
-10.  Once the pipeline is finished, check the execution result. Expand the **Train and evaluate model stage** from the **Expand stage** button.
+12.  Once the pipeline is finished, check the execution result. Expand the **Train and evaluate model stage** from the **Expand stage** button.
     
         ![Expand pipeline stages](./media/022-expandstage.png)
 
-11. Also you should inspect the artifact of the training stage:
+13. Also you should inspect the artifact of the training stage:
    
     ![Inspect artifacts of the training stage](./media/023-pipelineartifacts.png)
 
-12. Next, open a new browser tab and sign in to the [Azure Portal](https://portal.azure.com) with the Azure credentials provided in the lab. Open the available Resource Group, locate and select the Machine Learning workspace that was pre-created in the lab environment.
+14. Next, open a new browser tab and sign in to the [Azure Portal](https://portal.azure.com) with the Azure credentials provided in the lab. Open the available Resource Group, locate and select the Machine Learning workspace that was pre-created in the lab environment.
    
     ![Inspect artifacts of the training stage](./media/024-locatethemachinelearningworkspace.png)
 
-13. Select **Launch studio** to navigate to the **Azure Machine Learning Studio**.
+15. Select **Launch studio** to navigate to the **Azure Machine Learning Studio**.
 
-14. In the [Azure Machine Learning Studio](https://ml.azure.com), select **Pipelines** from the left navigation menu, go to **Pipeline endpoints** and check the published training pipeline in the `ai-in-a-day-XXXXXX` workspace.
+16. In the [Azure Machine Learning Studio](https://ml.azure.com), select **Pipelines** from the left navigation menu, go to **Pipeline endpoints** and check the published training pipeline in the `ai-in-a-day-XXXXXX` workspace.
    
     ![Inspect published ML pipeline](./media/025-checktrainingpipeline.png)
 
 
-15. Great, you now have the build pipeline for training set up which automatically triggers every time there's a change in the master branch! After the pipeline is finished, you'll see a new model in the ML Workspace. Navigate to the **Models** section in [ML Studio](https://ml.azure.com/), using the left navigation menu and check the newly registered model named `COVID19Articles_model.pkl`.
+17. Great, you now have the build pipeline for training set up which automatically triggers every time there's a change in the master branch! After the pipeline is finished, you'll see a new model in the ML Workspace. Navigate to the **Models** section in [ML Studio](https://ml.azure.com/), using the left navigation menu and check the newly registered model named `COVID19Articles_model.pkl`.
     
      ![Check the newly registered model](./media/026-registeredmodel.png)
 
