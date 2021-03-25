@@ -51,7 +51,7 @@ The high-level steps covered in the lab are:
 
 4. From the `Application URI` section associated with the compute instance, select `Jupyter` **(3)**.
 
-5. In the Jupyter notebook environment, navigate to the root folder. 
+5. In the Jupyter notebook environment, navigate to the root folder.
 
     ![Navigate to user folder in Jupyter environment](./media/jupyter-user-folder.png)
 
@@ -79,6 +79,8 @@ Upload each file by selecting the `Upload` **(1)** button from the top right cor
 
 ## Task 5 - Train a Machine Learning model with Automated ML
 
+In this task, we'll use Azure Automated ML to train a machine learning model capable of determining the best cluster for a COVID-19 scientific article. It builds upon the work done in the Data Preparation notebook.
+
 1. In the Azure Machine Learning studio, switch to the `Automated ML` **(1)** section and select `+ New Automated ML run` **(2)** to start the A
 
     ![Automated ML section is open. + New Automated ML run button is highlighted.](media/new-automated-ml-run.png)
@@ -87,11 +89,11 @@ Upload each file by selecting the `Upload` **(1)** button from the top right cor
 
     ![COVID19Articles_Train_Vectors dataset is selected. Next button is highlighted.](media/automl-selected-dataset.png)
 
-3. On the `Configure run` step select `aml-compute-cpu` **(1)** from the list of clusters. If the list is empty select `Create a new compute` **(2)** link. 
+3. In order to be able to launch an Automated ML run we need to provision a compute cluster. On the `Configure run` step select `aml-compute-cpu` **(1)** from the list of clusters. If the list is empty select `Create a new compute` **(2)** link.
 
     ![Select compute cluster dropdown list and create a new compute link are highlighted.](media/automl-select-compute-cluster.png)
 
-    > **Note:** If you already have `aml-compute-cpu` cluster provisioned, feel free to skip to step 6. 
+    > **Note:** If you already have `aml-compute-cpu` cluster provisioned, feel free to skip to step 6.
 
 4. On the `Create compute cluster` screen set the values listed below:
 
@@ -107,13 +109,15 @@ Upload each file by selecting the `Upload` **(1)** button from the top right cor
 
     - **Compute name (1)**: `aml-compute-cpu`
     - **Minimum number od nodes (2)**: 0
-    - **Maximum number of nodes (3)**: 4
+    - **Maximum number of nodes (3)**: 4  
+
+    Setting the number of maximum nodes to a higher value will allow Automated ML to run more experiments in parallel, but will also increase your costs
 
     ![Computer name is set to aml-compute-cpu. The minimum number of nodes is set to zero. The maximum number of nodes is set to four. The create button is highlighted.](media/automl-configure-cluster-settings.png)
 
     Select `Create` **(4)** to proceed.
 
-6. Set the experiment name to `COVID19_Classification` **(1)** and `Target column` to `cluster` **(2)**. If your compute is not yet selected, make sure `aml-compute-cpu` **(3)** is selected as your compute for the experiment. Select `Next` **(4)** to continue.
+6. Set the experiment name to `COVID19_Classification` **(1)** and `Target column` to `cluster` **(2)**. The values we're trying to predict are in the `cluster` column. If your compute is not yet selected, make sure `aml-compute-cpu` **(3)** is selected as your compute for the experiment. Select `Next` **(4)** to continue.
 
     ![Experiment name is set to COVID19_Classification. Cluster is selected for the target column. Compute cluster selection points aml-compute-cpu. The next button is highlighted.](media/automl-configure-run.png)
 
@@ -127,13 +131,15 @@ Upload each file by selecting the `Upload` **(1)** button from the top right cor
   
     ![Primary metric is set to AUC weighted. Training job time is set to 0.25 hours. The validation type is set to k-fold cross validation. The number of cross validations is set to five. Max concurrent iterations is set to four. The save button is highlighted.](media/automl-additional-configuration.png)
 
+    Thanks to the 0.25 hours set for `training job time`, the experiment will stop after 15 minutes to minimize cost. When it comes to `Max concurrent iterations`, Automated ML can try at most four models at the same time, this is also limited by the compute instance's maximum number of nodes.
+
     Select `Save` **(4)** to continue.
 
-8. When you are back on the `Select task type` screen, select `Classification` **(1)** as the machine learning task type for the experiment. Select `Finish` **(2)** to kick off the Automated ML experiment run.
+8. When you are back on the `Select task type` screen, select `Classification` **(1)** as the machine learning task type for the experiment. Select `Finish` **(2)** to kick off the Automated ML experiment run. If this is the first time you are launching an experiment run in the Azure Machine Learning workspace, the total experiment time will longer than the `training job time` we have set. This is because of the time needed to start the Compute Cluster and deploy the container images required to execute.
 
     ![Classification is selected as the machine learning task type for the experiment. The finish button is highlighted. ](media/automl-select-task-type.png)
 
-9. On the following screen, you will see the progress of your experiment run. Once the experiment is completed you can see the status **(1)** and observe the best model found **(2)**.
+9. On the following screen, you will see the progress of your experiment run. Once the experiment is completed you can see the status **(1)** and observe the best model found **(2)**. Remember, the higher the `AUC_weighter`, the better.
 
     ![Automated ML Run is completed. The best model is highlighted. The best model algorithm shows VotingEnsemble with an AUC weighted value of 0.98341.](media/auto-ml-run-completed.png)
 
