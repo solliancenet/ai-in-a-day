@@ -39,33 +39,33 @@ The high-level steps covered in the lab are:
 
 2. In the list of your recent resources, locate the Azure Machine Learning workspace, select it, and then select `Launch studio`. If you are prompted to sign-in again, use the same lab credentials you used at the previous step.
 
-![Open Azure Machine Learning Workspace](./media/start-aml-workspace.png)
+    ![Open Azure Machine Learning Workspace](./media/start-aml-workspace.png)
 
-3. In Azure Machine Learning Studio, select `Compute` from the left side menu and verify that your compute instance is running.
+3. In Azure Machine Learning Studio, select `Compute` **(1)** from the left side menu and verify that your compute instance is running **(2)**.
 
-![Verify Azure Machine Learning compute instance is running](./media/check-aml-compute-instance.png)
+    ![Verify Azure Machine Learning compute instance is running](./media/check-aml-compute-instance.png)
 
->Note:
->
->If you launched Azure Machine Learning Studio right after your lab environment was provisioned, you might find the compute instance in a provisioning state. In this case, wait a few minutes until it changes its status to `Running`.
+    >Note:
+    >
+    >If you launched Azure Machine Learning Studio right after your lab environment was provisioned, you might find the compute instance in a provisioning state. In this case, wait a few minutes until it changes its status to `Running`.
 
-4. From the `Application URI` section associated with the compute instance, select `Jupyter`.
+4. From the `Application URI` section associated with the compute instance, select `Jupyter` **(3)**.
 
-5. In the Jupyter notebook environment, navigate to the folder associated with your lab user.
+5. In the Jupyter notebook environment, navigate to the root folder.
 
-![Navigate to user folder in Jupyter environment](./media/jupyter-user-folder.png)
+    ![Navigate to user folder in Jupyter environment](./media/jupyter-user-folder.png)
 
 6. If the folder does not contain any notebooks, download the following items to your local machine:
 
-[1. Data Preparation.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/1.%20Data%20Preparation.ipynb)
+    [1. Data Preparation.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/1.%20Data%20Preparation.ipynb)
 
-[2. Automated ML.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/2.%20Automated%20ML.ipynb)
+    [2. Automated ML.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/2.%20Automated%20ML.ipynb)
 
-[3. Document Classification.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/3.%20Document%20Classification.ipynb)
+    [3. Document Classification.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/3.%20Document%20Classification.ipynb)
 
-[covid_embeddings_model_1000_docs.w2v](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/covid_embeddings_model_1000_docs.w2v)
+    [covid_embeddings_model_1000_docs.w2v](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/covid_embeddings_model_1000_docs.w2v)
 
-Upload each file by selecting the `Upload` button from the top right corner of the screen, and then selecting the blue `Upload` button to confirm. 
+Upload each file by selecting the `Upload` **(1)** button from the top right corner of the screen, and then selecting the blue `Upload` **(2)** button to confirm.
 
 ![Upload file to Jupyter notebook environment](./media/upload-file.png)
 
