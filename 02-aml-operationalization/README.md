@@ -104,12 +104,12 @@ Create a new service connection to your Azure ML Workspace to enable executing t
     
 Note: Creating a service connection with Azure Machine Learning workspace scope requires 'Owner' or 'User Access Administrator' permissions on the Workspace. You'll need sufficient permissions to register an application with your Azure AD tenant, or you can get the ID and secret of a service principal from your Azure AD Administrator. That principal must have Contributor permissions on the Azure ML Workspace.
 
-## Task 5 - Import the github repository
+## Task 5 - Import the GitHub repository
 
 1. Go to the [GitHub portal](https://github.com/) and sign in with the Git credentials provided for you.
-2. You will be asked to verify your account, so you should open your user's mailbox on https://outlook.office365.com/ to be able to receive the verification codes for Github authentication. Use the same Github user account credentials to open Outlook.
+2. You will be asked to verify your account, so you should open your user's mailbox on https://outlook.office365.com/ to be able to receive the verification codes for GitHub authentication. Use the same GitHub user account credentials to open Outlook.
    
-3. In Github, while authenticated with the lab user, navigate to the following link to create a new git repository from the provided template:
+3. In GitHub, while authenticated with the lab user, navigate to the following link to create a new git repository from the provided template:
    https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter/generate
 
 4. Set the repository name to `azure-ai-in-a-day-lab02` and select **Create repository from template**.

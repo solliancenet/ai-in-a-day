@@ -48,7 +48,7 @@ The high-level steps covered in the lab are:
 
 4. From the `Application URI` section associated with the compute instance, select `Jupyter`.
 
-5. In the Jupyter notebook environment, navigate to the folder associated with your lab user.
+5. In the Jupyter notebook environment, navigate to the folder associated with your lab user. (Note that in some pre-created environments, the user folder is missing when you first access the Jupyter notebook environment, so you can work directly in the root folder where you should find / download the notebooks needed for the lab.)
 
     ![Navigate to user folder in Jupyter environment](./media/jupyter-user-folder.png)
 
@@ -60,7 +60,7 @@ The high-level steps covered in the lab are:
 
     ![Upload file to Jupyter notebook environment](./media/upload-file.png)
 
-7. Once the files is uploaded, return to the Azure Portal and select the storage account named `aiinadaystorage...`.
+7. Once the files is uploaded, return to the Azure Portal and select the storage account named `aiinadaystorageXXXXXX`.
 
     ![Locate storage account in Azure Portal](./media/datastore-01.png)
 
@@ -78,6 +78,8 @@ The high-level steps covered in the lab are:
 
 1. With the Azure Machine Learning studio and the Jupyter notebook environment open, select the `preparemetricsfeeddata.ipynb` notebook.
 
+   Make sure you replace the `<BLOBSTORAGE_ACCOUNT_NAME>` and `<BLOBSTORAGE_ACCOUNT_KEY>` values in the variable initialization cell with the values you have noted down at the end of the previous task.
+
    The notebook will guide you through a list of steps needed to prepare a time series-based dataset containing JSON files to be fed into the Metrics Advisor workspace. Each JSON file will contain daily data representing the count of COVID positive cases by age group.
 
 2. Execute the notebook cell by cell (using either Ctrl + Enter to stay on the same cell, or Shift + Enter to advance to the next cell) and observe the results of each cell execution.
@@ -86,7 +88,7 @@ The high-level steps covered in the lab are:
 
 1. Open the [Azure Portal](https://portal.azure.com) and sign-in with your lab credentials.
 
-2. In the list of your recent resources, locate the Azure Metrics Advisor workspace and select it. If you are prompted to sign-in again, use the same lab credentials you used at the previous step.
+2. In the list of your recent resources, locate the Azure Metrics Advisor workspace and select it. If you are prompted to sign-in again, use the same lab Azure credentials you used at the previous step.
 ![Open Azure Metrics Advisor](./media/openmetricsadvisor.png)
 
 3. On the Metrics Advisor Quick start page, select the `Go to workspace` link in the first section to start working with the web-based [Metrics Advisor workspace](https://metricsadvisor.azurewebsites.net/).
