@@ -4,7 +4,7 @@ This lab covers clustering with Azure Machine Learning, Automated ML, and model 
 
 ## Task 1 - Explore dashboard of COVID-19 data
 
-Understanding the source datasets is very important in AI and ML. To help you expedite the process, we have created a Power BI dashboard you can use to explore them at the begining of each lab.
+Understanding the source datasets is very important in AI and ML. To help you expedite the process, we have created a Power BI dashboard you can use to explore them at the beginning of each lab.
 
 ![Azure AI in a Day datasets](../media/data-overview-01-01.png)
 
@@ -29,7 +29,7 @@ The high-level steps covered in the lab are:
 - Run word embedding process on natural language content of research papers
 - Explore results of word embedding
 - Run clustering of research papers and explore results
-- Use the newly found clusters to label research document and run Auto ML process to train a classifier
+- Use the newly found clusters to label the research document and run the Auto ML process to train a classifier
 - Run the classifier on "new" research papers
 - Explain the best model produced by AutoML
 
@@ -65,24 +65,76 @@ The high-level steps covered in the lab are:
 
     [covid_embeddings_model_1000_docs.w2v](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/covid_embeddings_model_1000_docs.w2v)
 
-Upload each file by selecting the `Upload` **(1)** button from the top right corner of the screen, and then selecting the blue `Upload` **(2)** button to confirm.
+Upload each file by selecting the `Upload` **(1)** button from the top right corner of the screen and then selecting the blue `Upload` **(2)** button to confirm.
 
 ![Upload file to Jupyter notebook environment](./media/upload-file.png)
 
 ## Task 4 - Prepare data for the Machine Learning process
 
-1. With the Azure Machine Learning studio and the Jupyter notebook environment open, select the `1. Data Preparation.ipynb` notebook.
+1. With the Azure Machine Learning Studio and the Jupyter notebook environment open, select the `1. Data Preparation.ipynb` notebook.
 
 2. Execute the notebook cell by cell (using either Ctrl + Enter to stay on the same cell, or Shift + Enter to advance to the next cell) and observe the results of each cell execution.
 
 ## Task 5 - Train a Machine Learning model with Automated ML
 
-1. With the Azure Machine Learning studio and the Jupyter notebook environment open, select the `2. Automated ML.ipynb` notebook.
+1. In the Azure Machine Learning studio, switch to the `Automated ML` **(1)** section and select `+ New Automated ML run` **(2)** to start the A
 
-2. Execute the notebook cell by cell (using either Ctrl + Enter to stay on the same cell, or Shift + Enter to advance to the next cell) and observe the results of each cell execution.
+    ![Automated ML section is open. + New Automated ML run button is highlighted.](media/new-automated-ml-run.png)
+
+2. In the `Create a new Automated ML run` wizard pick `COVID19Articles_Train_IgnoredColumns` **(1)** as your dataset and select `Next` **(2)** to proceed.
+
+    ![COVID19Articles_Train_IgnoredColumns dataset is selected. Next button is highlighted.](media/automl-selected-dataset.png)
+
+3. On the `Configure run` step select `aml-compute-cpu` **(1)** from the list of clusters. If the list is empty select `Create a new compute` **(2)** link.
+
+    ![Select compute cluster dropdown list and create a new compute link are highlighted.](media/automl-select-compute-cluster.png)
+
+4. On the `Create compute cluster` screen set the values listed below:
+
+    - **Virtual machine priority (1)**: Dedicated
+    - **Virtual machine type (2)**: CPU
+    - **Virtual machine Size (3)**: Standard_DS3_v2
+
+    ![Dedicated virtual machine priority, CPU virtual machine type, and Standard_DS3_v2 virtual machine size are selected. The next button is highlighted.](media/create-new-compute-cluster.png)
+
+    Select `Next` **(4)** to continue.
+
+5. To configure cluster settings set the values given below:
+
+    - **Compute name (1)**: `aml-compute-cpu`
+    - **Minimum number od nodes (2)**: 0
+    - **Maximum number of nodes (3)**: 4
+
+    ![Computer name is set to aml-compute-cpu. The minimum number of nodes is set to zero. The maximum number of nodes is set to four. The create button is highlighted.](media/automl-configure-cluster-settings.png)
+
+    Select `Create` **(4)** to proceed.
+
+6. Set the experiment name to `COVID19_Classification` **(1)** and `Target column` to `cluster` **(2)**. If your compute is not yet selected, make sure `aml-compute-cpu` **(3)** is selected as your compute for the experiment. Select `Next` **(4)** to continue.
+
+    ![Experiment name is set to COVID19_Classification. Cluster is selected for the target column. Compute cluster selection points aml-compute-cpu. The next button is highlighted.](media/automl-configure-run.png)
+
+7. On the `Select task type` screen select `View additional configuration settings` **(1)** to open a new panel of settings. Fill in the values listed below:
+
+    - **Primary metric (2)**: AUC weighted
+    - **Training job time (hours) (4)**: 0.25
+    - **Validation type (4)**: k-fold cross validation
+    - **Number of cross validations (5)**: 5
+    - **Max concurrent iterations (5)**: 4
+  
+    ![Primary metric is set to AUC weighted. Training job time is set to 0.25 hours. The validation type is set to k-fold cross validation. The number of cross validations is set to five. Max concurrent iterations is set to four. The save button is highlighted.](media/automl-additional-configuration.png)
+
+    Select `Save` **(4)** to continue.
+
+8. When you are back on the `Select task type` screen, select `Classification` **(1)** as the machine learning task type for the experiment. Select `Finish` **(2)** to kick off the Automated ML experiment run.
+
+    ![Classification is selected as the machine learning task type for the experiment. The finish button is highlighted. ](media/automl-select-task-type.png)
+
+9. On the following screen, you will see the progress of your experiment run. Once the experiment is completed you can see the status **(1)** and observe the best model found **(2)**.
+
+    ![Automated ML Run is completed. The best model is highlighted. The best model algorithm shows VotingEnsemble with an AUC weighted value of 0.98341.](media/auto-ml-run-completed.png)
 
 ## Task 6 - Classify new research documents
 
-1. With the Azure Machine Learning studio and the Jupyter notebook environment open, select the `3. Document Classification.ipynb` notebook.
+1. With the Azure Machine Learning Studio and the Jupyter notebook environment open, select the `3. Document Classification.ipynb` notebook.
 
 2. Execute the notebook cell by cell (using either Ctrl + Enter to stay on the same cell, or Shift + Enter to advance to the next cell) and observe the results of each cell execution.
