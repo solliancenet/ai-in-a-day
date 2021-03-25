@@ -51,9 +51,11 @@ The high-level steps covered in the lab are:
 
 4. From the `Application URI` section associated with the compute instance, select `Jupyter` **(3)**.
 
-5. In the Jupyter notebook environment, navigate to the root folder.
+5. In the Jupyter notebook environment, navigate to the root folder. 
 
     ![Navigate to user folder in Jupyter environment](./media/jupyter-user-folder.png)
+
+    > **WARNING:** If the root folder does not have a file with the extension `w2v`, look for nested folders under the `Users` folder. Ideally, your notebooks should be in the same folder as the `w2v` file.
 
 6. If the folder does not contain any notebooks, download the following items to your local machine:
 
