@@ -81,13 +81,15 @@ Upload each file by selecting the `Upload` **(1)** button from the top right cor
 
     ![Automated ML section is open. + New Automated ML run button is highlighted.](media/new-automated-ml-run.png)
 
-2. In the `Create a new Automated ML run` wizard pick `COVID19Articles_Train_IgnoredColumns` **(1)** as your dataset and select `Next` **(2)** to proceed.
+2. In the `Create a new Automated ML run` wizard pick `COVID19Articles_Train_Vectors` **(1)** as your dataset and select `Next` **(2)** to proceed.
 
-    ![COVID19Articles_Train_IgnoredColumns dataset is selected. Next button is highlighted.](media/automl-selected-dataset.png)
+    ![COVID19Articles_Train_Vectors dataset is selected. Next button is highlighted.](media/automl-selected-dataset.png)
 
-3. On the `Configure run` step select `aml-compute-cpu` **(1)** from the list of clusters. If the list is empty select `Create a new compute` **(2)** link.
+3. On the `Configure run` step select `aml-compute-cpu` **(1)** from the list of clusters. If the list is empty select `Create a new compute` **(2)** link. 
 
     ![Select compute cluster dropdown list and create a new compute link are highlighted.](media/automl-select-compute-cluster.png)
+
+    > **Note:** If you already have `aml-compute-cpu` cluster provisioned, feel free to skip to step 6. 
 
 4. On the `Create compute cluster` screen set the values listed below:
 
