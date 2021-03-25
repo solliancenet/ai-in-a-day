@@ -53,7 +53,7 @@ The high-level steps covered in the lab are:
    
     ![Get Resource Group location information](./media/04-getRGLocation.png)
 
-    Also note the other two marked values in the image above: the **Resource Group name** and the **Machine Learning Workspace name**, which are also provided for you in the lab Environment Details page.
+    Also note the other two marked values in the image above (you'll also need those two on the next steps): the **Resource Group name** and the **Machine Learning Workspace name**, which are also provided for you in the lab Environment Details page.
 
 6. Going back to the Azure Devops portal where you created the Variable group for you DevOps project, enter the **Variable group name**: `devopsforai-aml-vg`.
    
@@ -140,19 +140,19 @@ In the following steps you will create and run a new build pipeline based on the
     
     ![Authorize Azure Pipelines access to GitHub](./media/01-github-authorizeaccess.png)
 
-5. After you authorized the access for Azure Pipelines, you'll be asked to approve and install Azure Pipelines on your personal GitHub account. Select the `azure-ai-in-a-day-lab02` repository and select **Approve & Install**.
-    
-    ![Approve and install Azure Pipelines on GitHub](./media/01-github-approveinstall.png)
-
-6. After approving installation, you might be asked to sign in again to Azure Devops, so you have to provide the Azure credentials provided in the lab environment. Next, you have to authorize Azure Pipelines permissions in GitHub. Select **Authorize Azure Pipelines** on this page.
-
-    ![Select repository name](./media/01-github-permissions.png)
-   
-7. Redirected back to Azure Devops, select the available Git repository, the one you generated during the previous task in this lab: `github-clouduser-XXXX/azure-ai-in-a-day-lab-02`.
+5. Redirected back to Azure Devops, select the available Git repository, the one you generated during the previous task in this lab: `github-clouduser-XXXX/azure-ai-in-a-day-lab-02`.
    
     ![Select repository name](./media/015-selectgitrepository.png)
 
-8. In the **Configure pipeline** step, select the **Existing Azure Pipelines YAML file**.
+6. After you authorized the access for Azure Pipelines, you'll be asked to approve and install Azure Pipelines on your personal GitHub account. Select the `azure-ai-in-a-day-lab02` repository and select **Approve & Install**.
+    
+    ![Approve and install Azure Pipelines on GitHub](./media/01-github-approveinstall.png)
+
+7. After approving installation, you might be asked to sign in again to Azure Devops, so you have to provide the Azure credentials provided in the lab environment. Next, in case you are asked, you will have to authorize Azure Pipelines permissions on your GitHub account. Select **Authorize Azure Pipelines** on this page.
+
+    ![Select repository name](./media/01-github-permissions.png)
+   
+8. Back to Azure Devops, in the **Configure pipeline** step, select the **Existing Azure Pipelines YAML file**.
    
     ![Select repository name](./media/016-createpipeline.png)
 
@@ -176,6 +176,12 @@ In the following steps you will create and run a new build pipeline based on the
 13. Run the pipeline by selecting the **Run pipeline** button. Leave the default values on the next dialog and hit **Run**. Wait for the pipeline run to complete (it can take up to 20-25 minutes for the pipeline to finish).
    
     ![Run the pipeline](./media/021-runpipeline.png)
+
+    
+    
+    **While waiting for the CI pipeline to finish, given that it will take 20-25 minutes to complete, you can move on with Task 7 in the lab and perform steps 1 to 9 to create the release deploy pipeline. Note that you cannot run this second pipeline until the first one is not completed. When both pipelines are created, the CI pipeline triggers the start of the CD one. Come back to step 14 of this task after you have the second pipeline prepared.**
+
+    
 
 14.  Once the pipeline is finished, check the execution result. Expand the **Train and evaluate model stage** from the **Expand stage** button.
     

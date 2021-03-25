@@ -144,7 +144,9 @@ The high-level steps covered in the lab are:
 
     ![Change monitoring time window](./media/changetimewindow.png)
 
-16. In the left configuration section, under the **Metric-level configuration** change the default metric-level configuration to mark anomalies when the count value changes to 50% over the previous day count.
+16. In the left configuration section, under the **Metric-level configuration** change the default metric-level configuration to mark anomalies when the count value changes to 50% in or out of the range of the previous point count (in our scenario compared with the previous day).
 
     ![Metric-level configuration](./media/metric-level-configuration.png)
+
+    Spend a few minutes to change some parameters inside the **Metric-level configuration** section and observe the change of reported anomalies (red points) on the series data representation.
 
