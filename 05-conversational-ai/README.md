@@ -69,13 +69,17 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
 
    ![Showing a sample set of RAW documents from Azure Cognitive Search. People, organizations, locations and keyphrases fields are highlighted.](media/azure-cognitive-search-explorer-result.png)
 
-9. Close the **Search Explorer**. Navigate to the **Keys (1)** panel. Copy the primary admin key by selecting the copy command **(2)**.
+9. Close the **Search Explorer**. Navigate to the **Keys (1)** panel. Copy the primary admin key by selecting the copy command **(2)**. Take note of the service name for your Azure Cognitive Search **(3)** for use in the next step.
 
    ![Azure Cognitive Search service page is open. Keys tab is shown. Primary admin key copy command is highlighted.](media/azure-cognitive-search-key.png)
 
 10. Now it's time to change the access keys used in our starter Bot to use our Azure Cognitive Search service. Go back to the Bot Framework Composer. Select **Greeting** trigger **(1)**. From the design, surface select the first **Set a property** activity **(2)**. You will see a **Value** field **(3)** on the right panel. We have to change the value with the primary admin key we have copied from the Azure Portal.
 
-   ![Bot Framework Composer is on screen. Greeting trigger is selected. Set a property activity is selected. The value field on the right panel is highlighted.](media/starter-bot-key-change.png)
+    ![Bot Framework Composer is on screen. Greeting trigger is selected. Set a property activity is selected. The value field on the right panel is highlighted.](media/starter-bot-key-change.png)
+
+11. Our next step is to replace the Azure Cognitive Search endpoints used in the application with the one that you just noted in Step 9. Select **GetRecentResearch** trigger **(1)**. From the design, surface select the first **Send an HTTP request** activity **(2)**. You will see a **Url** field **(3)** on the right panel. We have to change the value `aiinaday` with the Azure Cognitive Search endpoint you coped previously. Repeat the same for `ResearchLookup`, `AskForMore` and `OrganizationBasedSearch` triggers as well.
+
+    ![Bot Framework Composer is on screen. GetRecentResearch trigger is selected. Send an HTTP request activity is selected. The Url field on the right panel is highlighted.](media/starter-bot-endpoint-change-getrecentresearch.png)
 
 ## Task 4 - Running AI-in-a-Day Conversational Bot for the First Time
 
