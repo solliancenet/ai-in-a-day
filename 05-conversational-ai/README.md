@@ -83,43 +83,47 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
 
 ## Task 4 - Running AI-in-a-Day Conversational Bot for the First Time
 
-1. It is time to start out bot in the local Bot Framework Emulator. Select **Start bot** from the top of the window in the Bot Framework Composer.
+1. It is time to start out bot. Select **Start bot** from the top of the window in the Bot Framework Composer.
 
    ![Start bot command in the Bot Framework Composer is highlighted.](media/start-starter-bot.png)
 
-2. Once the local bot runtime is ready, a pop-up will appear. Select **Test in Emulator** to start the local Bot Framework Emulator.
+2. Once the local bot runtime is ready, a pop-up will appear. Hover **Test in Emulator (2)** and copy the local bot API endpoint **(3)**.
 
-   ![Local but runtime is ready. Test in Emulator command is highlighted.](media/bot-composer-test-in-emulator.png)
+   ![Local but runtime is ready. Test in Emulator command is highlighted.](media/bot-composer-copy-test-endpoint.png)
 
-3. Write `What is the latest research?` and observe **(1)** how the bot will respond. You can see the API communication between the emulator and the bot in the list of logs **(2)**.
+3. Launch the **Bot Framework Emulator (1)** from its shortcut on Desktop. Select **Open Bot (2)** and paste the API endpoint **(3)** you copied in the previous step. Select **Connect (4)** to continue.
+
+   ![Bot Framework Emulator is shown. Bot URL is set to http://localhost:3980/api/messages. The Connect button is highlighted.](media/bot-framework-emulator-connect.png)
+
+4. Write `What is the latest research?` and observe **(1)** how the bot will respond. You can see the API communication between the emulator and the bot in the list of logs **(2)**.
 
    ![A dialog between the bot and the user showing latest COVID research is highlighted. Logs about API requests are shown.](media/bot-response-regex-getrecentresearch.png)
 
-4. Write `Find me publications about SARS` and observe how the bot will respond.
+5. Write `Find me publications about SARS` and observe how the bot will respond.
 
    ![A dialog where the user asks for more COVID publications related to SARS and five research results is presented.](media/bot-response-regex-researchlookup.png)
 
-5. Write `More` and observe how the bot will respond.
+6. Write `More` and observe how the bot will respond.
 
    ![A dialog where the user asks for more COVID publications related to SARS and one more research result is presented.](media/bot-response-regex-askformore.png)
 
-6. Write `Find me publications from WHO` and observe how the bot will respond.
+7. Write `Find me publications from WHO` and observe how the bot will respond.
 
    ![A dialog where the user asks for more COVID publications published by WHO and five  research result is presented.](media/bot-response-regex-organizationbasedresearch.png)
 
-7. Now, let's go back to the **Bot Framework Composer** and see how the bot understands our commands. Select **GetRecentResearch** trigger **(1)** and look at the trigger phrase **(2)**. Our current trigger phrase is set to exactly match what we previously wrote in chat in the Bot Framework Emulator.
+8. Now, let's go back to the **Bot Framework Composer** and see how the bot understands our commands. Select **GetRecentResearch** trigger **(1)** and look at the trigger phrase **(2)**. Our current trigger phrase is set to exactly match what we previously wrote in chat in the Bot Framework Emulator.
 
    ![GetRecentResearch trigger is selected. Trigger phrase is highlighted.](media/getrecentresearch-trigger-phrase.png)
 
-8. Switch back to the emulator and write, `What is the latest resarch?`. You will see that our bot can't understand the message anymore. So far, our bot has used **Regular Expression Recognizer** as its Language Understanding engine. The current setup for the **GetRecentResearch** trigger matches only an exact text to detect user intent. A simple typographical error results in a failure.
+9. Switch back to the emulator and write, `What is the latest resarch?`. You will see that our bot can't understand the message anymore. So far, our bot has used **Regular Expression Recognizer** as its Language Understanding engine. The current setup for the **GetRecentResearch** trigger matches only an exact text to detect user intent. A simple typographical error results in a failure.
 
    ![A dialog shows the user asking latest research with a typo in the text. Bot responds with a sorry message.](media/bot-regex-response-latestresearch-fail.png)
 
-9. Switch back to the **Bot Framework Composer** and select **ResearchLookup (1)**. Remember, previously, we asked the bot `Find me publications about SARS` to get the latest COVID research related to SARS. You can find the regular expression used to detect the user's intent in the **Trigger Phrases (2)** section. If the user writes anything else, maybe a typographical error, the bot will fail to understand its user's intent.
+10. Switch back to the **Bot Framework Composer** and select **ResearchLookup (1)**. Remember, previously, we asked the bot `Find me publications about SARS` to get the latest COVID research related to SARS. You can find the regular expression used to detect the user's intent in the **Trigger Phrases (2)** section. If the user writes anything else, maybe a typographical error, the bot will fail to understand its user's intent.
 
-   ![ResearchLookup trigger is selected. Trigger phrase regular expression is shown to detect a single pattern.](media/research-lookup-regex-trigger.png)
+    ![ResearchLookup trigger is selected. Trigger phrase regular expression is shown to detect a single pattern.](media/research-lookup-regex-trigger.png)
 
-10. Feel free to look into the other triggers in the starter project and ask different questions to our bot to test how the different regular expressions set for the current triggers work.
+11. Feel free to look into the other triggers in the starter project and ask different questions to our bot to test how the different regular expressions set for the current triggers work.
 
 ## Task 5 - Extending Our Conversational Bot Using LUIS
 
@@ -276,7 +280,7 @@ It's time to publish our bot to an Azure Bot Service. An Azure Bot Service is no
 
    ![Bot Framework Composer Project Settings is open. Add new publish profile link is highlighted.](media/add-new-publish-profile.png)
 
-2. Name your profile `ai-in-a-day` **(1)** and select **Publish bot to Azure Web App (2)** option as the publish target. Select **Next (3)** to move to the next step.
+2. Name your profile `ai-in-a-day` **(1)** and select **Publish bot to Azure Web App (2)** option as the publish target. Select **Next: Configure resources (3)** to move to the next step.
 
    ![New profile name is set to ai-in-a-day. Publish Target is set to Azure Web App. The Next button is highlighted.](media/add-new-publish-profile-1.png)
 
@@ -284,19 +288,21 @@ It's time to publish our bot to an Azure Bot Service. An Azure Bot Service is no
 
    ![AI-in-a-day Resource Group is open in the Azure Portal. Resource Group Name and Cognitive Service Locations are highlighted.](media/add-new-publish-profile-3.png)
 
-4. During this step, it is crucial to select the subscription option after filling in all the other fields. With that in mind, type in your **Azure Resource Group** name into the **HostName** box **(1)**. Next, please select the location of your Cognitive Services to make sure our bot is deployed to the same location **(2)**. Finally, choose your subscription (3) and select **Next (4)**.
+4. Select your subscription and type in your **Azure Resource Group** name into the **Resource group name (2)** box. Type in the same name into the **Resource Name (3)** box as well. This is going to be the name of the web application that will host our Bot App in Azure. Next, please select the location of your Cognitive Services to make sure our bot is deployed to the same location **(4)**. Select **Next:Review (5)** to continue.
 
-   ![Deploying resource configuration screen is open. Hostname is set to ai-in-a-day. Location is set to West US. A subscription is selected. The next button is highlighted.](media/add-new-publish-profile-2.png)
+   ![Deploying resource configuration screen is open. Resource group name and resource name are set to ai-in-a-day. Location is set to West US. A subscription is selected. The next button is highlighted.](media/add-new-publish-profile-2.png)
 
-5. Make sure you deselect **(1)** all optional resources. We have some of these resources already in place. We will connect those to our deployment profile in the next steps. Select **Done (2)** to complete the process.
+5. Make sure you deselect **(1)** all optional resources. We have some of these resources already in place. We will connect those to our deployment profile in the next steps. Select **Next (2)** to proceed.
 
    ![Deployment environment resource selection screen is open. Deselect all command is highlighted. The done button is marked.](media/add-new-publish-profile-deselect-optionals.png)
 
-6. The Bot Framework Composer registered our bot and provisioned the resources **(1)** needed to host our bot in Azure. Now, we have to connect our deployment to our current LUIS Cognitive service. Select **Edit (2)**.
+6. On the next screen select **Done** to start deployment.
+
+7. The Bot Framework Composer registered our bot and provisioned the resources **(1)** needed to host our bot in Azure. Now, we have to connect our deployment to our current LUIS Cognitive service. Select **Edit (2)**.
 
    ![Provisioning success dialog is presented. Edit button for ai-in-a-day publish profile is highlighted.](media/edit-publish-profile.png)
 
-7. Look at the **Publish Configuration** section **(1)**. We have to type in a couple of keys and endpoints to make sure our bot can talk to our LUIS Cognitive service that is already in our Azure subscription.
+8. Look at the **Config Resources** section **(1)**. We have to type in a couple of keys and endpoints to make sure our bot can talk to our LUIS Cognitive service that is already in our Azure subscription.
 
    ![Publish profile edit screen is open. Publish Configuration is highlighted. Save button is pointed.](media/edit-publish-profile-config.png)
 
@@ -312,21 +318,21 @@ It's time to publish our bot to an Azure Bot Service. An Azure Bot Service is no
        }
    ```
 
-8. Let's start with the **authoringKey** and **authoringEndpoint**. Go to the Azure Portal and select the cognitive service that has `Authoring` in its name. This is the LUIS Cognitive service that is used for authoring language content.
+9. Let's start with the **authoringKey** and **authoringEndpoint**. Go to the Azure Portal and select the cognitive service that has `auth` in its name. This is the LUIS Cognitive service that is used for authoring language content.
 
    ![Azure Portal is open. Authoring LUIS Cognitive service is highlighted.](media/luis-authoring-service-selected.png)
 
-9. Select **Keys and Endpoint (1)** section. Copy **Key 1** to the **authoringKey** field replacing `<authoring key>`. Copy **Endpoint** to the **authoringEndpoint** field. Finally, copy **Location** to the **region** field.
+10. Select **Keys and Endpoint (1)** section. Copy **Key 1** to the **authoringKey** field replacing `<authoring key>`. Copy **Endpoint** to the **authoringEndpoint** field. Finally, copy **Location** to the **region** field.
 
-   ![LUIS Authoring service keys and endpoints are shown. Key 1, Endpoint and Location are highlighted.](media/luis-authoring-service-keys.png)
+    ![LUIS Authoring service keys and endpoints are shown. Key 1, Endpoint and Location are highlighted.](media/luis-authoring-service-keys.png)
 
-10. The next step is to get the Key and Endpoint for the Prediction Cognitive Service. Go back to the list of resources in the Azure Portal. This time, select the cognitive service called `aiinaday-luis`.
+11. The next step is to get the Key and Endpoint for the Prediction Cognitive Service. Go back to the list of resources in the Azure Portal. This time, select the cognitive service called `aiinaday-luis-pred`.
 
     ![Azure Portal is open. Prediction LUIS Cognitive service is highlighted.](media/luis-prediction-selected.png)
 
-11. Select **Keys and Endpoint (1)** section. Copy **Key 1** to the **endpointKey** field replacing `<endpoint key>`. Copy **Endpoint** to the **endpoint** field.
+12. Select **Keys and Endpoint (1)** section. Copy **Key 1** to the **endpointKey** field replacing `<endpoint key>`. Copy **Endpoint** to the **endpoint** field.
 
-    ![LUIS Authoring service keys and endpoints are shown. Key 1, Endpoint and Location are highlighted.]  (media/luis-prediction-keys.png)
+    ![LUIS Authoring service keys and endpoints are shown. Key 1, Endpoint and Location are highlighted.](media/luis-prediction-keys.png)
 
     Below is an example of how the luis section of your **Publish Configuration** will look like. In    your case, all values will be the values you copied from your Azure subscription.
 
@@ -340,25 +346,25 @@ It's time to publish our bot to an Azure Bot Service. An Azure Bot Service is no
         }
     ```
 
-12. One final value that has to change in the **Publish Configuration** is the Luis resource name **(1)**. This is the name of the prediction Luis Cognitive Service that we selected in the previous step.
+13. One final value that has to to be added in the **Publish Configuration** is the Luis resource name **(1)**. This is the name of the prediction Luis Cognitive Service that we selected in the previous step.
 
     ![Publish profile edit screen is open. The luisResource field in the Publish Configuration is highlighted. Save button is pointed.](media/publish-configuration-luis-resource.png)
 
     Once that is done. Select **Save** **(2)**.
 
-13. Switch to the **Publish (1)** section in the Bot Framework Composer. Select our bot **(2)** and select **Publish selected bots (3)** to start the publish process.
+14. Switch to the **Publish (1)** section in the Bot Framework Composer. Select our bot **(2)** and select **Publish selected bots (3)** to start the publish process.
 
     ![Publish screen is open. Current bot is selected. Publish selected bots button is highlighted.](media/publish-bot-to-azure.png)
 
-14. Select **"Okay"** to approve the publishing.
+15. Select **"Okay"** to approve the publishing.
 
     ![Publish approval dialog is shown. Okay button is highlighted.](media/publish-okay.png)
 
-15. Once publishing is complete, go to the Azure Portal and select the **Bot Channels Registration** service.
+16. Once publishing is complete, go to the Azure Portal and select the **Bot Channels Registration** service.
 
-    ![Azure Portal is open. Resources in the resource group are listed. ai-in-a-day bot channels registration is highlighted.](media/bot-channel-registration.png)
+    ![Azure Portal is open. Resources in the resource group are listed. ai-in-a-day bot channels registration is highlighted.](media/select-azure-bot-service.png)
 
-16. Switch to the **Test in Web Chat (1)** tab. This is where you can test our bot live in Azure. Feel free to ask questions and observe the results **(2)** we previously tested locally.
+17. Switch to the **Test in Web Chat (1)** tab. This is where you can test our bot live in Azure. Feel free to ask questions and observe the results **(2)** we previously tested locally.
 
     ![Bot channels registration page is open. Test in web chat tab is selected. A sample chat dialog is highlighted.](media/test-web-chat.png)
 
@@ -378,48 +384,44 @@ In this task, we will enable voice access to our Bot through the use of AI. We w
 
    ![Channel registration list is shown. Direct Line Speech and Web Chat are listed.](media/bot-channel-registration-channels.png)
 
-3. Switch to the **Settings (1)** tab. Check **Enable Streaming Endpoint (2)** and select **Save (3)**.
-
-   ![Bot Channels Registration Settings is open. Enable streaming endpoint checkbox is selected. Save button is highlighted.](media/bot-channel-registration-streaming-endpoint.png)
-
-4. Go back to your Resource Group and select the `ai-in-a-day` app service.
+3. Go back to your Resource Group and select the `ai-in-a-day` app service.
 
    ![Resources in the resource group are listed. ai-in-a-day app service is highlighted.](media/app-service-select.png)
 
-5. Switch to the **Configuration (1)** tab. Select **General settings (2)**. Check **On (3)** for Web sockets and select **Save (4)**.
+4. Switch to the **Configuration (1)** tab. Select **General settings (2)**. Check **On (3)** for Web sockets and select **Save (4)**.
 
    ![Configuration page for the app service is open. General settings tab is on screen. Web sockets is set to ON. Save button is highlighted.](media/app-service-web-socket.png)
 
-6. In a Microsoft Edge web browser, navigate to the Github Releases page of the Cognitive-Services-Voice-Assistant project here [https://github.com/Azure-Samples/Cognitive-Services-Voice-Assistant/releases](https://github.com/Azure-Samples/Cognitive-Services-Voice-Assistant/releases) and download the released ZIP file **(1)**. Select **Open (2)** when the download is completed.
+5. In a Microsoft Edge web browser, navigate to the Github Releases page of the Cognitive-Services-Voice-Assistant project here [https://github.com/Azure-Samples/Cognitive-Services-Voice-Assistant/releases](https://github.com/Azure-Samples/Cognitive-Services-Voice-Assistant/releases) and download the released ZIP file **(1)**. Select **Open (2)** when the download is completed.
 
    > **Note:** If you are not able to download and install applications to your computer you can watch a demo of the final result in a [video here](media/DLS-chatbot-demo.mp4).
 
    ![The releases page for the Windows Voice Asssistant Client on Github is open. WindowsVoiceAssistantClient ZIP file is selected. Open button on the download dialog is highlighted.](media/windows-voice-assistant-client.png)
 
-7. Navigate into the folder in the ZIP file and find the **VoiceAssistantClient (1)** application file. Double click to start the program. When prompted select **Extract all (2)** to temporary extract the contents of the ZIP file.
+6. Navigate into the folder in the ZIP file and find the **VoiceAssistantClient (1)** application file. Double click to start the program. When prompted select **Extract all (2)** to temporary extract the contents of the ZIP file.
 
    ![ZIP file is open. VoiceAssistantClient is selected. Extract all command is highlighted.](media/windows-voice-assistant-client-extract.png)
 
-8. Select **Extract**. Once extraction is complete a folder window will pop up.
+7. Select **Extract**. Once extraction is complete a folder window will pop up.
 
    ![ZIP Extract window is open. Extract button is highlighted.](media/windows-voice-assistant-client-extract-2.png)
 
-9. Navigate into the `WindowsVoiceAssistantClient-<date>` folder and find the **VoiceAssistantClient** program. Double click the program to start it.
+8. Navigate into the `WindowsVoiceAssistantClient-<date>` folder and find the **VoiceAssistantClient** program. Double click the program to start it.
 
    ![Extracted files are shown. VoiceAssistantClient program file is selected.](media/windows-voice-assistant-client-start.png)
 
-10. Once the program opens, it will show you its **Settings** window. If the **Settings** window does not show up, select **Settings gear button (A)** to open the window. We need two values for the settings page: **Subscriptions key** and **Subscription key region (1)**. These are the Azure Cognitive Speech Service's key and region values in our Azure subscription.
+9. Once the program opens, it will show you its **Settings** window. If the **Settings** window does not show up, select **Settings gear button (A)** to open the window. We need two values for the settings page: **Subscriptions key** and **Subscription key region (1)**. These are the Azure Cognitive Speech Service's key and region values in our Azure subscription.
 
     ![Windows Voice Assistant's Settings page is open. Subscription key and region text boxes are highlighted.](media/windows-voice-assistant-client-config.png)
 
-11. Back in the Azure Portal, select the `aiinaday-speech` service.
+10. Back in the Azure Portal, select the `aiinaday-speech` service.
 
     ![Azure Portal is open. From the resource list aiinaday-speech Cognitive Speech Service is highlighted.](media/speech-service-select.png)
 
-12. Switch to the **Keys and Endpoint (1)** tab. Copy **Key 1 (2)** into the **Subscription Key** textbox in the Settings window of the Windows Voice Assistant Client. Copy **Location (3)** into the **Subscription Key Region** textbox in the Settings window of the Windows Voice Assistant Client. Type in a **Connection profile** name **(3)** and select **Save and Apply Profile (4)**.
+11. Switch to the **Keys and Endpoint (1)** tab. Copy **Key 1 (2)** into the **Subscription Key** textbox in the Settings window of the Windows Voice Assistant Client. Copy **Location (3)** into the **Subscription Key Region** textbox in the Settings window of the Windows Voice Assistant Client. Type in a **Connection profile** name **(3)** and select **Save and Apply Profile (4)**.
 
     ![Speech service keys are shown in the Azure Portal. Windows Voice Assistant's Settings page is open. Windows Voice Assistant's Subscription key and subscription key values are filled in from the Azure Portal. Connection profile is set. Save and Apply Profile button is highlighted.](media/speech-service-keys.png)
 
-13. Select **Reconnect (1)** to connect to the bot. You will hear the greeting message first. At any point feel free to select the **Microphone button (2)** and talk to your bot.
+12. Select **Reconnect (1)** to connect to the bot. You will hear the greeting message first. At any point feel free to select the **Microphone button (2)** and talk to your bot.
 
    ![Windows Voice Assistant Client is open. Reconnect and Microphone buttons are highlighted. A chat dialog is presented.](media/windows-voice-assistant-client-result.png)
