@@ -61,11 +61,9 @@ The high-level steps covered in the lab are:
 
     [1. Data Preparation.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/1.%20Data%20Preparation.ipynb)
 
-    [2. Automated ML.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/2.%20Automated%20ML.ipynb)
-
     [3. Document Classification.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/3.%20Document%20Classification.ipynb)
 
-    [covid_embeddings_model_1000_docs.w2v](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/covid_embeddings_model_1000_docs.w2v)
+    [covid_embeddings_model_500_docs.w2v](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/covid_embeddings_model_500_docs.w2v)
 
 Upload each file by selecting the `Upload` **(1)** button from the top right corner of the screen and then selecting the blue `Upload` **(2)** button to confirm.
 
@@ -121,19 +119,19 @@ In this task, we'll use Azure Automated ML to train a machine learning model cap
 
     ![Experiment name is set to COVID19_Classification. Cluster is selected for the target column. Compute cluster selection points aml-compute-cpu. The next button is highlighted.](media/automl-configure-run.png)
 
-7. On the `Select task type` screen select `View additional configuration settings` **(1)** to open a new panel of settings. Fill in the values listed below:
+7. On the `Select task type` screen select `View additional configuration settings` to open a new panel of settings. Fill in the values listed below:
 
-    - **Primary metric (2)**: AUC weighted
-    - **Training job time (hours) (4)**: 0.25
-    - **Validation type (4)**: k-fold cross validation
-    - **Number of cross validations (5)**: 5
-    - **Max concurrent iterations (5)**: 4
+    - **Primary metric**: AUC weighted
+    - **Training job time (hours)**: 0.25
+    - **Validation type**: k-fold cross validation
+    - **Number of cross validations**: 5
+    - **Max concurrent iterations**: 4
   
     ![Primary metric is set to AUC weighted. Training job time is set to 0.25 hours. The validation type is set to k-fold cross validation. The number of cross validations is set to five. Max concurrent iterations is set to four. The save button is highlighted.](media/automl-additional-configuration.png)
 
     Thanks to the 0.25 hours set for `training job time`, the experiment will stop after 15 minutes to minimize cost. When it comes to `Max concurrent iterations`, Automated ML can try at most four models at the same time, this is also limited by the compute instance's maximum number of nodes.
 
-    Select `Save` **(4)** to continue.
+    Select `Save` to continue.
 
 8. When you are back on the `Select task type` screen, select `Classification` **(1)** as the machine learning task type for the experiment. Select `Finish` **(2)** to kick off the Automated ML experiment run. If this is the first time you are launching an experiment run in the Azure Machine Learning workspace, the total experiment time will longer than the `training job time` we have set. This is because of the time needed to start the Compute Cluster and deploy the container images required to execute.
 
