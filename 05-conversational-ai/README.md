@@ -248,7 +248,7 @@ Our Bot is now using a **Regular expression recognizer** as its Language Underst
 
      ![A list of entities is presented. Entity type "machine learned" is highlighted.](media/luis-portal-entity-list.png)
 
-17. Select the **Review endpoint utterances (1)** page in the portal. This is where we can see a list of utterances users wrote and LUIS predicted, but they are outside the original utterance list we provided. In this case, LUIS did a great job predicting that the `What is the latest resarch?` message was targeting the **GetRecentResearch** intent. We can select the approve this prediction by selecting the **Add** button **(4)**. If LUIS had chosen a wrong intent we could change the aligned intent and give our approval to help LUIS learn and improve its predictions.
+17. Select the **Review endpoint utterances (1)** page in the portal. This is where we can see a list of utterances users wrote and LUIS predicted, but they are outside the original utterance list we provided. In this case, LUIS did a great job predicting that the `What is the latest resarch?` message was targeting the **GetRecentResearch** intent. We can change the predicted intent if needed and select the **Save** button **(4)** to add the new utterance for future training. This will help LUIS learn and improve its predictions.
 
      ![Review endpoint utterances page is open. The message with the typo is highlighted. Aligned intent is shown as GetRecentResearch. Checkmark button is highlighted.](media/luis-portal-review-utterance.png)
 
