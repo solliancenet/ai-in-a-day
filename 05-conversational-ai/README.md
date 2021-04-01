@@ -374,6 +374,8 @@ It's time to publish our bot to an Azure Bot Service. An Azure Bot Service is no
 
 ## Task 7 - Enabling Voice Access for Our Bot
 
+> **WARNING**: This task requires access to Microphone hardware in your environment. If you are running your lab through a remote desktop connection, additional setup might be required. As an alternative, you can run the VoiceAssistantClient that is used in the lab in your local machine instead of a remote Virtual machine. If both options are not working, you might not be able to demo the functionality after step 5. In the case you can download a video version of the end-user experience [here](media/DLS-chatbot-demo.mp4).
+
 In this task, we will enable voice access to our Bot through the use of AI. We will use **Azure Cognitive Speech Services** to enable real-time speech to text and text to speech conversion. Thanks to **Bot Channels Registrations** in **Azure Bot Service**, we can use the Direct Line Speech channel to have our Bot drive audio only conversations with client applications.
 
 1. Switch to the **Channels (1)** tab in the **Bot Channels Registration** service. Select **Direct Line Speech (2)**.
