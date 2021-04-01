@@ -23,4 +23,6 @@
 
 Upload each file by selecting the `Upload` button from the top right corner of the screen, and then selecting the blue `Upload` button to confirm. 
 
-3. Run the Setup.ipynb notebook in the Jupyter notebook environment. This notebook will create the `aml_compute_cpu compute` cluster, registers the necessary datasets: `COVID19Articles_Test' and `COVID19Articles_Train` and submits the `COVID19_Classification` experiment without setting the metric exit criteria.
+## Task 3 - Run the setup notebook
+
+1. Run the Setup.ipynb notebook in the Jupyter notebook environment. This notebook will create the `aml_compute_cpu compute` cluster, registers the necessary datasets: `COVID19Articles_Test` and `COVID19Articles_Train` and submits the `COVID19_Classification` experiment without setting the metric exit criteria.
