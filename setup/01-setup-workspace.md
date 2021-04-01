@@ -15,10 +15,12 @@
 
 [1. Data Preparation.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/1.%20Data%20Preparation.ipynb)
 
-[2. Automated ML.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/2.%20Automated%20ML.ipynb)
-
 [3. Document Classification.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/3.%20Document%20Classification.ipynb)
 
-[covid_embeddings_model_1000_docs.w2v](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/covid_embeddings_model_1000_docs.w2v)
+[covid_embeddings_model_500_docs.w2v](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/covid_embeddings_model_500_docs.w2v)
+
+[Setup.ipynb](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-01/Setup.ipynb)
 
 Upload each file by selecting the `Upload` button from the top right corner of the screen, and then selecting the blue `Upload` button to confirm. 
+
+3. Run the Setup.ipynb notebook in the Jupyter notebook environment. This notebook will create the `aml_compute_cpu compute` cluster, registers the necessary datasets: `COVID19Articles_Test' and `COVID19Articles_Train` and submits the `COVID19_Classification` experiment without setting the metric exit criteria.
