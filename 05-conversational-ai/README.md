@@ -349,7 +349,7 @@ It's time to publish our bot to an Azure Bot Service. An Azure Bot Service is no
 13. One final value that has to to be added in the **Publish Configuration** is the Luis resource name **(1)**. This is the name of the prediction Luis Cognitive Service that we selected in the previous step.
 
     ```json
-       "luisResrouce":"aiinaday-luis-pred",
+       "luisResource":"aiinaday-luis-pred",
     ```
 
     ![Publish profile edit screen is open. The luisResource field in the Publish Configuration is highlighted. Save button is pointed.](media/publish-configuration-luis-resource.png)
