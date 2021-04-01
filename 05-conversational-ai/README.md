@@ -1,6 +1,6 @@
 # Lab 5 - Conversational AI with Azure Bot Service and Cognitive Services
 
-This lab covers the Azure Bot Service (Bot Framework Composer and Language Understand) and Cognitive Services.
+This lab covers Azure Bot Service, Bot Framework Composer, and Azure Cognitive Services.
 
 ## Task 1 - Explore dashboard of COVID-19 data
 
