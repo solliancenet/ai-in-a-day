@@ -137,11 +137,37 @@ In this task, we'll use Azure Automated ML to train a machine learning model cap
 
     ![Classification is selected as the machine learning task type for the experiment. The finish button is highlighted. ](media/automl-select-task-type.png)
 
-9. On the following screen, you will see the progress of your experiment run. Once the experiment is completed you can see the status **(1)** and observe the best model found **(2)**. Remember, the higher the `AUC_weighter`, the better.
+9. On the following screen, you will see the progress of your experiment run.
 
-    ![Automated ML Run is completed. The best model is highlighted. The best model algorithm shows VotingEnsemble with an AUC weighted value of 0.98341.](media/auto-ml-run-completed.png)
+10. Now that you understand the process of launching an AutoML run, let's explore in the next task the results of an already completed AutoML run.
 
-## Task 6 - Classify new research documents
+>Note:
+>
+>We have already executed in this environment an AutoML run that is very similar to the one that you've just launched. This allows you to explore AutoML results without having to wait for the completion of the run.
+
+## Task 6 - Explore AutoML results
+
+1. In the Azure Machine Learning Studio, navigate to the **Experiments (1)** section and locate the **COVID19_Classification** experiment **(2)**. Select the experiment name link.
+   
+    ![Locate the completed experiment ](media/locate-experiment.png)
+
+2. You will navigate to the experiment details page where you should see the list of experiment runs. Locate the first run **(1)** listed here, named **Run 1**, the one that has the status **Completed**. Choose the option to Include the existing child runs **(2)** as illustrated bellow.
+
+    ![Locate the completed AutoML run](media/locate-completed-run.png)
+
+3. Now you should be able to see the list of child runs executed in order to train multiple machine learning models using various classification algorithms. Select **Run 1**.
+
+    ![Locate the completed AutoML run](media/inspect-child-runs.png)
+
+4. On the **Run details** page, navigate to the **Models (1)** section. Check the values on the  **AUC weighted** column **(2)**, which is the primary metric selected in the AutoML run configuration. See how the best model was selected, this is the one with the maximum metric value. This is also the model for which the explanation was generated. Select **View explanation (3)**.
+
+    ![Explore the models section of the AutoML run](media/inspect-models.png)
+
+5. On the **Explanations (1)** section, browse  the available explanations **(2)** and investigate the **Model performance (3)** representation.
+   
+    ![View explanations](media/view-explanations.png)
+
+## Task 7 - Classify new research documents
 
 1. With the Azure Machine Learning Studio and the Jupyter notebook environment open, select the `3. Document Classification.ipynb` notebook.
 
