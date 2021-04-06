@@ -102,6 +102,10 @@ The release deployment and batch scoring pipelines have the following behaviors:
  - The pipeline will default to using the latest successful build of the Model-Train-Register-CI pipeline. It will deploy the model produced by that build.
  - You can specify a Model-Train-Register-CI build ID when running the pipeline manually. You can find this in the url of the build, and the model registered from that build will also be tagged with the build ID. This is useful to skip model training and registration, and deploy/score a model successfully registered by a Model-Train-Register-CI build.
 
+1. In Azure DevOps, open your project and navigate to the **Pipelines** section. Select the `Model-Deploy-CD` pipeline and then select the first run as illustrated in the picture bellow.
+
+    ![Open the CD pipeline run](./media/01-devops-deploy-cd.png)
+
 1. The first time when the CD pipeline runs, it will use the latest model created by the Model-Train-Register-CI pipeline. Once the pipeline is finished, check the execution result.
 
     ![Run the pipeline](./media/031-runstages.png)
