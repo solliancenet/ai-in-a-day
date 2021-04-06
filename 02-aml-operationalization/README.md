@@ -44,39 +44,54 @@ The following diagram highlights the portion of the general architecture covered
 
     ![Locate the CI/CD pipelines](./media/01-devops-pipelines.png)
 
-4. Let's now explore the GitHub repository that the pre-created CI/CD pipelines are based on. First, Go to the [GitHub portal](https://github.com/) and sign in with the Git credentials provided for you.
-5. You will be asked to verify your account, so you should open your user's mailbox on https://outlook.office365.com/ to be able to receive the verification codes for GitHub authentication. Use the same GitHub user account credentials to open Outlook.
-6. In GitHub, select the `azure-ai-in-a-day-lab02` repository that was pre-generated under your GitHub account. 
+4. Select the `Model-Train-Register-CI` pipeline and then select the first run as illustrated in the picture bellow.
+
+    ![Open the CI pipeline run](./media/01-devops-trainregister-ci.png)
+
+5. On the run results page, check the **Summary** section to understand how the pipeline is linked to GitHub. Right click on the repository name on the Repository and version column as illustrated bellow and choose to open it in a new tab.
+
+    ![Open the GitHub repository](./media/01-devops-opengitrepository.png)
+
+6. You will be prompted to sign in with the Git credentials provided for you in the lab environment.
+
+7. You will be asked to verify your account, so you should open your user's mailbox on https://outlook.office365.com/ to be able to receive the verification codes for GitHub authentication. Use the same GitHub user account credentials to open Outlook.
+
+8. In GitHub, you will see the `azure-ai-in-a-day-lab02` repository that was pre-generated under your GitHub account.
+
+    ![Locate GitHub repository](./media/01-devops-labrepository.png)
+
+9. If the repository is not automatically opened, please select it from the available repositories list.
 
     ![Locate GitHub repository](./media/01-github-selectrepository.png)
 
-7. Spend a few moments to browse the repository structure explained in detail [here](https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter/blob/master/docs/code_description.md). Focus on the `COVID19Articles` folder which contains all the scripts involved in the Azure DevOps pipeline discussed in this exercise.
+10. Spend a few moments to browse the repository structure explained in detail [here](https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter/blob/master/docs/code_description.md). Focus on the `.pipelines` folder which contains the YAML  scripts used by the Azure DevOps pipelines discussed in this exercise.
 
-    ![Browse the GitHub repository COVID19Articles folder](./media/01-github-pythonscripts.png)
+    ![Browse the GitHub repository .pipelines folder](./media/01-github-pythonscripts.png)
 
-## Task 4 - Explore the artifacts of the CI pipeline
+11. Going back to the Azure DevOps portal browser tab, on the `Model-Train-Register-CI` pipeline run page observe the two stages of the CI pipeline.
 
-1.  Once the pipeline is finished, check the execution result. Expand the **Train and evaluate model stage** from the **Expand stage** button.
-    
+    ![Browse the GitHub repository .pipelines folder](./media/01-expandstage.png)
+
+12. Expand the **Train and evaluate model stage** from the **Expand stage** button.
+
     ![Expand pipeline stages](./media/022-expandstage.png)
 
-2. Also you should inspect the artifact of the training stage:
-   
+13. Also you should inspect the artifact of the training stage:
+
     ![Inspect artifacts of the training stage](./media/023-pipelineartifacts.png)
 
-3. Next, open a new browser tab and sign in to the [Azure Portal](https://portal.azure.com) with the Azure credentials provided in the lab. Open the available Resource Group, locate and select the Machine Learning workspace that was pre-created in the lab environment.
-   
+14. Next, open a new browser tab and sign in to the [Azure Portal](https://portal.azure.com) with the Azure credentials provided in the lab. Open the available Resource Group, locate and select the Machine Learning workspace that was pre-created in the lab environment.
+
     ![Inspect artifacts of the training stage](./media/024-locatethemachinelearningworkspace.png)
 
-4. Select **Launch studio** to navigate to the **Azure Machine Learning Studio**.
+15. Select **Launch studio** to navigate to the **Azure Machine Learning Studio**.
 
-5. In the [Azure Machine Learning Studio](https://ml.azure.com), select **Pipelines** from the left navigation menu, go to **Pipeline endpoints** and check the published training pipeline in the `ai-in-a-day-XXXXXX` workspace.
-   
+16. In the [Azure Machine Learning Studio](https://ml.azure.com), select **Pipelines** from the left navigation menu, go to **Pipeline endpoints** and check the published training pipeline in the `ai-in-a-day-XXXXXX` workspace.
+
     ![Inspect published ML pipeline](./media/025-checktrainingpipeline.png)
 
+17. The build pipeline for training automatically triggers every time there's a change in the master branch. After the pipeline is finished, you'll see a new model in the ML Workspace. Navigate to the **Models** section in [ML Studio](https://ml.azure.com/), using the left navigation menu and check the  registered model named `COVID19Articles_model.pkl`.
 
-6.  The build pipeline for training automatically triggers every time there's a change in the master branch. After the pipeline is finished, you'll see a new model in the ML Workspace. Navigate to the **Models** section in [ML Studio](https://ml.azure.com/), using the left navigation menu and check the  registered model named `COVID19Articles_model.pkl`.
-    
      ![Check the registered model](./media/026-registeredmodel.png)
 
 ## Task 4 - Explore the release pipeline artifacts
