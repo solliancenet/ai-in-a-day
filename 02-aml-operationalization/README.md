@@ -6,7 +6,8 @@ The high-level steps covered in the lab are:
 - Explore dashboard of COVID-19 data
 - Explore lab scenario
 - Observe the execution of CI/CD pipeline all the way to the update on the REST API endpoint
-- Understand the artifacts created by the CI component of the pipeline: AML workspace with notebooks, experiments, and data
+  - Explore the execution and artifacts of the existing model training Azure DevOps pipeline: AML workspace with notebooks, experiments, and data
+  - Explore the execution of the existing  Azure DevOps release pipeline
 - Using GitHub actions to trigger CI/CD pipeline by committing a simple code change
 - Keep gates within Azure Pipeline to pre-empt the triggers before the pipeline moves stages
 - Approve changes after validation to see it move stages
@@ -32,7 +33,7 @@ The following diagram highlights the portion of the general architecture covered
 
 ![Architecture for Lab 2](./../media/Architecture-2.png)
 
-## Task 3 - Observe the execution of the existing CI/CD pipelines
+## Task 3 - Observe the execution and artifacts of the existing model training Azure DevOps pipeline
 
 1. Open the [Azure DevOps portal](https://dev.azure.com/) and select the **Sign in to Azure DevOps** link.
 
@@ -64,59 +65,80 @@ The following diagram highlights the portion of the general architecture covered
 
     ![Locate GitHub repository](./media/01-github-selectrepository.png)
 
-10. Spend a few moments to browse the repository structure explained in detail [here](https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter/blob/master/docs/code_description.md). Focus on the `.pipelines` folder which contains the YAML  scripts used by the Azure DevOps pipelines discussed in this exercise.
+10. Spend a few moments to browse the repository structure. Focus on the `.pipelines` folder which contains the YAML  scripts used by the Azure DevOps pipelines discussed later in this exercise.
 
     ![Browse the GitHub repository .pipelines folder](./media/01-github-pythonscripts.png)
 
-11. Going back to the Azure DevOps portal browser tab, on the `Model-Train-Register-CI` pipeline run page observe the two stages of the CI pipeline.
+11. Going back to the Azure DevOps portal browser tab, on the `Model-Train-Register-CI` pipeline run page observe the two stages of the CI pipeline. Select the **Model CI** stage to open the execution log for this pipeline run.
 
-    ![Browse the GitHub repository .pipelines folder](./media/01-expandstage.png)
+    ![Expand CI pipeline stages](./media/01-expandstage.png)
 
-12. Expand the **Train and evaluate model stage** from the **Expand stage** button.
+12. Select the **Publish Azure Machine Learning Pipeline** task node under **Model CI Pipeline**. Scroll down on the execution log window and observe the publishing of the Azure Machine Learning pipeline.The AML pipeline involves three main steps: Train, Evaluate and Register model.
+
+    ![Observe how the AML Pipeline was published](./media/023-publishAMLpipeline.png)
+
+13. Going back to the pipeline stages page, expand the **Train and evaluate model stage** from the **Expand stage** button.
 
     ![Expand pipeline stages](./media/022-expandstage.png)
 
-13. Also you should inspect the artifact of the training stage:
+14. Also you should inspect the artifact of the training stage:
 
     ![Inspect artifacts of the training stage](./media/023-pipelineartifacts.png)
 
-14. Next, open a new browser tab and sign in to the [Azure Portal](https://portal.azure.com) with the Azure credentials provided in the lab. Open the available Resource Group, locate and select the Machine Learning workspace that was pre-created in the lab environment.
+15. Going back to the pipeline stages page, select the **Train and evaluate model stage** to open the run execution log.
+
+    ![Open Run execution log](./media/023-openrunexecutionlog.png)
+
+16. Expand the **Train and evaluate model** task nodes and observe the three main tasks involved in this stage: **Get pipeline ID for execution**, **Trigger ML Training Pipeline** and **Publish artifact is new model was registered**.
+
+    ![Observe tasks of the train and evaluate model stage](./media/024-trainandevaluatestage.png)
+
+17. To be able to understand the artifacts published in your Azure Machine Learning Workspace, open a new browser tab and sign in to the [Azure Portal](https://portal.azure.com) with the Azure credentials provided in the lab. Open the available Resource Group, locate and select the Machine Learning workspace that was pre-created in the lab environment.
 
     ![Inspect artifacts of the training stage](./media/024-locatethemachinelearningworkspace.png)
 
-15. Select **Launch studio** to navigate to the **Azure Machine Learning Studio**.
+18. Select **Launch studio** to navigate to the **Azure Machine Learning Studio**.
 
-16. In the [Azure Machine Learning Studio](https://ml.azure.com), select **Pipelines** from the left navigation menu, go to **Pipeline endpoints** and check the published training pipeline in the `ai-in-a-day-XXXXXX` workspace.
+19. In the [Azure Machine Learning Studio](https://ml.azure.com), select **Pipelines** from the left navigation menu, go to **Pipeline endpoints** and check the published training pipeline in the `ai-in-a-day-XXXXXX` workspace.
 
     ![Inspect published ML pipeline](./media/025-checktrainingpipeline.png)
 
-17. The build pipeline for training automatically triggers every time there's a change in the master branch. After the pipeline is finished, you'll see a new model in the ML Workspace. Navigate to the **Models** section in [ML Studio](https://ml.azure.com/), using the left navigation menu and check the  registered model named `COVID19Articles_model.pkl`.
+20. The build pipeline for training automatically triggers every time there's a change in the master branch. After the pipeline is finished, you'll see a new model in the ML Workspace. Navigate to the **Models** section in [ML Studio](https://ml.azure.com/), using the left navigation menu and check the  registered model named `COVID19Articles_model.pkl`.
 
      ![Check the registered model](./media/026-registeredmodel.png)
 
-## Task 4 - Explore the release pipeline artifacts
+## Task 4 - Explore the execution of the existing  Azure DevOps release pipeline
 
 The release deployment and batch scoring pipelines have the following behaviors:
 
- - The pipeline will automatically trigger on completion of the Model-Train-Register-CI pipeline for the master branch.
- - The pipeline will default to using the latest successful build of the Model-Train-Register-CI pipeline. It will deploy the model produced by that build.
- - You can specify a Model-Train-Register-CI build ID when running the pipeline manually. You can find this in the url of the build, and the model registered from that build will also be tagged with the build ID. This is useful to skip model training and registration, and deploy/score a model successfully registered by a Model-Train-Register-CI build.
+- The pipeline will automatically trigger on completion of the Model-Train-Register-CI pipeline for the master branch.
+- The pipeline will default to using the latest successful build of the Model-Train-Register-CI pipeline. It will deploy the model produced by that build.
+- You can specify a Model-Train-Register-CI build ID when running the pipeline manually. You can find this in the url of the build, and the model registered from that build will also be tagged with the build ID. This is useful to skip model training and registration, and deploy/score a model successfully registered by a Model-Train-Register-CI build.
+
+    >The pipeline has the following stages:
+    >
+    >- Deploy to ACI
+    >
+    >   - Deploy the model to the QA environment in Azure Container Instances.
+    >
+    >   - Smoke test: scoring sample step
 
 1. In Azure DevOps, open your project and navigate to the **Pipelines** section. Select the `Model-Deploy-CD` pipeline and then select the first run as illustrated in the picture bellow.
 
     ![Open the CD pipeline run](./media/01-devops-deploy-cd.png)
 
-1. The first time when the CD pipeline runs, it will use the latest model created by the Model-Train-Register-CI pipeline. Once the pipeline is finished, check the execution result.
+2. The first time when the CD pipeline runs, it will use the latest model created by the Model-Train-Register-CI pipeline. Given that the pre-created pipeline has already finished the first execution, check the displayed execution stages as illustrated bellow.
 
     ![Run the pipeline](./media/031-runstages.png)
+  
+3. Select the first stage: Deploy to ACI to open the execution log. Expand the list of executed tasks under the stage node. Select the **Parse Json for Model Name and Version** task. You can see how the model name and version are downloaded from the `Model-Train-Register-CI` pipeline.
 
-2. Once your pipeline run begins, you can see the model name and version downloaded from the `Model-Train-Register-CI` pipeline.
+    ![Extract model name and last version](./media/031-runpipeline.png)
 
-    ![Run the pipeline](./media/031-runpipeline.png)
+4. Select the **Deploy to ACI (CLI)** node and scroll the execution log to see the performed steps inside the deployment task.
 
-The pipeline has the following stages:
+    ![Deploy the last version of model to ACI](./media/032-deploytoACI.png)
 
-- Deploy to ACI
-    - Deploy the model to the QA environment in Azure Container Instances.
-    - Smoke test
-        - The test sends a sample query to the scoring web service and verifies that it returns the expected response. Have a look at the smoke [test code](https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter/blob/master/ml_service/util/smoke_test_scoring_service.py) for an example.
+5. Select the **Smoke test**: The test sends a sample query to the scoring web service and verifies that it returns the expected response. Have a look at the smoke [test code](https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter/blob/master/ml_service/util/smoke_test_scoring_service.py) for more details on the steps involved there.
+
+    ![Smoke test execution](./media/033-smoketest.png)
