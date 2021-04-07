@@ -142,3 +142,17 @@ The release deployment and batch scoring pipelines have the following behaviors:
 5. Select the **Smoke test**: The test sends a sample query to the scoring web service and verifies that it returns the expected response. Have a look at the smoke [test code](https://github.com/solliancenet/azure-ai-in-a-day-lab-02-starter/blob/master/ml_service/util/smoke_test_scoring_service.py) for more details on the steps involved there.
 
     ![Smoke test execution](./media/033-smoketest.png)
+
+6. To be able to understand the artifacts published in your Azure Machine Learning Workspace, go back to the Azure Machine Learning Studio page already opened in your browser and move directly to step 8. If you don't find ML Studio opened from the previous task, open a new browser tab and sign in to the [Azure Portal](https://portal.azure.com) with the Azure credentials provided in the lab. Open the available Resource Group, locate and select the Machine Learning workspace that was pre-created in the lab environment.
+
+    ![Inspect artifacts of the training stage](./media/024-locatethemachinelearningworkspace.png)
+
+7. Select **Launch studio** to navigate to the **Azure Machine Learning Studio**.
+
+8. In the [Azure Machine Learning Studio](https://ml.azure.com), select **Endpoints** (1) from the left navigation menu, go to **Real-time endpoints** (2) and select the published ACI endpoint named `mlops-aci` (3).
+
+    ![Inspect published ACI endpoint](./media/035-aciendpoint.png)
+
+9. When opening the ACI endpoint details page, you can identify the REST endpoint used for scoring in the Smoke test example on step 5 of this Task.
+
+    ![Locate REST endpoint url used for scorings](./media/035-RESTendpoint.png)
