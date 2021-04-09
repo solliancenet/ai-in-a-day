@@ -190,71 +190,54 @@ In the following steps you will create and run a new build pipeline based on the
    
     ![Run the pipeline](../02-aml-operationalization/media/030-runpipeline.png)
 
-
-
-## ML Ops with GitHub Actions and AML
-
-<p align="center">
-  <img src="../02-aml-operationalization/media/aml_logo.png" height="80"/>
-  <img src="https://i.ya-webdesign.com/images/a-plus-png-2.png" alt="plus" height="40"/>
-  <img src="../02-aml-operationalization/media/github_action_logo.png" alt="Azure Machine Learning + Actions" height="80"/>
-</p>
-
-This task shows how to perform DevOps for Machine learning applications using [Azure Machine Learning](https://docs.microsoft.com/en-us/azure/machine-learning/) powered [GitHub Actions](). Using this approach, you will be able to setup your train and deployment infrastructure, train the model and deploy them in an automated manner.
+## ML Ops with GitHub Actions and AML environment setup
 
 1. Sign-in to GitHub with your GitHub account.
 
-2. Navigate to the [MLOpsPython](https://github.com/microsoft/MLOpsPython) template repository and select `Use this template` to provision your GitHub project.
+2. Navigate to the already genarated repository for this lab and select 
+ **Settings** in order to configure the required secrets to allow GitHub Actions to access Azure.
 
-    ![Clone GitHub template repository](../02-aml-operationalization/media/clone-github-template.png)
+    First you will need an [Azure service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals). Just go to the Azure Portal to find the details of your resource group. Then start the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
 
-### 3. Setting up the required secrets
+    ```sh
+    # Replace {sp_XXXXX_githubactions} where XXXXX is the current user lab unique code, {subscription-id} and {resource-group} with your 
+    # Azure subscription id and resource group name and any name for your service principal
+    az ad sp create-for-rbac --name http://{sp_XXXXX_githubactions} \
+                            --role contributor \
+                            --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} \
+                            --sdk-auth
+    ```
 
-#### To allow GitHub Actions to access Azure
-An [Azure service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals) needs to be generated. Just go to the Azure Portal to find the details of your resource group. Then start the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
+    This will generate the following JSON output:
 
-```sh
-# Replace {service-principal-name}, {subscription-id} and {resource-group} with your 
-# Azure subscription id and resource group name and any name for your service principle
-az ad sp create-for-rbac --name {service-principal-name} \
-                         --role contributor \
-                         --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} \
-                         --sdk-auth
-```
+    ```sh
+    {
+    "clientId": "<GUID>",
+    "clientSecret": "<GUID>",
+    "subscriptionId": "<GUID>",
+    "tenantId": "<GUID>",
+    (...)
+    }
+    ```
 
-This will generate the following JSON output:
+3. On the **Settings** tab in your repository select the Secrets section and finally add the new secret (JSON output generated at the previous step) with the name `AZURE_CREDENTIALS` to your repository.
 
-```sh
-{
-  "clientId": "<GUID>",
-  "clientSecret": "<GUID>",
-  "subscriptionId": "<GUID>",
-  "tenantId": "<GUID>",
-  (...)
-}
-```
+    ![Open the GitHub repository Secrets section](./media/02-setup-03.png)  
 
-Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `AZURE_CREDENTIALS` in your GitHub repository:
+4. To allow Azure to trigger a GitHub Workflow we also need a GitHub PAT token with `repo` access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. In GitHub, under your GitHub logged in user in the right corner, select Settings > Develper Settings > Personal access tokens. Enter a name for the new PAT and select **Generate** at the bottom of the page.
 
-<p align="center">
-  <img src="media/02-setup-03.png" alt="GitHub Template repository" width="700"/>
-</p>
+    ![Generate PAT token](../02-aml-operationalization/media/5-createGHPAT.png)
 
-To do so, click on the Settings tab in your repository, then click on Secrets and finally add the new secret with the name `AZURE_CREDENTIALS` to your repository.
+5. Copy the new GH PAT.
 
-Please follow [this link](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) for more details. 
+    ![Get the new PAT token](../02-aml-operationalization/media/5-createGHPAT.png)
 
-#### To allow Azure to trigger a GitHub Workflow
- We also need GH PAT token with `repo` access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. 
+6. At repository level, select Settings > Secrets and add the PAT token with the name `PATTOKEN` as a new secret.
  
- <p align="center">
-  <img src="media/02-setup-04.png" alt="GitHub Template repository" width="700"/>
-</p>
- 
- Add the PAT token with as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `PATTOKEN` in your GitHub repository:
- <p align="center">
-  <img src="media/02-setup-05.png" alt="GitHub Template repository" width="700"/>
-</p>
+    ![Add second secret PATTOKEN](./media/02-setup-05.png)
+
+7. Open the .cloud\.azure\workspace.json file and replace the workspace name and resource group with the ones provided by the lab environment.
+
 
 ### 4. Setup and Define Triggers
 
@@ -315,22 +298,18 @@ A commit to setup.yml will enable [train_model.yml](/.github/workflows/train_mod
 
 | File/folder                   | Description                                |
 | ----------------------------- | ------------------------------------------ |
-| `code`                        | Sample data science source code that will be submitted to Azure Machine Learning to train and deploy machine learning models. |
-| `code/train`                  | Sample code that is required for training a model on Azure Machine Learning. |
-| `code/train/train.py`         | Training script that gets executed on a cluster on Azure Machine Learning. |
-| `code/train/environment.yml`  | Conda environment specification, which describes the dependencies of `train.py`. These packages will be installed inside a Docker image on the Azure Machine Learning compute cluster, when executing your `train.py`. |
-| `code/train/run_config.yml`   | YAML files, which describes the execution of your training run on Azure Machine Learning. This file also references your `environment.yml`. Please look at the comments in the file for more details. |
-| `code/deploy`                 | Sample code that is required for deploying a model on Azure Machine Learning. |
-| `code/deploy/score.py`        | Inference script that is used to build a Docker image and that gets executed within the container when you send data to the deployed model on Azure Machine Learning. |
-| `code/deploy/environment.yml` | Conda environment specification, which describes the dependencies of `score.py`. These packages will be installed inside the Docker image that will be used for deploying your model. |
-| `code/test/test.py`           | Test script that can be used for testing your deployed webservice. Add a `deploy.json` to the `.cloud/.azure` folder and add the following code `{ "test_enabled": true }` to enable tests of your webservice. Change the code according to the tests that zou would like to execute. |
+| `githubactions_code`                        | Sample data science source code that will be submitted to Azure Machine Learning to train and deploy machine learning models. |
+| `githubactions_code/train`                  | Sample code that is required for training a model on Azure Machine Learning. |
+| `githubactions_code/train/train_aml.py`         | Training script that gets executed on a cluster on Azure Machine Learning. |
+| `githubactions_code/train/environment.yml`  | Conda environment specification, which describes the dependencies of `train_aml.py`. These packages will be installed inside a Docker image on the Azure Machine Learning compute cluster, when executing your `train_aml.py`. |
+| `githubactions_code/train/run_config.yml`   | YAML files, which describes the execution of your training run on Azure Machine Learning. This file also references your `environment.yml`. Please look at the comments in the file for more details. |
+| `githubactions_code/deploy`                 | Sample code that is required for deploying a model on Azure Machine Learning. |
+| `githubactions_code/deploy/score.py`        | Inference script that is used to build a Docker image and that gets executed within the container when you send data to the deployed model on Azure Machine Learning. |
+| `githubactions_code/deploy/environment.yml` | Conda environment specification, which describes the dependencies of `score.py`. These packages will be installed inside the Docker image that will be used for deploying your model. |
+| `githubactions_code/test/test.py`           | Test script that can be used for testing your deployed webservice. Add a `deploy.json` to the `.cloud/.azure` folder and add the following code `{ "test_enabled": true }` to enable tests of your webservice. Change the code according to the tests that zou would like to execute. |
 | `.cloud/.azure`               | Configuration files for the Azure Machine Learning GitHub Actions. Please visit the repositories of the respective actions and read the documentation for more details. |
 | `.github/workflows`           | Folder for GitHub workflows. The `train_deploy.yml` sample workflow shows you how your can use the Azure Machine Learning GitHub Actions to automate the machine learning process. |
-| `docs`                        | Resources for this README.                 |
-| `CODE_OF_CONDUCT.md`          | Microsoft Open Source Code of Conduct.     |
-| `LICENSE`                     | The license for the sample.                |
-| `README.md`                   | This README file.                          |
-| `SECURITY.md`                 | Microsoft Security README.                 |
+
 
 
 ### Documentation of Azure Machine Learning GitHub Actions
@@ -397,17 +376,5 @@ This error message appears, in case the `Azure/aml-workspace` action tries to cr
 # Setup Azure DevOps
 
 Setup an Azure DevOps project in an Azure DevOps tenant.
-
-
-
-# What is MLOps?
-
-<p align="center">
-  <img src="media/02-setup-07.png" alt="Azure Machine Learning Lifecycle" width="700"/>
-</p>
-
-MLOps empowers data scientists and machine learning engineers to bring together their knowledge and skills to simplify the process of going from model development to release/deployment. ML Ops enables you to track, version, test, certify and reuse assets in every part of the machine learning lifecycle and provides orchestration services to streamline managing this lifecycle. This allows practitioners to automate the end to end machine Learning lifecycle to frequently update models, test new models, and continuously roll out new ML models alongside your other applications and services.
-
-This repository enables Data Scientists to focus on the training and deployment code of their machine learning project (`code` folder of this repository). Once new code is checked into the `code` folder of the master branch of this repository the GitHub workflow is triggered and open source Azure Machine Learning actions are used to automatically manage the training through to deployment phases.
 
 
