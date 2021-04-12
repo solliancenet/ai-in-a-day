@@ -159,6 +159,9 @@ The release deployment and batch scoring pipelines have the following behaviors:
 
 ## Task 5 - Explore the execution of the existing GitHub actions workflow 
 
+Github workflows are triggered based on events specified inside workflows. These events can be from inside the github repo like a push commit or can be from outside like a webhook.
+We have created sample workflow file train_deploy.yml to train the model and deploy the ACI endpoint, similar to what we did in the previous exercise using DevOps Pipelines. This GitHub workflow trains the model in a first job and, on successful training completion, deploys the model inside the second job. You will activate this workflow by doing a commit to any file under the included path: `COVID19Articles_GH/` folder.
+
 1. Sign-in to [GitHub](https://github.com) with your GitHub account.
 
 2. Navigate to the already generated repository for this lab, named `azure-ai-in-a-day-lab02`. If the repository is not automatically opened, please select it from the available repositories list.
@@ -166,7 +169,7 @@ The release deployment and batch scoring pipelines have the following behaviors:
     ![Locate GitHub repository](./media/01-github-selectrepository.png).
 
 3. Navigate to the `.github/workflows` folder and open the train_deploy.yml **(1)** workflow definition file . Observe the two jobs defined for the GitHub Actions workflow: **train-register** and **deploy** **(3)**. The workflow is triggered when a code change is committed inside the **COVID19Articles_GH** repository folder or the `master` branch **(2)**.
-   
+
    ![Inspect GitHub Actions workflow definition](./media/036%20-%20github-actions-workflow-definition.png)
 
 4. With the repository opened, select the **Actions** section from the top navigation menu. Observe the active workflow that was already initiated at the first code commit, when the `.github/workflows/train_deploy.yml` definition file was initially created in the repository.

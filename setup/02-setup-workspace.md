@@ -252,27 +252,15 @@ In the following steps you will create and run a new build pipeline based on the
 ## Setup and Define Triggers
 
 ### Events that trigger workflow
+
 Github workflows are triggered based on events specified inside workflows. These events can be from inside the github repo like a push commit or can be from outside like a webhook([repository-dispatch](https://docs.github.com/en/developers/webhooks-and-events/webhook-events-and-payloads#repository_dispatch)).
 Refer [link](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) for more details on configuring your workflows to run on specific events.
 
-### Setup Trigger
-
-We have precreated a GitHub workflow `setup.yml` that does the infrastructure creation. To trigger this workflow follow the below steps-
-- Update parameter 'resource_group' value in file [workspace.json](/.cloud/.azure/workspace.json) to your resource group name.
-- Update environment variable 'RESOURCE_GROUP' in [setup.yml](/.github/workflows/setup.yml) workflow.   Make sure your resource group name in [workspace.json](/.cloud/.azure/workspace.json) is same as that in [setup.yml](/.github/workflows/setup.yml). Committing this file will trigger this workflow and do the required setup.
-
-Check the actions tab to view if your workflows have successfully run.
-
-<p align="center">
-  <img src="media/02-setup-06.png" alt="GitHub Actions Tab" width="700"/>
-</p>
 
 #### Define Trigger
 We have created sample workflow file [deploy_model](/.github/workflows/deploy_model.yml) that gets triggered on repository dispatch event `machinelearningservices-runcompleted` as defined [here](/.github/workflows/deploy_model.yml#L4) . This workflow deploys trained model to azure kubernetes.
 
 If you add this repository dispatch event `machinelearningservices-runcompleted` in other workflows, they will also start listening to the machine learning workspace events from  the subscribed workspace.
-
-
 
 ### 5. Testing the trigger
 
@@ -308,15 +296,15 @@ A commit to setup.yml will enable [train_model.yml](/.github/workflows/train_mod
 
 | File/folder                   | Description                                |
 | ----------------------------- | ------------------------------------------ |
-| `githubactions_code`                        | Sample data science source code that will be submitted to Azure Machine Learning to train and deploy machine learning models. |
-| `githubactions_code/train`                  | Sample code that is required for training a model on Azure Machine Learning. |
-| `githubactions_code/train/train_aml.py`         | Training script that gets executed on a cluster on Azure Machine Learning. |
-| `githubactions_code/train/environment.yml`  | Conda environment specification, which describes the dependencies of `train_aml.py`. These packages will be installed inside a Docker image on the Azure Machine Learning compute cluster, when executing your `train_aml.py`. |
-| `githubactions_code/train/run_config.yml`   | YAML files, which describes the execution of your training run on Azure Machine Learning. This file also references your `environment.yml`. Please look at the comments in the file for more details. |
-| `githubactions_code/deploy`                 | Sample code that is required for deploying a model on Azure Machine Learning. |
-| `githubactions_code/deploy/score.py`        | Inference script that is used to build a Docker image and that gets executed within the container when you send data to the deployed model on Azure Machine Learning. |
-| `githubactions_code/deploy/environment.yml` | Conda environment specification, which describes the dependencies of `score.py`. These packages will be installed inside the Docker image that will be used for deploying your model. |
-| `githubactions_code/test/test.py`           | Test script that can be used for testing your deployed webservice. Add a `deploy.json` to the `.cloud/.azure` folder and add the following code `{ "test_enabled": true }` to enable tests of your webservice. Change the code according to the tests that zou would like to execute. |
+| `COVID19Articles_GH`                        | Sample data science source code that will be submitted to Azure Machine Learning to train and deploy machine learning models. |
+| `COVID19Articles_GH/train`                  | Sample code that is required for training a model on Azure Machine Learning. |
+| `COVID19Articles_GH/train/train_aml.py`         | Training script that gets executed on a cluster on Azure Machine Learning. |
+| `COVID19Articles_GH/train/environment.yml`  | Conda environment specification, which describes the dependencies of `train_aml.py`. These packages will be installed inside a Docker image on the Azure Machine Learning compute cluster, when executing your `train_aml.py`. |
+| `COVID19Articles_GH/train/run_config.yml`   | YAML files, which describes the execution of your training run on Azure Machine Learning. This file also references your `environment.yml`. Please look at the comments in the file for more details. |
+| `COVID19Articles_GH/deploy`                 | Sample code that is required for deploying a model on Azure Machine Learning. |
+| `COVID19Articles_GH/deploy/score.py`        | Inference script that is used to build a Docker image and that gets executed within the container when you send data to the deployed model on Azure Machine Learning. |
+| `COVID19Articles_GH/deploy/environment.yml` | Conda environment specification, which describes the dependencies of `score.py`. These packages will be installed inside the Docker image that will be used for deploying your model. |
+| `COVID19Articles_GH/test/test.py`           | Test script that can be used for testing your deployed webservice. Add a `deploy.json` to the `.cloud/.azure` folder and add the following code `{ "test_enabled": true }` to enable tests of your webservice. Change the code according to the tests that zou would like to execute. |
 | `.cloud/.azure`               | Configuration files for the Azure Machine Learning GitHub Actions. Please visit the repositories of the respective actions and read the documentation for more details. |
 | `.github/workflows`           | Folder for GitHub workflows. The `train_deploy.yml` sample workflow shows you how your can use the Azure Machine Learning GitHub Actions to automate the machine learning process. |
 
@@ -370,17 +358,6 @@ Microsoft.Storage.DirectoryDeleted
 
 ```
 
-### Known issues
-
-#### Error: MissingSubscriptionRegistration
-
-Error message: 
-```sh
-Message: ***'error': ***'code': 'MissingSubscriptionRegistration', 'message': "The subscription is not registered to use namespace 'Microsoft.KeyVault'. See https://aka.ms/rps-not-found for how to register subscriptions.", 'details': [***'code': 'MissingSubscriptionRegistration', 'target': 'Microsoft.KeyVault', 'message': "The subscription is not registered to use namespace 'Microsoft.KeyVault'. See https://aka.ms/rps-not-found for how to register subscriptions
-```
-Solution:
-
-This error message appears, in case the `Azure/aml-workspace` action tries to create a new Azure Machine Learning workspace in your resource group and you have never deployed a Key Vault in the subscription before. We recommend to create an Azure Machine Learning workspace manually in the Azure Portal. Follow the [steps on this website](https://docs.microsoft.com/en-us/azure/machine-learning/tutorial-1st-experiment-sdk-setup#create-a-workspace) to create a new workspace with the desired name. After ou have successfully completed the steps, you have to make sure, that your Service Principal has access to the resource group and that the details in your <a href="/.cloud/.azure/workspace.json">`/.cloud/.azure/workspace.json"` file</a> are correct and point to the right workspace and resource group.
 
 
 # Setup Azure DevOps
