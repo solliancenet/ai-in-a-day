@@ -159,15 +159,19 @@ The release deployment and batch scoring pipelines have the following behaviors:
 
 ## Task 5 - Explore the execution of the existing GitHub actions workflow 
 
-1. Sign-in to GitHub with your GitHub account.
+1. Sign-in to [GitHub](https://github.com) with your GitHub account.
 
-2. Navigate to the already genarated repository for this lab. If the repository is not automatically opened, please select it from the available repositories list.
+2. Navigate to the already generated repository for this lab, named `azure-ai-in-a-day-lab02`. If the repository is not automatically opened, please select it from the available repositories list.
 
     ![Locate GitHub repository](./media/01-github-selectrepository.png).
 
-3. Select the Actions section from the top navigation menu.
+3. Navigate to the `.github/workflows` folder and open the train_deploy.yml **(1)** workflow definition file . Observe the two jobs defined for the GitHub Actions workflow: **train-register** and **deploy** **(3)**. The workflow is triggered when a code change is committed inside the **COVID19Articles_GH** repository folder or the `master` branch **(2)**.
+   
+   ![Inspect GitHub Actions workflow definition](./media/036%20-%20github-actions-workflow-definition.png)
 
-4. Observe the active workflow that was already executed at the first code commit.
+4. With the repository opened, select the **Actions** section from the top navigation menu. Observe the active workflow that was already initiated at the first code commit, when the `.github/workflows/train_deploy.yml` definition file was initially created in the repository.
+
+   ![Check GitHub Actions workflows](./media/036%20-%20github-actions-workflows.png)
 
 5. Going back to the repository files, open the **COVID19Articles_GH/train** folder and select the `train_aml.py` code file. 
 
@@ -181,14 +185,16 @@ The release deployment and batch scoring pipelines have the following behaviors:
 
     ![GitHub Actions change a line of code](./media/036%20-%20githubactions-commitchange.png)
 
-8. Navigate to the Actions section in GitHub and observe how your code change automatically triggered the GitHub Action Workflow to start **(1)**.  Observe the two stages of the pipeline (2).
+8. Navigate to the **Actions** section in GitHub and observe how your code change automatically triggered the GitHub Action Workflow to start **(1)**.  Observe the two stages of the pipeline (2).
 
     ![GitHub Actions Workflow started](./media/github-repo-startworkflow.png)
 
-9. Switch back to the [Azure Machine Learning Studio page](https://ml.azure.com/) and navigate to the **Experiments** section (1). You should be able to see the new experiment **COVID19_Classification_GH** (2) that was started by the GitHub Actions Workflow you triggered.
+9.  While waiting for the workflow to execute, watch it how it moves from the first stage to the second one and switch back to the [Azure Machine Learning Studio page](https://ml.azure.com/) to see the generated artifacts of each step.
+
+10. Navigate to the **Experiments** section (1). You should be able to see the new experiment **COVID19_Classification_GH** (2) that was started by the GitHub Actions Workflow you triggered. Expand the experiment to see the created experiment Run.
 
     ![GitHub Actions triggered ML experiment run](./media/036%20-%20github-startexperiment.png)
 
-10. Navigate to the **Models** (1) page. You should be able to see the model registered by the GitHub Actions workflow, named **COVID19Articles_githubactions** (2).
+11. Navigate to the **Models** (1) page. You should be able to see the model registered by the GitHub Actions workflow, named **COVID19Articles_githubactions** (2).
 
     ![GitHub Actions triggered ML model register step](./media/036%20-%20github-registermodel.png)
