@@ -156,3 +156,33 @@ The release deployment and batch scoring pipelines have the following behaviors:
 9. When opening the ACI endpoint details page, you can identify the REST endpoint used for scoring in the Smoke test example on step 5 of this Task.
 
     ![Locate REST endpoint url used for scorings](./media/035-RESTendpoint.png)
+
+## Task 5 - Explore the execution of the existing GitHub actions workflow 
+
+1. Sign-in to GitHub with your GitHub account.
+
+2. Navigate to the already genarated repository for this lab. If the repository is not automatically opened, please select it from the available repositories list.
+
+    ![Locate GitHub repository](./media/01-github-selectrepository.png).
+
+3. Select the Actions section from the top navigation menu.
+
+4. Observe the active workflow that was already executed at the first code commit.
+
+5. Going back to the repository files, open the **COVID19Articles_GH/train** folder and select the `train_aml.py` code file. 
+
+    ![GitHub Actions locate train_aml.py](./media/036%20-%20githubactions-locate-trainaml.png)
+
+6. Open the `train_aml.py` code file in edit mode.
+
+    ![GitHub Actions edit train_aml.py](./media/036%20-%20githubactions-editfile.png)
+
+7. Go to line 172 and change the `max_depth` argument value from **5** to **4** (1). Commit your change (2).
+
+    ![GitHub Actions change a line of code](./media/036%20-%20githubactions-commitchange.png)
+
+8. Navigate to the Actions section in GitHub and observe how your code change automatically triggered the GitHub Action Workflow to start. 
+
+    ![GitHub Actions Workflow started](./media/036%20-%20githubactions-startworkflow.png)
+   
+9.  Observe the two stages of the pipeline.
