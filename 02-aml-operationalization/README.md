@@ -185,16 +185,26 @@ The release deployment and batch scoring pipelines have the following behaviors:
 
     ![GitHub Actions change a line of code](./media/036%20-%20githubactions-commitchange.png)
 
-8. Navigate to the **Actions** section in GitHub and observe how your code change automatically triggered the GitHub Action Workflow to start **(1)**.  Observe the two stages of the pipeline (2).
+8. Navigate to the **Actions** section in GitHub and observe how your code change automatically triggered the GitHub Action train-deploy-workflow. Select the workflow run.
 
     ![GitHub Actions Workflow started](./media/github-repo-startworkflow.png)
 
-9.  While waiting for the workflow to execute, watch it how it moves from the first stage to the second one and switch back to the [Azure Machine Learning Studio page](https://ml.azure.com/) to see the generated artifacts of each step.
+9. Observe the two jobs of the workflow run. Select each stage and check the job steps in the execution log.
 
-10. Navigate to the **Experiments** section (1). You should be able to see the new experiment **COVID19_Classification_GH** (2) that was started by the GitHub Actions Workflow you triggered. Expand the experiment to see the created experiment Run.
+    ![GitHub Actions Workflow jobs](./media/github-repo-wokflowstages.png)
+
+10. While waiting for the workflow to execute, watch it how it moves from the first job to the second one and switch back to the [Azure Machine Learning Studio page](https://ml.azure.com/) to see the generated artifacts of each step: register dataset, submit experiment, register model and deploy ACI endpoint.
+
+11. Navigate to the **Experiments** section (1). You should be able to see the new experiment **COVID19_Classification_GH** (2) that was started by the GitHub Actions Workflow you triggered. Expand the experiment to see the created experiment Run.
 
     ![GitHub Actions triggered ML experiment run](./media/036%20-%20github-startexperiment.png)
 
-11. Navigate to the **Models** (1) page. You should be able to see the model registered by the GitHub Actions workflow, named **COVID19Articles_githubactions** (2).
+12. Navigate to the **Models** (1) page. You should be able to see the model registered by the GitHub Actions workflow, named **COVID19Articles_githubactions** (2).
 
     ![GitHub Actions triggered ML model register step](./media/036%20-%20github-registermodel.png)
+
+13. Check the deploy job execution log while it is executing. When the deploy stage completes, in ML Studio, navigate to the **Endpoints** (1) page. You should be able to see the ACI endpoint named `mlops-aci-githubactions` (2) published inside the GH Actions `deploy` job.
+
+    ![GitHub Actions deploy job execution](./media/github-actions-deployjob.png)
+
+    ![GitHub Actions triggered ML endpoint](./media/036%20-%20github-ACIendpointbyGH.png)
