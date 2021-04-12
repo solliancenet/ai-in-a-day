@@ -200,11 +200,12 @@ In the following steps you will create and run a new build pipeline based on the
     First you will need an [Azure service principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals). Just go to the Azure Portal to find the details of your resource group. Then start the Cloud CLI or install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer and execute the following command to generate the required credentials:
 
     ```sh
-    # Replace {sp_XXXXX_githubactions} where XXXXX is the current user lab unique code, {subscription-id} and {resource-group} with your 
-    # Azure subscription id and resource group name and any name for your service principal
+    # Replace {sp_XXXXX_githubactions} where XXXXX is the current user lab unique code, {subscription-id} and {AI-in-a-Day-XXXXX},{ai-in-a-day-XXXXX} with your 
+    # Azure subscription id, resource group and ml workspace name and assign any name for your service principal for eg {sp_XXXXX_githubactions}
+    
     az ad sp create-for-rbac --name http://{sp_XXXXX_githubactions} \
                             --role contributor \
-                            --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} \
+                            --scopes /subscriptions/{subscription-id}/resourceGroups/{AI-in-a-Day-XXXXX}/providers/Microsoft.MachineLearningServices/workspaces/{ai-in-a-day-XXXXX} \
                             --sdk-auth
     ```
 
@@ -212,11 +213,16 @@ In the following steps you will create and run a new build pipeline based on the
 
     ```sh
     {
-    "clientId": "<GUID>",
-    "clientSecret": "<GUID>",
-    "subscriptionId": "<GUID>",
-    "tenantId": "<GUID>",
-    (...)
+        "clientId": <GUID>,
+        "clientSecret": <secret>,
+        "subscriptionId": <GUID>,
+        "tenantId": <GUID>,
+        "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+        "resourceManagerEndpointUrl": "https://management.azure.com/",
+        "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+        "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+        "galleryEndpointUrl": "https://gallery.azure.com/",
+        "managementEndpointUrl": "https://management.core.windows.net/"
     }
     ```
 
@@ -238,14 +244,18 @@ In the following steps you will create and run a new build pipeline based on the
 
 7. Open the .cloud\.azure\workspace.json file and replace the workspace name and resource group with the ones provided by the lab environment.
 
+    ![Change workspace.json](./media/02-setup-051.png)
 
-### 4. Setup and Define Triggers
+    ![Update workspace name and resource group](./media/02-setup-051.png)
 
-#### Events that trigger workflow
+
+## Setup and Define Triggers
+
+### Events that trigger workflow
 Github workflows are triggered based on events specified inside workflows. These events can be from inside the github repo like a push commit or can be from outside like a webhook([repository-dispatch](https://docs.github.com/en/developers/webhooks-and-events/webhook-events-and-payloads#repository_dispatch)).
 Refer [link](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) for more details on configuring your workflows to run on specific events.
 
-#### Setup Trigger
+### Setup Trigger
 
 We have precreated a GitHub workflow `setup.yml` that does the infrastructure creation. To trigger this workflow follow the below steps-
 - Update parameter 'resource_group' value in file [workspace.json](/.cloud/.azure/workspace.json) to your resource group name.

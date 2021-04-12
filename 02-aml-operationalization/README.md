@@ -181,8 +181,14 @@ The release deployment and batch scoring pipelines have the following behaviors:
 
     ![GitHub Actions change a line of code](./media/036%20-%20githubactions-commitchange.png)
 
-8. Navigate to the Actions section in GitHub and observe how your code change automatically triggered the GitHub Action Workflow to start. 
+8. Navigate to the Actions section in GitHub and observe how your code change automatically triggered the GitHub Action Workflow to start **(1)**.  Observe the two stages of the pipeline (2).
 
-    ![GitHub Actions Workflow started](./media/036%20-%20githubactions-startworkflow.png)
-   
-9.  Observe the two stages of the pipeline.
+    ![GitHub Actions Workflow started](./media/github-repo-startworkflow.png)
+
+9. Switch back to the [Azure Machine Learning Studio page](https://ml.azure.com/) and navigate to the **Experiments** section (1). You should be able to see the new experiment **COVID19_Classification_GH** (2) that was started by the GitHub Actions Workflow you triggered.
+
+    ![GitHub Actions triggered ML experiment run](./media/036%20-%20github-startexperiment.png)
+
+10. Navigate to the **Models** (1) page. You should be able to see the model registered by the GitHub Actions workflow, named **COVID19Articles_githubactions** (2).
+
+    ![GitHub Actions triggered ML model register step](./media/036%20-%20github-registermodel.png)
