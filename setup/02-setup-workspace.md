@@ -190,7 +190,7 @@ In the following steps you will create and run a new build pipeline based on the
    
     ![Run the pipeline](../02-aml-operationalization/media/030-runpipeline.png)
 
-## ML Ops with GitHub Actions and AML environment setup
+## Task 6 -  ML Ops with GitHub Actions and AML environment setup
 
 1. Sign-in to GitHub with your GitHub account.
 
@@ -248,4 +248,63 @@ In the following steps you will create and run a new build pipeline based on the
 
     ![Update workspace name and resource group](./media/02-setup-051.png)
 
+## Task 7 - Setup Azure Function to trigger GitHub Actions dispatch
 
+1. Create an Azure Function App with `PowerShell Core` as the runtime stack.
+
+    ![Create Azure Function App](./media/02-setup-azure-function.png)
+
+2. Use the AML workspace storage account as the storage account. Set the plan type to `Consumption (Serverless)`.
+
+    ![Function App storage account and plan](./media/02-setup-azure-function-2.png)
+
+3. Leave all other options default and create.
+
+4. In GitHub, create a personal access token with the `repo` scope selected.
+
+    ![Create GitHub PAT](./media/02-setup-azure-function-pat.png)
+
+5. In the `Configuration` section of the newly created Function App, add the following settings:
+
+    - `GH_PAT` - contains the GitHub personal access token
+    - `ML_DATA_STORAGE_CONNECTION_STRING` - contains the connection string of the AML workspace storage account
+
+    ![Function App Configuration](./media/02-setup-azure-function-3.png)
+
+
+6. Create a new function, using the following settings:
+
+    - Develop in portal
+    - Template =  `Azure Blob Storage trigger`
+    - Path = `azureml-blobstore-78f4ffed-e5cf-4671-9cf1-616781000344/COVID19Articles.csv` (replace `azureml-blobstore-78f4ffed-e5cf-4671-9cf1-616781000344` with the appropriate name of the blob storage container mapped as the default datastore in the AML workspace)
+    - Storage account connection = `ML_DATA_STORAGE_CONNECTION`
+
+    >NOTE
+    >
+    >The `COVID19Articles.csv` should already exists as a result of running one of the previous MLOps pipelines in the setup.
+
+    ![Create new function](./media/02-setup-azure-function-4.png)
+
+7. Replace the body of the newly create function with the following code:
+
+    ```ps
+    # Input bindings are passed in via param block.
+    param([byte[]] $InputBlob, $TriggerMetadata)
+
+    # Write out the blob name and size to the information log.
+    Write-Host "PowerShell Blob trigger function Processed blob! Name: $($InputBlob.Path) Size: $($InputBlob.Length) bytes"
+
+    $gitHubUser = "github-cloudlabsuser-1020"
+    $gitHubRepo = "azure-ai-in-a-day-lab-02"
+    $uri = "https://api.github.com/repos/$($gitHubUser)/$($gitHubRepo)/dispatches"
+    $headers = @{ Authorization="Bearer $($env:GH_PAT)" }
+    $body = "{ ""event_type"": ""storage-blobupdated"" }"
+
+    Write-Host "Triggering GitHub action dispatch at $($uri)..."
+    $result = Invoke-RestMethod  -Uri $uri -Method POST -Body $body -Headers $headers -ContentType "application/json"
+    Write-Host "Successfully triggered dispatch."
+    ```
+
+    >IMPORTANT!
+    >
+    >In the code above, make sure you replace the value of the `$gitHubUser` variable with the actual name of the GitHub user allocated to the lab.
