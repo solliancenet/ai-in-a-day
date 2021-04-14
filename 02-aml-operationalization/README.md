@@ -157,7 +157,39 @@ The release deployment and batch scoring pipelines have the following behaviors:
 
     ![Locate REST endpoint url used for scorings](./media/035-RESTendpoint.png)
 
-## Task 5 - Explore the execution of the existing GitHub actions workflow 
+
+## Task 5 - Explore manual intervention option in Azure DevOps Pipelines
+
+In Azure DevOps Pipelines, teams can also take advantage of the Approvals and Gates feature to control the workflow of the deployment pipeline. Each stage in a release pipeline can be configured with pre-deployment and post-deployment conditions that can include waiting for users to manually approve or reject deployments, and checking with other automated systems that specific conditions are met. 
+
+1. Open the [Azure DevOps portal](https://dev.azure.com/) and if not already signed in, select the **Sign in to Azure DevOps** link. (To sign-in, use the Azure credentials provided by the lab environment.)
+
+2. In Azure DevOps, open the pre-created project named `odluserXXXXXX-project`, navigate to the **Pipelines** section and observe the two pipelines pre-created for you: `Model-Train-Register-CI` and `Model-Deploy-CD`. Select the **Model-Train-Register-CI** pipeline.
+
+    ![Locate the CI/CD pipelines](./media/01-devops-pipelines.png)
+
+3. Select **Edit** to open the pipeline designer.
+
+    ![Edit the CI pipeline](./media/038-edit-ci-pipeline.png)
+
+4. In the pipeline YAML definition, locate the beginning of the job: Training_Run_Report (1). In the **Tasks** section located on the right, search for the **Manual intervention** task (2) and then select it (3).
+
+    ![Locate the manual intervention task](./media/039-create%20task.png)
+
+5. Fill the required fields for your manual intervention task:
+   - **Instructions**: `Please approve registered model`
+   - **Notify users**: enter the github account email address of the form `github_cloudlabsuser_XXXX@cloudlabsaiuser.com`
+
+    ![Configure the manual intervention task](./media/039-manualinterventionconfig.png)
+6. Selecting **Add**, will insert the YAML definition of the task at the end of the **Trigger ML Training Pipeline** stage.
+   
+   ![Manual intervention task YAML](./media/039-manualintervention.png)
+
+7. **Save** and **Run** the pipeline. Select the new pipeline Run from the **Runs** list and select the Train and evaluate model stage to open the execution log page.
+
+    ![Open execution log](./media/039-openexecutionlog.png)
+
+## Task 6 - Explore the execution of the existing GitHub actions workflow
 
 Github workflows are triggered based on events specified inside workflows. These events can be from inside the github repo like a push commit or can be from outside like a webhook.
 We have created sample workflow file train_deploy.yml to train the model and deploy the ACI endpoint, similar to what we did in the previous exercise using DevOps Pipelines. This GitHub workflow trains the model in a first job and, on successful training completion, deploys the model inside the second job. You will activate this workflow by doing a commit to any file under the included path: `COVID19Articles_GH/` folder.
@@ -211,3 +243,36 @@ We have created sample workflow file train_deploy.yml to train the model and dep
     ![GitHub Actions deploy job execution](./media/github-actions-deployjob.png)
 
     ![GitHub Actions triggered ML endpoint](./media/036%20-%20github-ACIendpointbyGH.png)
+
+
+## Task 7 - Trigger the MLOPS Pipeline when training data changes
+
+In the Azure Portal, we prepared an Azure Function that triggers the above described GitHub workflow every time a new version of the COVID16Articles.csv file is uploaded in the datastore. 
+
+1. Open the [Azure portal](https://portal.azure.com/) and sign-in using the Azure credentials provided by the lab environment. 
+
+2. From the left navigation menu, select the **Storage accounts** option and locate the storage named `mlstrgXXXXXX` as illustrated bellow. 
+   
+    ![Locate default datastore](./media/040-locatestorageaccount.png)
+
+3. Select `mlstrgXXXXXX` storage account and select **Containers** from the account Overview page.
+
+    ![Select Containers](./media/040-selectcontainers.png)
+
+4. Select the `azureml-blobstore-...` container. This is the storage container linked to the default **Datastore** used by Azure Machine Learning Workspace.
+
+    ![Select AzureML Container](./media/040-select-azureml-container.png)
+
+5. Navigate to the `training-data\COVID19Articles.csv` file. Download it to your computer and change anything inside the file.
+
+6. Upload the new version of COVID19Articles.csv in the same `training-data` folder by using the Upload button from the top menu bar.
+
+    ![Upload a new version of data](./media/040-upload%20the%20new%20version.png)
+
+7.Select the option to overwrite the file since it already exists in the container.
+
+    ![Overwrite COVID19Articles.csv file](./media/040-overwritefile.png)
+
+8. Open the GitHub portal, select the `azure-ai-in-a-day-lab-02` repository and select **Actions** from the top menu bar. Notice how the data file update triggered your GitHub Actions workflow execution.
+   
+    ![Blob updated triggered GitHub Actions](./media/040-githubtriggeredaction.png)

@@ -263,7 +263,7 @@ In the following steps you will create and run a new build pipeline based on the
 4. In the `Configuration` section of the newly created Function App, add the following settings:
 
     - `GH_PAT` - contains the GitHub personal access token (use the one generated in Task 6)
-    - `ML_DATA_STORAGE_CONNECTION_STRING` - contains the connection string of the AML workspace storage account
+    - `ML_DATA_STORAGE_CONNECTION_STRING` - contains the connection string of the AML workspace storage account (the one named like `mlstrgXXXXXX`)
 
     ![Function App Configuration](./media/02-setup-azure-function-3.png)
 
@@ -272,7 +272,7 @@ In the following steps you will create and run a new build pipeline based on the
 
     - Develop in portal
     - Template =  `Azure Blob Storage trigger`
-    - Path = `azureml-blobstore-78f4ffed-e5cf-4671-9cf1-616781000344/COVID19Articles.csv` (replace `azureml-blobstore-78f4ffed-e5cf-4671-9cf1-616781000344` with the appropriate name of the blob storage container mapped as the default datastore in the AML workspace)
+    - Path = `azureml-blobstore-78f4ffed-e5cf-4671-9cf1-616781000344/training-data/COVID19Articles.csv` (replace `azureml-blobstore-78f4ffed-e5cf-4671-9cf1-616781000344` with the appropriate name of the blob storage container mapped as the default datastore in the AML workspace)
     - Storage account connection = `ML_DATA_STORAGE_CONNECTION`
 
     >NOTE
