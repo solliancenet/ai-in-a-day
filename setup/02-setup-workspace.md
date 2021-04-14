@@ -260,19 +260,15 @@ In the following steps you will create and run a new build pipeline based on the
 
 3. Leave all other options default and create.
 
-4. In GitHub, create a personal access token with the `repo` scope selected.
+4. In the `Configuration` section of the newly created Function App, add the following settings:
 
-    ![Create GitHub PAT](./media/02-setup-azure-function-pat.png)
-
-5. In the `Configuration` section of the newly created Function App, add the following settings:
-
-    - `GH_PAT` - contains the GitHub personal access token
+    - `GH_PAT` - contains the GitHub personal access token (use the one generated in Task 6)
     - `ML_DATA_STORAGE_CONNECTION_STRING` - contains the connection string of the AML workspace storage account
 
     ![Function App Configuration](./media/02-setup-azure-function-3.png)
 
 
-6. Create a new function, using the following settings:
+5. Create a new function, using the following settings:
 
     - Develop in portal
     - Template =  `Azure Blob Storage trigger`
@@ -285,7 +281,7 @@ In the following steps you will create and run a new build pipeline based on the
 
     ![Create new function](./media/02-setup-azure-function-4.png)
 
-7. Replace the body of the newly create function with the following code:
+6. Replace the body of the newly create function with the following code:
 
     ```ps
     # Input bindings are passed in via param block.
