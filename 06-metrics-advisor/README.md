@@ -131,13 +131,18 @@ The high-level steps covered in the lab are:
 > - Spend a few minutes to change some parameters inside the **Metric-level configuration** section and observe the change of reported anomalies (red points) on the series data representation.
 
 20. In the metrics browser page, select the **Incidents** tab and filter the list to see the incidents related to number of cases that required hospitalization hosp_ym = `Yes`. Select the anomaly reported for SUM of hospitalized cases.
-
     ![Filter incidents by hospitalization](./media/hosp_yes.png)
 
 21.  In the incidents hub, notice the **Root cause** section where you should find reported the main contributors for the detected anomaly, age groups that contributed to the sum of cases reported as anomaly. Also, in the **Diagnostic** tree, hover on each age group node to investigate its contribution to the incident.
-
     ![Incident Hub diagnostics](./media/root_cause_incidents_hub.png)
 
 22.  In the **Diagnostics** (1) section, navigate to **Metrics drill-down** (2) and notice the current point Value (number of cases) and the **Diff**  from the identified **Baseline** (3). Choose the **age_group** dimension to drill-down by it and check the same **Delta** percent and **Diff** value from the baseline for the anomalies detected in the current point.
-
     ![Metrics drill down](./media/metrics-drill-down.png)
+
+23. Let's go back to the metric detection configuration screen and try a new configuration as follows **(1)**:
+    - **Hard threshold**
+    - Value **Out of range** Min: **1000** and Max: **9000** is an anomaly
+    - Do not report anomaly until 100% of latest **10** points are detected as anomalies
+  We should have marked as anomalies the points in time where number of cases is bellow or above a fixed threshold for 10 continous points in time.(Notice the yellow dots **(2)** before the reported anomalies and how the threashold is delimited by the red horizontal lines **(3)**).
+
+      ![Hard threshold](./media/hardthreshold.png)
