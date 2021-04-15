@@ -88,6 +88,18 @@ The high-level steps covered in the lab are:
 
     ![Check the ingestion progress](./media/ingestionprogress.png)
 
+>
+>Note
+>
+>After the data feed is added, Metrics Advisor will attempt to ingest metric data from the specified start date. It will take some time for data to be fully ingested, and you can view the ingestion status by clicking Ingestion progress at the top of the data feed page. If data is ingested, Metrics Advisor will apply detection, and continue to monitor the source for new data.
+>
+>When detection is applied, click one of the metrics listed in data feed to find the Metric detail page to:
+>
+> - View visualizations of all time series slices under this metric
+> - Update detecting configuration to meet expected results
+> - Set up notification for detected anomalies
+>
+
 15. Select the **Visit data-feed: covid-ages** button to navigate to the data feed overview page.
 
 16. In the data feed page, select the `count` metric under the **Metrics** section.
@@ -103,4 +115,5 @@ The high-level steps covered in the lab are:
     ![Metric-level configuration](./media/metric-level-configuration.png)
 
     Spend a few minutes to change some parameters inside the **Metric-level configuration** section and observe the change of reported anomalies (red points) on the series data representation.
+    To view the diagnostic insights, click on the red dots on time series visualizations, which represent detected anomalies. A window will appear with a link to incident analysis page.
 
