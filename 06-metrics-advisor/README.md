@@ -80,21 +80,19 @@ The high-level steps covered in the lab are:
 
     ![Automatic rollup settings](./media/automaticrollup.png)
 
-12. Provide the **Data feed name**: `covid-ages`.
-    
-13. In the **Advanced settings** section, inside **Ingestion options**, set **Stop retrying after** to **0** hours to stop the ingestion process after the first run. 
+12. In the **Advanced settings** section, inside **Ingestion options**, set **Stop retrying after** to **0** hours to stop the ingestion process after the first run. 
     
     ![Advanced settings](./media/advancedsettings.png)
 
-14. In the **Misc** section, choose the option to **Fill previous** for anomaly detection model.
+13. In the **Misc** section, choose the option to **Fill previous** for anomaly detection model.
 
     ![Misc settings](./media/fillprevious.png)
 
-15. Select **Submit** to confirm and submit the data feed.
+14. Provide the **Data feed name**: `covid-ages` and select **Submit** to confirm and submit the data feed.
 
     ![Submit schema configuration](./media/submitdatafeed.png)
 
-16. Wait for the ingestion progress dialog and select the **Details** link in order to observe the ingestion log by timestamp. Wait until the ingestion completes with success for all ingested json files.
+15. Wait for the ingestion progress dialog and select the **Details** link in order to observe the ingestion log by timestamp. Wait until the ingestion completes with success for all ingested json files.
 
     ![Check the ingestion progress](./media/ingestionprogress.png)
 
@@ -110,17 +108,17 @@ The high-level steps covered in the lab are:
 > - Set up notification for detected anomalies
 >
 
-15. Select the **Visit data-feed: covid-ages** button to navigate to the data feed overview page.
+16. Select the **Visit data-feed: covid-ages** button to navigate to the data feed overview page.
 
-16. In the data feed page, select the `count` metric under the **Metrics** section.
+17. In the data feed page, select the `count` metric under the **Metrics** section.
 
     ![Go to the count metric details page](./media/browsemetricdata.png)
 
-17. To modify the inspected time window, change the start and end time of the interval from the calendar above the graphic representations. Set the interval to start from `2021-01-01`.
+18. To modify the inspected time window, change the start and end time of the interval from the calendar above the graphic representations. Set the interval to start from `2021-01-01`.
 
     ![Change monitoring time window](./media/changetimewindow.png)
 
-18. Make sure you see the ingestion process completed on recent historical data **(1)** as illustrated in the picture bellow. When all data is ingested, in the left configuration section, under the **Metric-level configuration** **(2)** change the default metric-level configuration to use Smart detection and set the sensitivity level to 81 and use this configuration 
+19. Make sure you see the ingestion process completed on recent historical data **(1)** as illustrated in the picture bellow. When all data is ingested, in the left configuration section, under the **Metric-level configuration** **(2)** change the default metric-level configuration to use Smart detection and set the sensitivity level to 81 and use this configuration:
     - Value **Out of boundary** is anomaly 
     - Do not  report anomaly until **10%** of latest **1** points are detected as anomalies.
 
@@ -132,14 +130,14 @@ The high-level steps covered in the lab are:
 >
 > - Spend a few minutes to change some parameters inside the **Metric-level configuration** section and observe the change of reported anomalies (red points) on the series data representation.
 
-19. In the metrics browser page, select the **Incidents** tab and filter the list to see the incidents related to number of cases that required hospitalization hosp_ym = `Yes`. Select the anomaly reported for SUM of hospitalized cases.
+20. In the metrics browser page, select the **Incidents** tab and filter the list to see the incidents related to number of cases that required hospitalization hosp_ym = `Yes`. Select the anomaly reported for SUM of hospitalized cases.
 
     ![Filter incidents by hospitalization](./media/hosp_yes.png)
 
-20. In the incidents hub, notice the **Root cause** section where you should find reported the main contributors for the detected anomaly, age groups that contributed to the sum of cases reported as anomaly. Also, in the **Diagnostic** tree, hover on each age group node to investigate its contribution to the incident.
+21.  In the incidents hub, notice the **Root cause** section where you should find reported the main contributors for the detected anomaly, age groups that contributed to the sum of cases reported as anomaly. Also, in the **Diagnostic** tree, hover on each age group node to investigate its contribution to the incident.
 
     ![Incident Hub diagnostics](./media/root_cause_incidents_hub.png)
 
-21. In the **Diagnostics** (1) section, navigate to **Metrics drill-down** (2) and notice the current point Value (number of cases) and the **Diff**  from the identified **Baseline** (3). Choose the **age_group** dimension to drill-down by it and check the same **Delta** percent and **Diff** value from the baseline for the anomalies detected in the current point.
+22.  In the **Diagnostics** (1) section, navigate to **Metrics drill-down** (2) and notice the current point Value (number of cases) and the **Diff**  from the identified **Baseline** (3). Choose the **age_group** dimension to drill-down by it and check the same **Delta** percent and **Diff** value from the baseline for the anomalies detected in the current point.
 
     ![Metrics drill down](./media/metrics-drill-down.png)
