@@ -59,7 +59,7 @@ The high-level steps covered in the lab are:
 
     - **Source type**: `Azure Blob Storage (JSON)`
     - **Granularity**: `Daily`
-    - **Ingest data since (UTC)**: `2020-01-01`
+    - **Ingest data since (UTC)**: `2021-01-01`
     - **Connection string**: provide the connection string from the blob storage access keys page.
   
         ![Get the blob storage connection string](./media/blobstorageconnectionstring.png)
@@ -76,15 +76,25 @@ The high-level steps covered in the lab are:
 
     ![Schema configuration](./media/schemconfig.png)
 
-11.  Scroll down towards the bottom of the page. For **Automatic roll-up** settings, select the `I do not need to include the roll-up analysis for my data` option.
+11. Scroll down towards the bottom of the page. For **Automatic roll-up** settings, select the **I need the service to roll-up my data** (1) option, select the link **Set roll-up columns** and include both dimensions (3).
+
+    ![Automatic rollup settings](./media/automaticrollup.png)
 
 12. Provide the **Data feed name**: `covid-ages`.
+    
+13. In the **Advanced settings** section, inside **Ingestion options**, set **Stop retrying after** to **0** hours to stop the ingestion process after the first run. 
+    
+    ![Advanced settings](./media/advancedsettings.png)
 
-13. Select **Submit** to confirm and submit the data feed.
+14. In the **Misc** section, choose the option to **Fill previous** for anomaly detection model.
+
+    ![Misc settings](./media/fillprevious.png)
+
+15. Select **Submit** to confirm and submit the data feed.
 
     ![Submit schema configuration](./media/submitdatafeed.png)
 
-14. Wait for the ingestion progress dialog and select the **Details** link in order to observe the ingestion log by timestamp.
+16. Wait for the ingestion progress dialog and select the **Details** link in order to observe the ingestion log by timestamp. Wait until the ingestion completes with success for all ingested json files.
 
     ![Check the ingestion progress](./media/ingestionprogress.png)
 
