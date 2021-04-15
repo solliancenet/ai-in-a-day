@@ -3,6 +3,7 @@
 This lab covers MLOps using Azure DevOps and GitHub, training and deployment of models, real time scoring using a REST API endpoint.
 
 The high-level steps covered in the lab are:
+
 - Explore dashboard of COVID-19 data
 - Explore lab scenario
 - Observe the execution of CI/CD pipeline all the way to the update on the REST API endpoint
