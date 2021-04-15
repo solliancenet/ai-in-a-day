@@ -141,6 +141,7 @@ The high-level steps covered in the lab are:
 
 - Explore dashboard of COVID-19 data
 - Explore the lab scenario
-- Prepare the cases surveillance time series data to feed into the Metrics Advisor
 - Onboard your time series data in the Metrics Advisor
-- Tune the anomaly detection configuration
+- Explore anomalies detected in your data
+- Perform root cause analysis
+- Explore anomalies with hard thresholds (optional)
