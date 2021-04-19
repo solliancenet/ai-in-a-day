@@ -1,4 +1,4 @@
-# Lab 3 - Machine Learning in Azure Databricks
+# Lab 6 - Machine Learning in Azure Databricks
 
 The lab covers Data Engineering and Machine Learning using Azure Databricks notebooks.
 
@@ -20,7 +20,7 @@ Using Azure Databricks, we will prepare input datasets and analyze their content
 
 The following diagram highlights the portion of the general architecture covered by this lab.
 
-![Architecture for Lab 2](./../media/Architecture-3.png)
+![Architecture for Lab 2](./../media/Architecture-6.png)
 
 The high-level steps covered in the lab are:
 

@@ -1,67 +1,25 @@
 # Setup the Lab 03 AI-in-a-Day workspace
 
-## Task 1 - Create a Machine Learning Workspace
+## Task 1 - Create resources
 
-## Task 2 - Create an Azure Databricks Workspace
+1. If it does not already exist, create a new resource group with the `AI-in-a-Day` prefix.
 
-- **Name**: `ai-adb-ws`
-- **Pricing Tier**: `Premium (+ Role-based access controls)`
+2. In the resource group, create a new [**Azure Cognitive Search** service](https://portal.azure.com/#create/Microsoft.Search) with the B (Basic) pricing tier. Name the service with the `aiinaday` prefix to simplify referring to the service in the lab instructions.
 
-## Task 3 - Create ADB Cluster
+3. In the resource group, create a new [**Azure Cognitive Services** service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne). Select the S0 (Standard) pricing tier. Name the service with the `aiinaday-cogsvc` prefix to simplify referring to the service in the lab instructions.
 
-- **Name**: `ai-adb-lab`
+4. In the resource group, create a new **Storage Account** service if one does not already exist. Name the service with the `aiinaday-storage` prefix to simplify referring to the service in the lab instructions.
 
-- **Databricks Runtime Version**: `7.3 LTS ML (includes Apache Spark 3.0.1, Scala 2.12)`
+## Task 2 - Upload the data used in the lab
 
-- **Enable autoscaling**: `Unchecked`
+1. Ensure that the storage account has a `covid19temp` container, which should include two folders:  `comm_use_subset` and `papers`.  Inside `comm_use_subset` there should be a `pdf_json` folder which contains 865 PDFs, as well as a `pdf_json_refresh` folder which contains 100 PDFs.  Inside `papers`, there should be 10 PDFs.
 
-- **Worker Type**: `Standard_DS4_v2`
+## Task 3 - Lab Virtual Machine Dependencies
 
-- **Workers**: `1`
+1. Install [Python 3.9](https://www.python.org/downloads/) or later.
 
-- **Advanced Options/Spark/Environment Variables**
-    - PYSPARK_PYTHON=/databricks/python3/bin/python3
-    - AML_SUB_ID=xxx-xxx-xxx
-    - AML_RG=xxx-xxx-xxx
-    - AML_WS=xxx-xxx-xxx
+2. Add Python39 to the path.  For the `demouser` account and Python 3.9, this would be `C:\Users\demouser\AppData\Local\Programs\Python\Python39\`.
 
->> Important please provide the `subscription_id`, `resource_group`, and `workspace_name` for the Azure Machine Learning workspace created in Step #1.
+3. Ensure that PowerShell version 5 or later is installed.
 
-![Create ADB Cluster](media/adb-cluster-1.png)
-
-## Task 4 - Install Libraries on the ADB cluster
-
-**Install Library/PyPI**
-- langdetect==1.0.8
-- seaborn==0.11.1
-- nltk==3.5
-- fairlearn==0.4.6
-- shap==0.37.0
-- joblib==1.0.0
-- azureml-sdk[databricks]
-- azureml-contrib-fairness
-- textblob==0.15.3
-
-![Install Libraries on the ADB cluster](media/adb-cluster-2.png)
-
-## Task 5 - Upload the Databricks notebook archive
-
-Upload the notebooks archive (`AI-Lab3.dbc`) from the following location to the user's folder in Azure Databricks workspace:
-
-[AI-Lab3.dbc](https://github.com/solliancenet/ai-in-a-day/blob/main/03-ml-in-databricks/notebooks/AI-Lab3.dbc?raw=true)
-
-## Task 6 - Copy lab data files to storage account
-
-**Source location**
-- Subscription: **Synapse Analytics Demos and Labs**
-- Resource group: **Synapse-Analytics-Data**
-- Storage account: **solliancepublicdata**
-- Container: **ai-in-a-day**
-- Folder: **Shared**
-
-**Destination location**
-- Storage account: **aiinadaystorageXXXXXX**
-- Container: **lab-03**
-- Folder: **Shared**
-
-All the files in the destination folder need **public read access**.
+4. Install [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/).

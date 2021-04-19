@@ -1,41 +1,67 @@
-# Setup for Lab 06
+# Setup the Lab 06 AI-in-a-Day workspace
 
-## Task 1 - Deploy Azure Cognitive Services Metrics Advisior instance
+## Task 1 - Create a Machine Learning Workspace
 
-## Task 2 - Deploy Azure Machine Learning workspace
+## Task 2 - Create an Azure Databricks Workspace
 
-## Task 3 - Copy notebooks to the AML workspace
+- **Name**: `ai-adb-ws`
+- **Pricing Tier**: `Premium (+ Role-based access controls)`
 
-1. In the Jupyter notebook environment, navigate to the folder associated with your lab user.
+## Task 3 - Create ADB Cluster
 
-2. If the folder does not contain any notebooks, download the following items to your local machine:
+- **Name**: `ai-adb-lab`
 
-[Prepare metrics feed data](https://solliancepublicdata.blob.core.windows.net/ai-in-a-day/lab-06/preparemetricsfeeddata.ipynb)
+- **Databricks Runtime Version**: `7.3 LTS ML (includes Apache Spark 3.0.1, Scala 2.12)`
 
-Upload the file by selecting the `Upload` button from the top right corner of the screen, and then selecting the blue `Upload` button to confirm. 
+- **Enable autoscaling**: `Unchecked`
 
-## Task 4 - Prepare Azure Machine Learning workspace
+- **Worker Type**: `Standard_DS4_v2`
 
-1. Open the [Azure Portal](https://portal.azure.com) and sign-in with your lab credentials. select the storage account named `aiinadaystorageXXXXXX`.
+- **Workers**: `1`
 
-    ![Locate storage account in Azure Portal](../06-metrics-advisor/media/datastore-01.png)
+- **Advanced Options/Spark/Environment Variables**
+    - PYSPARK_PYTHON=/databricks/python3/bin/python3
+    - AML_SUB_ID=xxx-xxx-xxx
+    - AML_RG=xxx-xxx-xxx
+    - AML_WS=xxx-xxx-xxx
 
-2. Select `Containers` and then select `+ Container` to create a new blob storage container.
+>> Important please provide the `subscription_id`, `resource_group`, and `workspace_name` for the Azure Machine Learning workspace created in Step #1.
 
-    ![Create new blob storage container](../06-metrics-advisor/media/datastore-02.png)
+![Create ADB Cluster](media/adb-cluster-1.png)
 
-3. Enter `jsonmetrics` as the name, keep all other settings default, and then select `Create` to create the new container.
+## Task 4 - Install Libraries on the ADB cluster
 
-4.  Select `Access keys` from the left side menu, and then select `Show keys`. Save the storage account name, the `key1 Key` value, and the `key1 - Connection string` value for later use.
+**Install Library/PyPI**
+- langdetect==1.0.8
+- seaborn==0.11.1
+- nltk==3.5
+- fairlearn==0.4.6
+- shap==0.37.0
+- joblib==1.0.0
+- azureml-sdk[databricks]
+- azureml-contrib-fairness
+- textblob==0.15.3
 
-    ![Storage account name and key](../06-metrics-advisor/media/datastore-03.png)
+![Install Libraries on the ADB cluster](media/adb-cluster-2.png)
 
-## Task 5 - Prepare the COVID cases per age group dataset
+## Task 5 - Upload the Databricks notebook archive
 
-1. With the Azure Machine Learning studio and the Jupyter notebook environment open, select the `preparemetricsfeeddata.ipynb` notebook.
+Upload the notebooks archive (`AI-Lab6.dbc`) from the following location to the user's folder in Azure Databricks workspace:
 
-   Make sure you replace the `<BLOBSTORAGE_ACCOUNT_NAME>` and `<BLOBSTORAGE_ACCOUNT_KEY>` values in the variable initialization cell with the values you have noted down at the end of the previous task.
+[AI-Lab6.dbc](https://github.com/solliancenet/ai-in-a-day/blob/main/03-ml-in-databricks/notebooks/AI-Lab6.dbc?raw=true)
 
-   The notebook will guide you through a list of steps needed to prepare a time series-based dataset containing JSON files to be fed into the Metrics Advisor workspace. Each JSON file will contain daily data representing the count of COVID positive cases by age group.
+## Task 6 - Copy lab data files to storage account
 
-2. Execute the notebook cell by cell (using either Ctrl + Enter to stay on the same cell, or Shift + Enter to advance to the next cell) and observe the results of each cell execution.
+**Source location**
+- Subscription: **Synapse Analytics Demos and Labs**
+- Resource group: **Synapse-Analytics-Data**
+- Storage account: **solliancepublicdata**
+- Container: **ai-in-a-day**
+- Folder: **Shared**
+
+**Destination location**
+- Storage account: **aiinadaystorageXXXXXX**
+- Container: **lab-06**
+- Folder: **Shared**
+
+All the files in the destination folder need **public read access**.

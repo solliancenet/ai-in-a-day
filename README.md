@@ -92,7 +92,46 @@ The high-level steps covered in the lab are:
 - Perform another real time scoring on the REST API endpoint
 - Explore aspects related to traceability and control of the process
 
-### Lab 3 - [Data Engineering in Azure Databricks](03-ml-in-databricks/README.md)
+### Lab 3 - [Knowledge Mining with Azure Cognitive Search and Text Analytics](03-knowledge-mining/README.md)
+
+This lab covers Azure Cognitive Search (index, knowledge store, custom skills) and Form Recognizer.
+
+The high-level steps covered in the lab are:
+
+- Explore dashboard of COVID-19 data
+- Explore lab scenario
+- Explore document search process
+- Explore graph search process
+- Add a set of new documents and trigger the index update process
+- Explore the document and graph search and identify updated results
+
+### Lab 4 - [Conversational AI with Azure Bot Service and Cognitive Services](04-conversational-ai/README.md)
+
+This lab covers Azure Bot Service, Bot Framework Composer, and Azure Cognitive Services.
+
+The high-level steps covered in the lab are:
+
+- Explore dashboard of COVID-19 data
+- Explore lab scenario
+- Interact with the AI-in-a-Day conversational bot
+- Extend the behavior of the conversational bot using the Bot Framework Composer (and LUIS)
+- Deploy the updated version of the conversational bot
+- Interact with improved version of the AI-in-a-Day conversational bot
+
+### Lab 5 - [Metrics Advisor with Azure Cognitive Services](05-metrics-advisor/README.md)
+
+The lab covers the Metrics Advisor service from Azure Cognitive Services.
+
+The high-level steps covered in the lab are:
+
+- Explore dashboard of COVID-19 data
+- Explore the lab scenario
+- Onboard your time series data in the Metrics Advisor
+- Explore anomalies detected in your data
+- Perform root cause analysis
+- Explore anomalies with hard thresholds (optional)
+
+### Lab 6 - [Data Engineering in Azure Databricks](06-ml-in-databricks/README.md)
 
 The lab covers Data Engineering and Machine Learning using Azure Databricks notebooks.
 
@@ -106,42 +145,3 @@ The high-level steps covered in the lab are:
 - Correlate research paper and case surveillance datasets
 - Use SparkML to build risk classifier on case surveillance dataset
 - Assess fairness of risk classifier
-
-### Lab 4 - [Knowledge Mining with Azure Cognitive Search and Text Analytics](04-knowledge-mining/README.md)
-
-This lab covers Azure Cognitive Search (index, knowledge store, custom skills) and Form Recognizer.
-
-The high-level steps covered in the lab are:
-
-- Explore dashboard of COVID-19 data
-- Explore lab scenario
-- Explore document search process
-- Explore graph search process
-- Add a set of new documents and trigger the index update process
-- Explore the document and graph search and identify updated results
-
-### Lab 5 - [Conversational AI with Azure Bot Service and Cognitive Services](05-conversational-ai/README.md)
-
-This lab covers Azure Bot Service, Bot Framework Composer, and Azure Cognitive Services.
-
-The high-level steps covered in the lab are:
-
-- Explore dashboard of COVID-19 data
-- Explore lab scenario
-- Interact with the AI-in-a-Day conversational bot
-- Extend the behavior of the conversational bot using the Bot Framework Composer (and LUIS)
-- Deploy the updated version of the conversational bot
-- Interact with improved version of the AI-in-a-Day conversational bot
-
-### Lab 6 - [Metrics Advisor with Azure Cognitive Services](06-metrics-advisor/README.md)
-
-The lab covers the Metrics Advisor service from Azure Cognitive Services.
-
-The high-level steps covered in the lab are:
-
-- Explore dashboard of COVID-19 data
-- Explore the lab scenario
-- Onboard your time series data in the Metrics Advisor
-- Explore anomalies detected in your data
-- Perform root cause analysis
-- Explore anomalies with hard thresholds (optional)

@@ -1,4 +1,4 @@
-# Lab 5 - Conversational AI with Azure Bot Service and Cognitive Services
+# Lab 4 - Conversational AI with Azure Bot Service and Cognitive Services
 
 This lab covers Azure Bot Service, Bot Framework Composer, and Azure Cognitive Services.
 
@@ -20,7 +20,7 @@ Using Azure Bot Service and Cognitive Services, we provide a conversational bot 
 
 The following diagram highlights the portion of the general architecture covered by this lab.
 
-![General Architecture Diagram](./../media/Architecture-5.png)
+![General Architecture Diagram](./../media/Architecture-4.png)
 
 The high-level steps covered in the lab are:
 

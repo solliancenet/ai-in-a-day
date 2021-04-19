@@ -1,4 +1,4 @@
-# Lab 4 - Knowledge Mining with Azure Cognitive Search and Text Analytics
+# Lab 3 - Knowledge Mining with Azure Cognitive Search and Text Analytics
 
 This lab covers Azure Cognitive Services, particularly [Azure Cognitive Search](https://azure.microsoft.com/services/search/) and the [Form Recognizer](https://azure.microsoft.com/services/cognitive-services/form-recognizer/) service.
 
@@ -20,7 +20,7 @@ Using the Cognitive Search capabilities, we will create a complex index of docum
 
 The following diagram highlights the portion of the general architecture covered by this lab.
 
-![Architecture for Lab 4](./../media/Architecture-4.png)
+![Architecture for Lab 3](./../media/Architecture-3.png)
 
 The high-level steps covered in the lab are:
 
