@@ -46,9 +46,9 @@
 
 ## Task 5 - Upload the Databricks notebook archive
 
-Upload the notebooks archive (`AI-Lab6.dbc`) from the following location to the user's folder in Azure Databricks workspace:
+Upload the notebooks archive (`AI-in-a-Day-Lab-6.dbc`) from the following location to the user's folder in Azure Databricks workspace:
 
-[AI-Lab6.dbc](https://github.com/solliancenet/ai-in-a-day/blob/main/03-ml-in-databricks/notebooks/AI-Lab6.dbc?raw=true)
+[AI-in-a-Day-Lab6.dbc](https://github.com/solliancenet/ai-in-a-day/blob/main/03-ml-in-databricks/notebooks/AI-in-a-Day-Lab-6.dbc?raw=true)
 
 ## Task 6 - Copy lab data files to storage account
 
