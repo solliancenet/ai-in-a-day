@@ -20,7 +20,7 @@ Using Cognitive Services Metrics Advisor, we will demonstrate how to improve the
 
 The following diagram highlights the portion of the general architecture covered by this lab.
 
-![Architecture for Lab 6](./../media/Architecture-5.png)
+![Architecture for Lab 5](./../media/Architecture-5.png)
 
 The high-level steps covered in the lab are:
 

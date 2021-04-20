@@ -20,7 +20,7 @@ Using Azure Databricks, we will prepare input datasets and analyze their content
 
 The following diagram highlights the portion of the general architecture covered by this lab.
 
-![Architecture for Lab 2](./../media/Architecture-6.png)
+![Architecture for Lab 6](./../media/Architecture-6.png)
 
 The high-level steps covered in the lab are:
 
@@ -45,11 +45,11 @@ The high-level steps covered in the lab are:
 
 ![Start Azure Databricks Cluster](./media/start-databricks-cluster.png)
 
-4. While the cluster is starting, select the `Workspace` section on the left side menu, select the `Users` folder, then select the folder corresponding to the user name from your lab credentials, and then select the `AI-Lab3` folder.
+4. While the cluster is starting, select the `Workspace` section on the left side menu, select the `Users` folder, then select the folder corresponding to the user name from your lab credentials, and then select the `AI-Lab6` folder.
 
 ![Open Azure Databricks workspace folders](./media/databricks-workspace-1.png)
 
-5. In the `AI-Lab3` folder, you should see the three notebooks that you will use in this lab.
+5. In the `AI-Lab6` folder, you should see the three notebooks that you will use in this lab.
 
 ![View list of notebooks in Azure Databricks workspace](./media/databricks-workspace-2.png)
 

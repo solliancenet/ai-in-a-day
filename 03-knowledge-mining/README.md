@@ -163,11 +163,11 @@ The high-level steps covered in the lab are:
 
     ![The Use a connection string option is selected.](media/azure-storage-explorer-connect-1.png)
 
-2. Enter **lab04** as the Display name and paste in your storage account connection string.  Then, select **Next** to continue and **Connect** to complete the operation.
+2. Enter **lab03** as the Display name and paste in your storage account connection string.  Then, select **Next** to continue and **Connect** to complete the operation.
 
     ![The connection string is filled in.](media/azure-storage-explorer-connect-2.png)
 
-3. In Azure Storage Explorer, navigate down the **lab04** attached storage and select the `covid19temp` blob container.  Double-click the **comm_use_subset** to enter that folder.
+3. In Azure Storage Explorer, navigate down the **lab03** attached storage and select the `covid19temp` blob container.  Double-click the **comm_use_subset** to enter that folder.
 
     ![The comm_use_subset folder is selected.](media/azure-storage-explorer-1.png)
 
@@ -235,7 +235,7 @@ The high-level steps covered in the lab are:
 
 5. Select **Save** to save the CORS settings.
 
-6. Open Azure Storage Explorer and navigate to **lab04**, and then to **Blob Containers**.  Right-click on **covid19temp** and select the **Get Shared Access Signature...** option.
+6. Open Azure Storage Explorer and navigate to **lab03**, and then to **Blob Containers**.  Right-click on **covid19temp** and select the **Get Shared Access Signature...** option.
 
     ![The Get Shared Access Signature option is selected](media/azure-storage-explorer-get-sas.png)
 
