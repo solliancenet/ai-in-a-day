@@ -27,7 +27,7 @@
 
 >> Important please provide the `subscription_id`, `resource_group`, and `workspace_name` for the Azure Machine Learning workspace created in Step #1.
 
-![Create ADB Cluster](media/adb-cluster-1.png)
+![Create ADB Cluster](./media/adb-cluster-1.png)
 
 ## Task 4 - Install Libraries on the ADB cluster
 
@@ -42,7 +42,7 @@
 - azureml-contrib-fairness
 - textblob==0.15.3
 
-![Install Libraries on the ADB cluster](media/adb-cluster-2.png)
+![Install Libraries on the ADB cluster](./media/adb-cluster-2.png)
 
 ## Task 5 - Upload the Databricks notebook archive
 
