@@ -12,7 +12,7 @@
 
 ## Task 2 - Upload the data used in the lab
 
-1. In order to create the Azure Cognitive Search Index and populate the Index with the documents run the Powershell script in [artifacts/05/azure-search-index-restore.ps1](artifacts/04/azure-search-index-restore.ps1)
+1. In order to create the Azure Cognitive Search Index and populate the Index with the documents run the Powershell script in [files/04/azure-search-index-restore.ps1](files/04/azure-search-index-restore.ps1)
 
 ## Task 3 - Lab Virtual Machine Dependencies
 
