@@ -1,4 +1,4 @@
-# Lab 2 - Azure Machine Learning Model Operationalization
+# Lab 2 - Azure Machine Learning – MLOps
 
 This lab covers MLOps using Azure DevOps and GitHub, training and deployment of models, real time scoring using a REST API endpoint.
 

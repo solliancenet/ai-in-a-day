@@ -4,23 +4,23 @@
 
 1. Open the [Azure DevOps portal](https://dev.azure.com/) and select the **Sign in to Azure DevOps** link.
 
-    ![Sign-in to Azure DevOps](../02-aml-operationalization/media/01-devops.png)
+    ![Sign-in to Azure DevOps](../02-aml-mlops/media/01-devops.png)
 
 2. To sign-in, use the Azure credentials provided by the lab environment.
 
 3. First time you sign-in to your Azure DevOps account, you are asked to create a new project in the pre-created organization you have available, named `odluserXXXXXX`. Provide the project name in the following form `odluserXXXXXX-project` and select **+ Create project**
 
-    ![Create e new project in Azure DevOps](../02-aml-operationalization/media/02-devops-create-project.png)
+    ![Create e new project in Azure DevOps](../02-aml-mlops/media/02-devops-create-project.png)
 
 >Note: Please make sure you check the pre-installed extensions at >AzureDevOps organization level: 
 
 4. MLOpsPython requires some variables to be set before you can run any pipelines. At this step, you'll create a variable group in Azure DevOps to store values that are reused across multiple pipeline stages. Navigate to **Pipelines**, **Library** and in the **Variable groups** section select **+ Variable group** as indicated bellow.
 
-    ![Create a Variable Group for your Pipeline](../02-aml-operationalization/media/03-devops-create-vargroup.png)
+    ![Create a Variable Group for your Pipeline](../02-aml-mlops/media/03-devops-create-vargroup.png)
 
 5. To prepare the values you'll need to set all your variables, you need to get the resource group location where all your Azure resources were provisioned. In another browser tab, navigate to the [Azure portal](https://portal.azure.com), sign in with the provided Azure credentials if you are asked to, and navigate to the lab Resource group. On the resource group overview page, you'll find the location information you need.
 
-    ![Get Resource Group location information](../02-aml-operationalization/media/04-getRGLocation.png)
+    ![Get Resource Group location information](../02-aml-mlops/media/04-getRGLocation.png)
 
     Also note the other two marked values in the image above (you'll also need those two on the next steps): the **Resource Group name** and the **Machine Learning Workspace name**, which are also provided for you in the lab Environment Details page.
 
@@ -28,7 +28,7 @@
 
 7. Add the required list of variables, using the **+ Add** link at the bottom of the **Variables** section as illustrated in the image bellow:
 
-    ![Configure required variable values in the variable group](../02-aml-operationalization/media/04-devops-edit-vargroup.png)
+    ![Configure required variable values in the variable group](../02-aml-mlops/media/04-devops-edit-vargroup.png)
 
     Use values listed in the table:
 
@@ -44,11 +44,11 @@
 
 8. Make sure you select the **Allow access to all pipelines** checkbox in the variable group configuration.
 
-    ![Allow access to all pipelined](../02-aml-operationalization/media/05-devops-allowacces-vargroup.png)
+    ![Allow access to all pipelined](../02-aml-mlops/media/05-devops-allowacces-vargroup.png)
 
 9. Select **Save** from the top menu to create the variable group.
 
-    ![Save the variable group configuration](../02-aml-operationalization/media/06-devops-save-vargroup.png)
+    ![Save the variable group configuration](../02-aml-mlops/media/06-devops-save-vargroup.png)
 
 ## Task 2 - Create an Azure DevOps Service Connection for the Azure ML Workspace
 
@@ -56,19 +56,19 @@ Create a new service connection to your Azure ML Workspace to enable executing t
 
 1. Go to **Project settings**, **Service connections** and select **Create service connection** as illustrated bellow.
 
-    ![Create service connection](../02-aml-operationalization/media/07-devops-amlserviceconnection.png)
+    ![Create service connection](../02-aml-mlops/media/07-devops-amlserviceconnection.png)
 
 2. Select the connection type from the available list: **Azure Resource Manager** and select **Next**.
 
-    ![Select Azure Resource Manager connection type](../02-aml-operationalization/media/08-devops-newserviceconnection.png)
+    ![Select Azure Resource Manager connection type](../02-aml-mlops/media/08-devops-newserviceconnection.png)
 
 3. Provide the authentication method: **Service principal (automatic)** and move **Next**.
 
-    ![Select Azure Resource Manager connection type](../02-aml-operationalization/media/09-devops-authentication.png)
+    ![Select Azure Resource Manager connection type](../02-aml-mlops/media/09-devops-authentication.png)
 
 4. Select scope level: **Machine Learning Workspace** and select the available **Subscription**, **Resource group** and **Machine Learning Workspace** provided in the lab environment. Enter `aml-workspace-connection` for the **Service connection name** and select **Save**.
 
-    ![AML Service Connection details](../02-aml-operationalization/media/09-devops-newserviceconnection.png)
+    ![AML Service Connection details](../02-aml-mlops/media/09-devops-newserviceconnection.png)
 
 >Note:
 >
@@ -84,7 +84,7 @@ Create a new service connection to your Azure ML Workspace to enable executing t
 
 4. Set the repository name to `azure-ai-in-a-day-lab02` and select **Create repository from template**.
 
-    ![Generate git repository from template](../02-aml-operationalization/media/02%20-%20github-%20generaterepo.png)
+    ![Generate git repository from template](../02-aml-mlops/media/02%20-%20github-%20generaterepo.png)
 
 5. When the new repository is generated, copy your repository URL from the browser address bar since you will need it in the next steps.
 
@@ -96,55 +96,55 @@ In the following steps you will create and run a new build pipeline based on the
 
 1. In your Azure DevOps project summary page, navigate to the **Pipelines** section from the left navigation menu. Select **Create Pipeline**.
 
-    ![Create Azure DevOps pipeline](../02-aml-operationalization/media/013-createpipeline.png)
+    ![Create Azure DevOps pipeline](../02-aml-mlops/media/013-createpipeline.png)
 
 2. Select the code location: **GitHub**.
 
-    ![Connect to repository](../02-aml-operationalization/media/014-createpipeline.png)
+    ![Connect to repository](../02-aml-mlops/media/014-createpipeline.png)
 
 3. Next you will be asked to authorize Azure Pipelines to access your GitHub account. If prompted with the GitHub sign in page, provide the GitHub credentials listed in the lab environment credentials page.
 
-    ![Sign in to GitHub](../02-aml-operationalization/media/01-github-signin.png)
+    ![Sign in to GitHub](../02-aml-mlops/media/01-github-signin.png)
 
 4. If you are already signed in to GitHub, you will be prompted with the Authorize Azure Pipelines (OAuth) page. Select **Authorize AzurePipelines**.
 
-    ![Authorize Azure Pipelines access to GitHub](../02-aml-operationalization/media/01-github-authorizeaccess.png)
+    ![Authorize Azure Pipelines access to GitHub](../02-aml-mlops/media/01-github-authorizeaccess.png)
 
 5. Redirected back to Azure Devops, select the available Git repository, the one you generated during the previous task in this lab: `github-clouduser-XXXX/azure-ai-in-a-day-lab-02`.
 
-    ![Select repository name](../02-aml-operationalization/media/015-selectgitrepository.png)
+    ![Select repository name](../02-aml-mlops/media/015-selectgitrepository.png)
 
 6. After you authorized the access for Azure Pipelines, you'll be asked to approve and install Azure Pipelines on your personal GitHub account. Select the `azure-ai-in-a-day-lab02` repository and select **Approve & Install**.
 
-    ![Approve and install Azure Pipelines on GitHub](../02-aml-operationalization/media/01-github-approveinstall.png)
+    ![Approve and install Azure Pipelines on GitHub](../02-aml-mlops/media/01-github-approveinstall.png)
 
 7. After approving installation, you might be asked to sign in again to Azure Devops, so you have to provide the Azure credentials provided in the lab environment. Next, in case you are asked, you will have to authorize Azure Pipelines permissions on your GitHub account. Select **Authorize Azure Pipelines** on this page.
 
-    ![Select repository name](../02-aml-operationalization/media/01-github-permissions.png)
+    ![Select repository name](../02-aml-mlops/media/01-github-permissions.png)
 
 8. Back to Azure Devops, in the **Configure pipeline** step, select the **Existing Azure Pipelines YAML file**.
 
-    ![Select repository name](../02-aml-operationalization/media/016-createpipeline.png)
+    ![Select repository name](../02-aml-mlops/media/016-createpipeline.png)
 
 9. Leave the default branch selected and paste the path to the YAML file: `/.pipelines/COVID19Articles-ci.yml`. Select **Continue**.
 
-    ![Select YAML file path](../02-aml-operationalization/media/017-createpipeline_covid.png)
+    ![Select YAML file path](../02-aml-mlops/media/017-createpipeline_covid.png)
 
 10. In the **Review** step, take a moment to observe the code inside the YAML file and then expand the **Run** menu and select **Save**.
 
-    ![Save the build pipeline](../02-aml-operationalization/media/018-runsavecipipeline.png)
+    ![Save the build pipeline](../02-aml-mlops/media/018-runsavecipipeline.png)
 
 11. With the created pipeline, select **Rename/move** from the right menu as illustrated bellow:
 
-    ![Rename the build pipeline](../02-aml-operationalization/media/019-renamepipeline.png)
+    ![Rename the build pipeline](../02-aml-mlops/media/019-renamepipeline.png)
 
 12. Change the pipeline name to: `Model-Train-Register-CI` and select **Save**.
 
-    ![Rename the build pipeline](../02-aml-operationalization/media/020-renamepipeline.png)
+    ![Rename the build pipeline](../02-aml-mlops/media/020-renamepipeline.png)
 
 13. Run the pipeline by selecting the **Run pipeline** button. Leave the default values on the next dialog and hit **Run**. Wait for the pipeline run to complete (it can take up to 20-25 minutes for the pipeline to finish).
 
-    ![Run the pipeline](../02-aml-operationalization/media/021-runpipeline.png)
+    ![Run the pipeline](../02-aml-mlops/media/021-runpipeline.png)
 
 >Note
 >
@@ -156,39 +156,39 @@ In the following steps you will create and run a new build pipeline based on the
    
 2. In your current organization, open the Azure DevOps project summary page and navigate to the **Pipelines** section from the left navigation menu. Select **New Pipeline**.
    
-    ![Create Azure DevOps pipeline](../02-aml-operationalization/media/027-newreleasepipeline.png)
+    ![Create Azure DevOps pipeline](../02-aml-mlops/media/027-newreleasepipeline.png)
 
 3. Select the code location: **GitHub**.
    
-    ![Connect to repository](../02-aml-operationalization/media/014-createpipeline.png)
+    ![Connect to repository](../02-aml-mlops/media/014-createpipeline.png)
 
 4. Select the Git repository you already used for the first pipeline: `github-clouduser-XXXX/azure-ai-in-a-day-lab-02`.
    
-    ![Select repository name](../02-aml-operationalization/media/015-selectgitrepository.png)
+    ![Select repository name](../02-aml-mlops/media/015-selectgitrepository.png)
 
 5. In the **Configure pipeline** step, select the **Existing Azure Pipelines YAML file**.
    
-    ![Select repository name](../02-aml-operationalization/media/016-createpipeline.png)
+    ![Select repository name](../02-aml-mlops/media/016-createpipeline.png)
 
 6. Leave the default branch selected and paste the path to the YAML file: `/.pipelines/COVID19Articles-cd.yml`. Select **Continue**.
    
-    ![Select YAML file path](../02-aml-operationalization/media/028-createreleasepipeline.png)
+    ![Select YAML file path](../02-aml-mlops/media/028-createreleasepipeline.png)
 
 7. In the **Review** step, take a moment to observe the code inside the YAML file and then expand the **Run** menu and select **Save**.
    
-    ![Save the release pipeline](../02-aml-operationalization/media/018-savepipeline.png)
+    ![Save the release pipeline](../02-aml-mlops/media/018-savepipeline.png)
 
 8. With the created pipeline, select **Rename/move** from the right menu as illustrated bellow:
    
-    ![Rename the build pipeline](../02-aml-operationalization/media/019-renamepipeline.png)
+    ![Rename the build pipeline](../02-aml-mlops/media/019-renamepipeline.png)
 
 9. Change the pipeline name to: `Model-Deploy-CD` and select **Save**.
    
-    ![Rename the release pipeline](../02-aml-operationalization/media/029-renamepipeline.png)
+    ![Rename the release pipeline](../02-aml-mlops/media/029-renamepipeline.png)
 
 10. Run the pipeline by selecting the **Run pipeline** button. Leave the default values on the next dialog and hit **Run**. Wait for the pipeline run to complete (it can take up to 20-25 minutes for the pipeline to finish).
    
-    ![Run the pipeline](../02-aml-operationalization/media/030-runpipeline.png)
+    ![Run the pipeline](../02-aml-mlops/media/030-runpipeline.png)
 
 ## Task 6 -  ML Ops with GitHub Actions and AML environment setup
 
@@ -232,11 +232,11 @@ In the following steps you will create and run a new build pipeline based on the
 
 4. To allow Azure to trigger a GitHub Workflow we also need a GitHub PAT token with `repo` access so that we can trigger a GH workflow when the training is completed on Azure Machine Learning. In GitHub, under your GitHub logged in user in the right corner, select Settings > Develper Settings > Personal access tokens. Enter a name for the new PAT and select **Generate** at the bottom of the page.
 
-    ![Generate PAT token](../02-aml-operationalization/media/5-createGHPAT.png)
+    ![Generate PAT token](../02-aml-mlops/media/5-createGHPAT.png)
 
 5. Copy the new GH PAT.
 
-    ![Get the new PAT token](../02-aml-operationalization/media/5-createGHPAT.png)
+    ![Get the new PAT token](../02-aml-mlops/media/5-createGHPAT.png)
 
 6. At repository level, select Settings > Secrets and add the PAT token with the name `PATTOKEN` as a new secret.
  

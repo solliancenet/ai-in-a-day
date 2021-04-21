@@ -77,7 +77,7 @@ The high-level steps covered in the lab are:
 - Run the classifier on "new" research papers
 - Explain the best model produced by AutoML
 
-### Lab 2 - [Azure Machine Learning Operationalization](02-aml-operationalization/README.md)
+### Lab 2 - [Azure Machine Learning Operationalization](02-aml-mlops/README.md)
 
 The lab covers MLOps using Azure DevOps and GitHub, training and deployment of models, real time scoring using a REST API endpoint.
 
