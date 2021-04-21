@@ -77,7 +77,7 @@ The high-level steps covered in the lab are:
 - Run the classifier on "new" research papers
 - Explain the best model produced by AutoML
 
-### Lab 2 - [Azure Machine Learning Operationalization](02-aml-mlops/README.md)
+### Lab 2 - [Azure Machine Learning - MLOps](02-aml-mlops/README.md)
 
 The lab covers MLOps using Azure DevOps and GitHub, training and deployment of models, real time scoring using a REST API endpoint.
 
@@ -131,7 +131,7 @@ The high-level steps covered in the lab are:
 - Perform root cause analysis
 - Explore anomalies with hard thresholds (optional)
 
-### Lab 6 - [Data Engineering in Azure Databricks](06-ml-in-databricks/README.md)
+### Lab 6 - [Machine Learning with Azure Databricks](06-ml-in-databricks/README.md)
 
 The lab covers Data Engineering and Machine Learning using Azure Databricks notebooks.
 

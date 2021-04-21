@@ -1,4 +1,4 @@
-# Lab 6 - Machine Learning in Azure Databricks
+# Lab 6 - Machine Learning with Azure Databricks
 
 The lab covers Data Engineering and Machine Learning using Azure Databricks notebooks.
 
