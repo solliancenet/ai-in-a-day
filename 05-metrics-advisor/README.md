@@ -61,10 +61,7 @@ The high-level steps covered in the lab are:
     - **Source type**: `Azure Blob Storage (JSON)`
     - **Granularity**: `Daily`
     - **Ingest data since (UTC)**: `2021-01-01`
-    - **Connection string**: provide the connection string from the blob storage access keys page.
-  
-        ![Get the blob storage connection string](./media/blobstorageconnectionstring.png)
-
+    - **Connection string**: provide the connection string from the blob storage access keys page. (`key1 - Connection string` copied on step 3)
     - **Container**: `jsonmetrics`
     - **Blob template**: `%Y-%m-%d.json` (since the daily json files are provided in with naming format)
     - **JSON format version**: `v2` (since we'll be using the age group dimension in our data schema)
