@@ -37,11 +37,11 @@ The high-level steps covered in the lab are:
 
 2. In the list of your recent resources, locate the the storage account named `aiinadaystorageXXXXXX`.
 
-    ![Locate storage account in Azure Portal](../06-metrics-advisor/media/datastore-01.png)
+    ![Locate storage account in Azure Portal](./media/datastore-01.png)
 
 3. Select `Access keys` from the left side menu, and then select `Show keys`. Save the storage account name, the `key1 Key` value, and the `key1 - Connection string` value for later use.
 
-    ![Storage account name and key](../06-metrics-advisor/media/datastore-03.png)
+    ![Storage account name and key](./media/datastore-03.png)
 
 4. Back to the Home page in Azure Portal, in the list of your recent resources, locate the Azure Metrics Advisor workspace and select it. If you are prompted to sign-in again, use the same lab Azure credentials you used at the previous step.
 ![Open Azure Metrics Advisor](./media/openmetricsadvisor.png)
