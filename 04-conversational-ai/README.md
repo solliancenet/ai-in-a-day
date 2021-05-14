@@ -43,6 +43,10 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
 
    ![Bot Framework is open. Open menu command is highlighted.](media/bot-composer-project-open.png)
 
+   > **WARNING**: If you are asked for an application update such as below, please select X or Cancel and disregard the update.
+   >
+   > ![For Framework Composer Update dialog is open. Cancel button is highlighted.](media/bot-framework-composer-update-cancel.png)
+
 2. Navigate to your **Desktop** folder **(1)**. Select the **AI-in-a-Day-Bot** by double-clicking **(2)** on it.
 
    ![Location is set to the users' documents folder. AI-in-a-Day-Bot project is highlighted.](media/bot-composer-project-open-2.png)
@@ -92,6 +96,10 @@ First, we will start with a prepopulate Azure Cognitive Search knowledge base en
    ![Local but runtime is ready. Test in Emulator command is highlighted.](media/bot-composer-copy-test-endpoint.png)
 
 3. Launch the **Bot Framework Emulator (1)** from its shortcut on Desktop. Select **Open Bot (2)** and paste the API endpoint **(3)** you copied in the previous step. Select **Connect (4)** to continue.
+
+   > **WARNING**: If you are asked for an application update such as below, please select X or Cancel and disregard the update.
+   >
+   > ![For Framework Composer Update dialog is open. Cancel button is highlighted.](media/bot-framework-emulator-update-cancel.png)
 
    ![Bot Framework Emulator is shown. Bot URL is set to http://localhost:3980/api/messages. The Connect button is highlighted.](media/bot-framework-emulator-connect.png)
 
