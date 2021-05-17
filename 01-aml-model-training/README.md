@@ -45,9 +45,7 @@ The high-level steps covered in the lab are:
 
     ![Verify Azure Machine Learning compute instance is running](./media/check-aml-compute-instance.png)
 
-    >Note:
-    >
-    >If you launched Azure Machine Learning Studio right after your lab environment was provisioned, you might find the compute instance in a provisioning state. In this case, wait a few minutes until it changes its status to `Running`.
+    >**Note**: If you launched Azure Machine Learning Studio right after your lab environment was provisioned, you might find the compute instance in a provisioning state. In this case, wait a few minutes until it changes its status to `Running`.
 
 4. From the `Application URI` section associated with the compute instance, select `Jupyter` **(3)**.
 
@@ -119,43 +117,44 @@ In this task, we'll use Azure Automated ML to train a machine learning model cap
 
     ![Experiment name is set to COVID19_Classification. Cluster is selected for the target column. Compute cluster selection points aml-compute-cpu. The next button is highlighted.](media/automl-configure-run.png)
 
-7. On the `Select task type` screen select `View additional configuration settings` to open a new panel of settings. Fill in the values listed below:
+7. On the `Select task type` screen select `Classification` **(1)** as the machine learning task type for the experiment and select `View additional configuration settings` **(2)** to open a new panel of settings.
 
-    - **Primary metric**: AUC weighted
-    - **Training job time (hours)**: 0.25
-    - **Validation type**: k-fold cross validation
-    - **Number of cross validations**: 5
-    - **Max concurrent iterations**: 4
+    ![Classification is selected as the machine learning task type for the experiment. The View additional configuration settings link is highlighted. ](media/automl-select-task-type.png)
+
+8. On the `Additional configurations` panel, fill in the values listed below:
+
+    - **Primary metric (1)**: AUC weighted
+    - **Training job time (hours) (2)**: 0.25
+    - **Metric score threshold (3)**: 0.95
+    - **Validation type (4)**: k-fold cross validation
+    - **Number of cross validations (5)**: 5
+    - **Max concurrent iterations (6)**: 4
   
     ![Primary metric is set to AUC weighted. Training job time is set to 0.25 hours. The validation type is set to k-fold cross validation. The number of cross validations is set to five. Max concurrent iterations is set to four. The save button is highlighted.](media/automl-additional-configuration.png)
 
     Thanks to the 0.25 hours set for `training job time`, the experiment will stop after 15 minutes to minimize cost. When it comes to `Max concurrent iterations`, Automated ML can try at most four models at the same time, this is also limited by the compute instance's maximum number of nodes.
 
-    Select `Save` to continue.
+    Select `Save` **(7)** to continue.
 
-8. When you are back on the `Select task type` screen, select `Classification` **(1)** as the machine learning task type for the experiment. Select `Finish` **(2)** to kick off the Automated ML experiment run. If this is the first time you are launching an experiment run in the Azure Machine Learning workspace, the total experiment time will longer than the `training job time` we have set. This is because of the time needed to start the Compute Cluster and deploy the container images required to execute.
+9. When you are back on the `Select task type` screen, select `Finish` **(2)** to kick off the Automated ML experiment run. If this is the first time you are launching an experiment run in the Azure Machine Learning workspace, the total experiment time will longer than the `training job time` we have set. This is because of the time needed to start the Compute Cluster and deploy the container images required to execute.
 
-    ![Classification is selected as the machine learning task type for the experiment. The finish button is highlighted. ](media/automl-select-task-type.png)
+10. On the following screen, you will see the progress of your experiment run.
 
-9. On the following screen, you will see the progress of your experiment run.
+11. Now that you understand the process of launching an AutoML run, let's explore in the next task the results of an already completed AutoML run.
 
-10. Now that you understand the process of launching an AutoML run, let's explore in the next task the results of an already completed AutoML run.
-
->Note:
->
->We have already executed in this environment an AutoML run that is very similar to the one that you've just launched. This allows you to explore AutoML results without having to wait for the completion of the run.
+>**Note**: We have already executed in this environment an AutoML run that is very similar to the one that you've just launched. This allows you to explore AutoML results without having to wait for the completion of the run.
 
 ## Task 6 - Explore AutoML results
 
 1. In the Azure Machine Learning Studio, navigate to the **Experiments (1)** section and locate the **COVID19_Classification** experiment **(2)**. Select the experiment name link.
-   
+
     ![Locate the completed experiment ](media/locate-experiment.png)
 
-2. You will navigate to the experiment details page where you should see the list of experiment runs. Locate the first run **(1)** listed here, named **Run 1**, the one that has the status **Completed**. Choose the option to Include the existing child runs **(2)** as illustrated bellow.
+2. You will navigate to the experiment details page where you should see the list of experiment runs. Locate the first run **(1)** listed here, the one that has the status **Completed**. Choose the option to Include the existing child runs **(2)** as illustrated bellow.
 
     ![Locate the completed AutoML run](media/locate-completed-run.png)
 
-3. Now you should be able to see the list of child runs executed in order to train multiple machine learning models using various classification algorithms. Select **Run 1**.
+3. Now you should be able to see the list of child runs executed in order to train multiple machine learning models using various classification algorithms. Select the first run **(1)** with the type **Automated ML (2)**.
 
     ![Locate the completed AutoML run](media/inspect-child-runs.png)
 
@@ -164,7 +163,7 @@ In this task, we'll use Azure Automated ML to train a machine learning model cap
     ![Explore the models section of the AutoML run](media/inspect-models.png)
 
 5. On the **Explanations (1)** section, browse  the available explanations **(2)** and investigate the **Model performance (3)** representation.
-   
+
     ![View explanations](media/view-explanations.png)
 
 ## Task 7 - Classify new research documents
