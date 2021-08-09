@@ -167,7 +167,7 @@ In this task, we'll use Azure Automated ML to train a machine learning model cap
 
       1. Select the Model.
 
-      2. Click on **Explain Model
+      2. Click on **Explain Model**.
   
             ![Explore the Explain model section of the AutoML run](media/model.png)
             
