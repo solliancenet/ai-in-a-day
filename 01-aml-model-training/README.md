@@ -87,7 +87,7 @@ In this task, we'll use Azure Automated ML to train a machine learning model cap
 
 3. In order to be able to launch an Automated ML run we need to provision a compute cluster. On the `Configure run` step select `aml-compute-cpu` **(1)** from the list of clusters. If the list is empty select `Create a new compute` **(2)** link.
 
-    ![Select compute cluster dropdown list and create a new compute link are highlighted.](media/automl-select-compute-cluster.png)
+    ![Select compute cluster dropdown list and create a new compute link are highlighted.](media/config.png)
 
     > **Note:** If you already have `aml-compute-cpu` cluster provisioned, feel free to skip to step 6.
 
@@ -155,14 +155,27 @@ In this task, we'll use Azure Automated ML to train a machine learning model cap
     ![Locate the completed AutoML run](media/locate-completed-run.png)
 
 3. Now you should be able to see the list of child runs executed in order to train multiple machine learning models using various classification algorithms. Select the first run **(1)** with the type **Automated ML (2)**.
+    Need to wait for 40 min to see the status as **Completed** for Run1. 
 
     ![Locate the completed AutoML run](media/inspect-child-runs.png)
 
 4. On the **Run details** page, navigate to the **Models (1)** section. Check the values on the  **AUC weighted** column **(2)**, which is the primary metric selected in the AutoML run configuration. See how the best model was selected, this is the one with the maximum metric value. This is also the model for which the explanation was generated. Select **View explanation (3)**.
 
     ![Explore the models section of the AutoML run](media/inspect-models.png)
-
-5. On the **Explanations (1)** section, browse  the available explanations **(2)** and investigate the **Model performance (3)** representation.
+    
+5. Incase if you don't see **View Explanation**, you can follow the below steps.
+       1. Select the Model.
+       2. Click on **Explain Model
+            ![Explore the Explain model section of the AutoML run](media/model.png)
+       3. Choose the Cluster from drop down list.
+            ![Explore the Explain model section of the AutoML run](media/model1.png)
+       4. Click on **Child Run** and wait until the staus of the run changes to **Completed**.
+          (This may take nearly 30-40 min)
+          ![Explore the Child Run section of the AutoML run](media/childrun.png)
+       5. Once the status is changed from **Running** to **Completed**, move back to **Models** of Run1. You can see View Explanation.
+           ![Explore the models section of the AutoML run](media/model2.png)
+           
+6. On the **Explanations (1)** section, browse  the available explanations **(2)** and investigate the **Model performance (3)** representation.
 
     ![View explanations](media/view-explanations.png)
 
