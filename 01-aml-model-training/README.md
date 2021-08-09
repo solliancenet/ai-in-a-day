@@ -180,7 +180,7 @@ In this task, we'll use Azure Automated ML to train a machine learning model cap
           
           ![Explore the Child Run section of the AutoML run](media/childrun.png)
           
-      5. Once the status is changed from **Running** to **Completed**, move back to **Models** of Run1. You can see View Explanation.
+      5. Once the status is changed from **Running** to **Completed**, move back to **Models** of Run1. You can see View Explanation. Select **View Explanation**.
       
            ![Explore the models section of the AutoML run](media/model2.png)
            
