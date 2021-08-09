@@ -164,15 +164,24 @@ In this task, we'll use Azure Automated ML to train a machine learning model cap
     ![Explore the models section of the AutoML run](media/inspect-models.png)
     
 5. Incase if you don't see **View Explanation**, you can follow the below steps.
-       1. Select the Model.
-       2. Click on **Explain Model
+
+      1. Select the Model.
+
+      2. Click on **Explain Model
+  
             ![Explore the Explain model section of the AutoML run](media/model.png)
-       3. Choose the Cluster from drop down list.
+            
+      3. Choose the Cluster from drop down list.
+  
             ![Explore the Explain model section of the AutoML run](media/model1.png)
-       4. Click on **Child Run** and wait until the staus of the run changes to **Completed**.
+            
+      4. Click on **Child Run** and wait until the staus of the run changes to **Completed**.
           (This may take nearly 30-40 min)
+          
           ![Explore the Child Run section of the AutoML run](media/childrun.png)
-       5. Once the status is changed from **Running** to **Completed**, move back to **Models** of Run1. You can see View Explanation.
+          
+      5. Once the status is changed from **Running** to **Completed**, move back to **Models** of Run1. You can see View Explanation.
+      
            ![Explore the models section of the AutoML run](media/model2.png)
            
 6. On the **Explanations (1)** section, browse  the available explanations **(2)** and investigate the **Model performance (3)** representation.
