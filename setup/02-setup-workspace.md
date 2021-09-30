@@ -82,6 +82,44 @@
 
     ![Successfully configured build agent](./media/02-setup-running-agent.png)
 
+
+## Task 2 (Linux variant) - Configure a Linux VM as an Azure DevOps Build Agent
+
+1. Create a new Linux VM with the following specs (leave all other options default):
+
+    ![Create new Linux VM](./media/02-setup-create-linux-vm.png)
+
+2. Install Docker on the VM running the following command (https://docs.docker.com/engine/install/ubuntu/):
+
+    ```sh
+    sudo snap install docker
+    ```
+
+3. Configure the `devopsagent` user to run Docker (https://docs.docker.com/engine/install/linux-postinstall/):
+
+    ```sh
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    ```
+
+    Restart the VM to apply the changes.
+
+4. Download and install the Azure DevOps agent on Linux:
+
+    ![Install DevOps Agent on Linux](./media/02-setup-linux-agent.png)
+
+    NOTE: You can use ```curl -O https://vstsagentpackage.azureedge.net/agent/2.192.0/vsts-agent-linux-x64-2.192.0.tar.gz``` to download the file.
+
+5. Configure the agent according to the DevOps documentation: https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux?view=azure-devops.
+
+    The following commands must be run in the `myagent` folder:
+
+    ```sh
+    sudo ./config.sh
+    sudo ./svc.sh install
+    sudo ./svc.sh start
+    ```
+
 ## Task 3 - Create an Azure DevOps Service Connection for the Azure ML Workspace
 
 Create a new service connection to your Azure ML Workspace to enable executing the Azure ML training pipeline. The connection name needs to match the WORKSPACE_SVC_CONNECTION that you set in the variable group above (e.g. `aml-workspace-connection`).
