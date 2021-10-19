@@ -272,7 +272,7 @@ In the Azure Portal, we prepared an Azure Function that triggers the above descr
 
 7.Select the option to overwrite the file since it already exists in the container.
 
-    ![Overwrite COVID19Articles.csv file](./media/040-overwritefile.png)
+   ![Overwrite COVID19Articles.csv file](./media/040-overwritefile.png)
 
 8. Open the GitHub portal, select the `azure-ai-in-a-day-lab-02` repository and select **Actions** from the top menu bar. Notice how the data file update triggered your GitHub Actions workflow execution.
    
