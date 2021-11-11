@@ -183,12 +183,30 @@ In Azure DevOps Pipelines, teams can also take advantage of the Approvals and Ga
 
     ![Configure the manual intervention task](./media/039-manualinterventionconfig.png)
 6. Selecting **Add**, will insert the YAML definition of the task at the end of the **Trigger ML Training Pipeline** stage.
+
+    >**Note**
+    >
+    >Make sure the new task is inserted after the previous `MLPublishedPipelineRestAPITask` (at the same indentation level) and before the first line of the `Training_Run_Report` job.
    
    ![Manual intervention task YAML](./media/039-manualintervention.png)
 
 7. **Save** and **Run** the pipeline. Select the new pipeline Run from the **Runs** list and select the Train and evaluate model stage to open the execution log page.
 
     ![Open execution log](./media/039-openexecutionlog.png)
+
+8. Wait for the pipeline to start, then select it and observe the execution details. The `ManualIntervention` step should now be visible.
+
+    ![View manual intervention task](./media/039-manualintervention-details.png)
+
+**OPTIONAL_ACTION**
+
+9. Wait until the pipeline execution reaches the manual intervention stage. Using the GitHub user credentials, sign in to `https://outlook.office365.com` and wait for the notification email. Once the notification email arrives in the Inbox, open it and provide the required confirmation to continue the pipeline.
+
+>Note
+>
+>You can move to the next exercise and come back later to this step to check if the pipeline has reached the manual intervention stage. However, keep in mind that by default the timeout of the task is only a few minutes. Upon timeout, the task will fail triggering the failure of the entire execution. A failed execution at this point will not impact the reminder of the lab, though.
+
+**/OPTIONAL_ACTION**
 
 ## Task 6 - Explore the execution of the existing GitHub actions workflow
 
