@@ -370,7 +370,7 @@ In the following steps you will create and run a new build pipeline based on the
     Write-Host "PowerShell Blob trigger function Processed blob! Name: $($InputBlob.Path) Size: $($InputBlob.Length) bytes"
 
     $gitHubUser = "github-cloudlabsuser-1020"
-    $gitHubRepo = "azure-ai-in-a-day-lab-02"
+    $gitHubRepo = "azure-ai-in-a-day-lab02"
     $uri = "https://api.github.com/repos/$($gitHubUser)/$($gitHubRepo)/dispatches"
     $headers = @{ Authorization="Bearer $($env:GH_PAT)" }
     $body = "{ ""event_type"": ""storage-blobupdated"" }"

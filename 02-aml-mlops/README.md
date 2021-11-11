@@ -221,7 +221,7 @@ We have created sample workflow file train_deploy.yml to train the model and dep
 
 3. Navigate to the `.github/workflows` folder and open the train_deploy.yml **(1)** workflow definition file . Observe the two jobs defined for the GitHub Actions workflow: **train-register** and **deploy** **(3)**. The workflow is triggered when a code change is committed inside the **COVID19Articles_GH** repository folder or the `master` branch **(2)**.
 
-   ![Inspect GitHub Actions workflow definition](./media/036%20-%20github-actions-workflow-definition.png)
+   ![Inspect GitHub Actions workflow definition](./media/AI-task6-01.png)
 
 4. With the repository opened, select the **Actions** section from the top navigation menu. Observe the active workflow that was already initiated at the first code commit, when the `.github/workflows/train_deploy.yml` definition file was initially created in the repository.
 
@@ -290,7 +290,7 @@ In the Azure Portal, we prepared an Azure Function that triggers the above descr
 
 7.Select the option to overwrite the file since it already exists in the container.
 
-    ![Overwrite COVID19Articles.csv file](./media/040-overwritefile.png)
+   ![Overwrite COVID19Articles.csv file](./media/040-overwritefile.png)
 
 8. Open the GitHub portal, select the `azure-ai-in-a-day-lab-02` repository and select **Actions** from the top menu bar. Notice how the data file update triggered your GitHub Actions workflow execution.
    
