@@ -158,10 +158,9 @@ The release deployment and batch scoring pipelines have the following behaviors:
 
     ![Locate REST endpoint url used for scorings](./media/035-RESTendpoint.png)
 
+## Task 5 - Explore the manual validation option in Azure DevOps Pipelines
 
-## Task 5 - Explore manual intervention option in Azure DevOps Pipelines
-
-In Azure DevOps Pipelines, teams can also take advantage of the Approvals and Gates feature to control the workflow of the deployment pipeline. Each stage in a release pipeline can be configured with pre-deployment and post-deployment conditions that can include waiting for users to manually approve or reject deployments, and checking with other automated systems that specific conditions are met. 
+In Azure DevOps Pipelines, teams can also take advantage of the Approvals and Gates feature to control the workflow of the deployment pipeline. Each stage in a release pipeline can be configured with pre-deployment and post-deployment conditions that can include waiting for users to manually approve or reject deployments, and checking with other automated systems that specific conditions are met.
 
 1. Open the [Azure DevOps portal](https://dev.azure.com/) and if not already signed in, select the **Sign in to Azure DevOps** link. (To sign-in, use the Azure credentials provided by the lab environment.)
 
