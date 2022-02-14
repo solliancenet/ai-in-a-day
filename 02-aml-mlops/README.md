@@ -173,38 +173,35 @@ In Azure DevOps Pipelines, teams can also take advantage of the Approvals and Ga
 
     ![Edit the CI pipeline](./media/038-edit-ci-pipeline.png)
 
-4. In the pipeline YAML definition, locate the beginning of the job: Training_Run_Report (1). In the **Tasks** section located on the right, search for the **Manual intervention** task (2) and then select it (3).
+4. In the pipeline YAML definition, locate the end of the job `Model_CI_Pipeline` (should be line 46). Add a new, empty line and then insert the following snippet (make sure to replace `odl_user_XXXXXX` with the actual user name assigned to your environment):
 
-    ![Locate the manual intervention task](./media/039-create%20task.png)
+    ```yml
+    - job: "Validate_Code_Quality"
+        dependsOn: "Model_CI_Pipeline"
+        displayName: "Validate code quality"
+        timeoutInMinutes: 15
+        pool: server
+        steps:
+        - task: ManualValidation@0
+        timeoutInMinutes: 10
+        inputs:
+            notifyUsers: |
+            odl_user_XXXXXX@msazurelabs.onmicrosoft.com
+            instructions: 'Please validate the code quality analysis results and resume.'
+            onTimeout: reject
+    ```
 
-5. Fill the required fields for your manual intervention task:
-   - **Instructions**: `Please approve registered model`
-   - **Notify users**: enter the github account email address of the form `github_cloudlabsuser_XXXX@cloudlabsaiuser.com`
+    After performing the changes, your YAML code should look similar to this:
 
-    ![Configure the manual intervention task](./media/039-manualinterventionconfig.png)
-6. Selecting **Add**, will insert the YAML definition of the task at the end of the **Trigger ML Training Pipeline** stage.
+    ![Manual validation task YAML](media/039-manual-validation-final.png)
 
-    >**Note**
-    >
-    >Make sure the new task is inserted after the previous `MLPublishedPipelineRestAPITask` (at the same indentation level) and before the first line of the `Training_Run_Report` job.
-   
-   ![Manual intervention task YAML](./media/039-manualintervention.png)
+5. **Save** and **Run** the pipeline. Select the new pipeline Run from the **Runs** list and check the status of the `Model CI` stage. Wait until the `Model CI Pipeline` job completes and then notice the `Review` popup that appears when the `Validate code quality` job starts executing. Select `Review` to perform the manual intervention.
 
-7. **Save** and **Run** the pipeline. Select the new pipeline Run from the **Runs** list and select the Train and evaluate model stage to open the execution log page.
+    ![Initiate review in manual validation](./media/039-manual-validation-review.png)
 
-    ![Open execution log](./media/039-openexecutionlog.png)
+6. Notice the timeout indication at the top of the `Manual Validation` popup. Select `Resume` to allow the pipeline execution to continue.
 
-8. Wait for the pipeline to start, then select it and observe the execution details. The `ManualIntervention` step should now be visible.
-
-    ![View manual intervention task](./media/039-manualintervention-details.png)
-
-**OPTIONAL_ACTION**
-
-9. Wait until the pipeline execution reaches the manual intervention stage. Using the GitHub user credentials, sign in to `https://outlook.office365.com` and wait for the notification email. Once the notification email arrives in the Inbox, open it and provide the required confirmation to continue the pipeline.
-
->Note
->
->You can move to the next exercise and come back later to this step to check if the pipeline has reached the manual intervention stage. However, keep in mind that by default the timeout of the task is only a few minutes. Upon timeout, the task will fail triggering the failure of the entire execution. A failed execution at this point will not impact the reminder of the lab, though.
+    ![Resume pipeline after manual validation](./media/039-manual-validation-resume.png)
 
 **/OPTIONAL_ACTION**
 
